@@ -1,0 +1,25 @@
+Gravando log em: logs/mobileNetV3/V2/log_teste_foren.txt
+Número de imagens (Foren): 4782
+Foren classes: {'fake': 0, 'real': 1}
+Número de imagens (DF): 9564
+DF classes   : {'fake': 0, 'real': 1}
+Acurácia no Teste (Foren): 84.86%
+              precision    recall  f1-score   support
+
+        fake       0.84      0.86      0.85      2390
+        real       0.85      0.84      0.85      2392
+
+    accuracy                           0.85      4782
+   macro avg       0.85      0.85      0.85      4782
+weighted avg       0.85      0.85      0.85      4782
+
+Acurácia no Teste (DeepfakeFaces): 24.38%
+              precision    recall  f1-score   support
+
+        fake       0.88      0.10      0.18      7934
+        real       0.18      0.93      0.30      1630
+
+    accuracy                           0.24      9564
+   macro avg       0.53      0.52      0.24      9564
+weighted avg       0.76      0.24      0.20      9564
+
