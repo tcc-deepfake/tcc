@@ -60,8 +60,15 @@ df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False)
 
 # ---------- modelo ----------
 model = timm.create_model('xception', pretrained=True)
-num_features = model.classifier.in_features
-model.classifier = nn.Linear(num_features, 2) # 2 classes: FAKE e REAL
+
+if hasattr(model, 'fc'):
+    in_features = model.fc.in_features
+    model.fc = nn.Linear(in_features, 2)
+elif hasattr(model, 'head'):
+    in_features = model.head.in_features
+    model.head = nn.Linear(in_features, 2)
+else:
+    raise RuntimeError("Layer de classificação não encontrada.")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.load_state_dict(torch.load(best_path, map_location=device))
@@ -87,9 +94,9 @@ with torch.no_grad():
 
 print(f"Acurácia no Teste (Foren): {100 * correct / total:.2f}%")
 
-print("\n🧾 Classification Report:")
 target_names = [k for k, v in sorted(test_dataset.class_to_idx.items(), key=lambda item: item[1])]
 report = classification_report(all_labels, all_predicted, target_names=target_names)
+print(report)
 
 
 # ---------- teste DF ----------

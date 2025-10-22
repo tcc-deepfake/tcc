@@ -99,6 +99,8 @@ else:
 # Modelo pra GPU se disponível
 # -------------------------------------------------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+if device.type == "cuda":
+    print(f"GPU: {torch.cuda.get_device_name(0)}")
 model = model.to(device)
 
 print("Parametros treináveis:")
@@ -191,7 +193,7 @@ for epoch in range(num_epochs):
         best_val_acc = val_acc
         bad_epochs = 0
         torch.save(model.state_dict(), save_path)
-        print(f"✅ Best model saved to {save_path} (Val Acc: {val_acc:.4f})")
+        print(f" Best model saved to {save_path} (Val Acc: {val_acc:.4f})")
     else:
         bad_epochs += 1
         if bad_epochs >= patience:

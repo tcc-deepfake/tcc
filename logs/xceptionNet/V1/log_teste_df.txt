@@ -1,0 +1,27 @@
+Gravando log em: logs/xceptionNet/V1/log_teste_df.txt
+Número de imagens (Foren): 11403
+Foren classes: {'fake': 0, 'real': 1}
+Número de imagens (DF): 9564
+DF classes   : {'fake': 0, 'real': 1}
+/home/sato/virtualpy/lib/python3.13/site-packages/timm/models/_factory.py:138: UserWarning: Mapping deprecated model name xception to current legacy_xception.
+  model = create_fn(
+Acurácia no Teste (DeepfakeFaces): 83.43%
+              precision    recall  f1-score   support
+
+        fake       0.84      0.99      0.91      7934
+        real       0.68      0.05      0.10      1630
+
+    accuracy                           0.83      9564
+   macro avg       0.76      0.52      0.50      9564
+weighted avg       0.81      0.83      0.77      9564
+
+Acurácia no Teste (Foren): 53.46%
+              precision    recall  f1-score   support
+
+        fake       0.52      0.91      0.66      5697
+        real       0.65      0.15      0.25      5706
+
+    accuracy                           0.53     11403
+   macro avg       0.58      0.53      0.46     11403
+weighted avg       0.58      0.53      0.46     11403
+
