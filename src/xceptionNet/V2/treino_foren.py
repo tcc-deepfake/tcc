@@ -6,7 +6,6 @@ from torch import nn
 from torchvision import datasets, transforms
 import timm
 import time
-from tqdm import tqdm
 
 from utils.model_compress import optimize_model # Pra aplicar prune e quant.
 
@@ -91,6 +90,7 @@ if hasattr(model, 'fc'):
     in_features = model.fc.in_features
     model.fc = nn.Linear(in_features, 2)
     trainable_params = model.fc.parameters()
+
 elif hasattr(model, 'head'):
     in_features = model.head.in_features
     model.head = nn.Linear(in_features, 2)

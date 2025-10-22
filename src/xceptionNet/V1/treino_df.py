@@ -70,22 +70,30 @@ val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
 model = timm.create_model('xception', pretrained=True)
 
 # -------------------------------------------------------------------
-# 4. Freeze ALL layers (safe baseline)
+# 4. Freeze layers
 # -------------------------------------------------------------------
-for param in model.parameters():
-    param.requires_grad = False
-
-# # Then unfreeze the final feature extraction layers and classifier head
-# for name, param in model.named_parameters():
-#     if any(key in name for key in ['block12', 'block13', 'block14', 'conv4', 'bn4', 'fc', 'head']):
-#         param.requires_grad = True
+# for param in model.parameters():
+#     param.requires_grad = False
+for name, param in model.named_parameters():
+    if any(layer in name for layer in ['block12', 'conv3', 'conv4', 'bn3', 'bn4', 'fc']):
+        param.requires_grad = True
+    else:
+        param.requires_grad = False
 
 # -------------------------------------------------------------------
 # 5. Replace classifier head for binary classification (2 classes)
 # -------------------------------------------------------------------
 if hasattr(model, 'fc'):
     in_features = model.fc.in_features
-    model.fc = nn.Linear(in_features, 2)
+
+    # model.fc = nn.Linear(in_features, 2)
+    
+    # Colocando dropout para ver se melhora accuracy
+    model.fc = nn.Sequential(
+        nn.Dropout(p=0.5),
+        nn.Linear(in_features, 2)
+    )
+    
     trainable_params = model.fc.parameters()
 elif hasattr(model, 'head'):
     in_features = model.head.in_features
