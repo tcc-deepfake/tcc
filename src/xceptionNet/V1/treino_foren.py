@@ -6,7 +6,6 @@ from torch import nn
 from torchvision import datasets, transforms
 import timm
 import time
-from tqdm import tqdm
 
 # ---------- log ----------
 log_path = "logs/xceptionNet/V1/log_treino_foren.txt"
@@ -138,7 +137,8 @@ for epoch in range(num_epochs):
     model.train()
     train_loss, train_correct, total = 0.0, 0, 0
 
-    for images, labels in tqdm(train_loader, desc="Treinando", leave=False):
+    # for images, labels in tqdm(train_loader, desc="Treinando", leave=False):
+    for images, labels in train_loader:
         images, labels = images.to(device), labels.to(device)
 
         optimizer.zero_grad()
@@ -163,7 +163,8 @@ for epoch in range(num_epochs):
 
     with torch.no_grad():
 
-        for images, labels in tqdm(val_loader, desc="Validação", leave=False):
+        # for images, labels in tqdm(val_loader, desc="Validação", leave=False):
+        for images, labels in val_loader:
             images, labels = images.to(device, non_blocking=True), labels.to(device, non_blocking=True)
 
             outputs = model(images)
