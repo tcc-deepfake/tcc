@@ -6,7 +6,6 @@ from torch import nn
 from torchvision import datasets, transforms
 import timm
 import time
-from tqdm import tqdm
 
 # ---------- log ----------
 log_path = "logs/xceptionNet/V1/log_treino_df.txt"

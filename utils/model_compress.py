@@ -1,9 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.utils.prune as prune
-import torch.quantization as quant
-import timm
-from torchvision.models import vgg16
+from torch.quantization import quantize_dynamic
 
 def optimize_model(model, model_name=None, prune_amount=None, quantize=True, device='cpu', verbose=True):
     """
@@ -35,8 +33,8 @@ def optimize_model(model, model_name=None, prune_amount=None, quantize=True, dev
     model.eval()
 
     if verbose:
-        print(f"🔍 Detected model type: {model_type.upper()}")
-        print(f"🪚 Applying pruning ({prune_amount*100:.0f}% of weights)...")
+        print(f"🔍 Modelo: {model_type.upper()}")
+        print(f"🪚 Aplicando pruning de {prune_amount*100:.0f}% das weights...")
 
     # ----------------------------------------
     # Count params before pruning
@@ -59,21 +57,23 @@ def optimize_model(model, model_name=None, prune_amount=None, quantize=True, dev
     # ----------------------------------------
     params_after = count_nonzero_params(model)
     if verbose:
-        print(f"✅ Pruning done. Nonzero params: {params_after:,} / {params_before:,}")
+        print(f"✅ Pruning concluído. Parametros não nulos: {params_after:,} / {params_before:,}")
 
     # ----------------------------------------
     # Apply quantization (dynamic)
     # ----------------------------------------
     if quantize:
         if verbose:
-            print("🔢 Applying dynamic quantization...")
-        model = torch.quantization.quantize_dynamic(
-            model, {nn.Linear}, dtype=torch.qint8
+            print("🔢 Aplicando dynamic quantization...")
+        model = quantize_dynamic(
+            model, 
+            {nn.Linear}, 
+            dtype=torch.qint8
         )
         if verbose:
-            print("✅ Quantization done.")
+            print("✅ Quantization concluída.")
 
     if verbose:
-        print(f"💾 Model optimized ({model_type.upper()}) successfully!\n")
+        print(f"💾 Modelo ({model_type.upper()}) otimizado com sucesso!\n")
 
     return model
