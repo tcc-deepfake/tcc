@@ -8,332 +8,622 @@ Mapeamento de classe para índice: {'fake': 0, 'real': 1}
   model = create_fn(
 GPU: NVIDIA GeForce RTX 2060
 Parametros treináveis:
-  block12.skip.weight
-  block12.skipbn.weight
-  block12.skipbn.bias
-  block12.rep.1.conv1.weight
-  block12.rep.1.pointwise.weight
-  block12.rep.2.weight
-  block12.rep.2.bias
-  block12.rep.4.conv1.weight
-  block12.rep.4.pointwise.weight
-  block12.rep.5.weight
-  block12.rep.5.bias
-  conv3.conv1.weight
-  conv3.pointwise.weight
-  bn3.weight
-  bn3.bias
-  conv4.conv1.weight
-  conv4.pointwise.weight
-  bn4.weight
-  bn4.bias
   fc.1.weight
   fc.1.bias
+Class weights: [0.34072697 1.6592729 ]
 
-EPOCH 1/10
+EPOCH 1/20
 ------------------------------
-[Train] epoch 1/10 step 100/2391 loss_mean=0.4975
-[Train] epoch 1/10 step 200/2391 loss_mean=0.4629
-[Train] epoch 1/10 step 300/2391 loss_mean=0.4639
-[Train] epoch 1/10 step 400/2391 loss_mean=0.4597
-[Train] epoch 1/10 step 500/2391 loss_mean=0.4442
-[Train] epoch 1/10 step 600/2391 loss_mean=0.4601
-[Train] epoch 1/10 step 700/2391 loss_mean=0.4587
-[Train] epoch 1/10 step 800/2391 loss_mean=0.4558
-[Train] epoch 1/10 step 900/2391 loss_mean=0.4481
-[Train] epoch 1/10 step 1000/2391 loss_mean=0.4589
-[Train] epoch 1/10 step 1100/2391 loss_mean=0.4638
-[Train] epoch 1/10 step 1200/2391 loss_mean=0.4259
-[Train] epoch 1/10 step 1300/2391 loss_mean=0.4454
-[Train] epoch 1/10 step 1400/2391 loss_mean=0.4460
-[Train] epoch 1/10 step 1500/2391 loss_mean=0.4415
-[Train] epoch 1/10 step 1600/2391 loss_mean=0.4348
-[Train] epoch 1/10 step 1700/2391 loss_mean=0.4631
-[Train] epoch 1/10 step 1800/2391 loss_mean=0.4366
-[Train] epoch 1/10 step 1900/2391 loss_mean=0.4359
-[Train] epoch 1/10 step 2000/2391 loss_mean=0.4300
-[Train] epoch 1/10 step 2100/2391 loss_mean=0.4499
-[Train] epoch 1/10 step 2200/2391 loss_mean=0.4446
-[Train] epoch 1/10 step 2300/2391 loss_mean=0.4373
-[Val]   epoch 1/10 step 100/299 loss_mean=0.2157
-[Val]   epoch 1/10 step 200/299 loss_mean=0.2168
-Train Loss: 0.4499 | Train Acc: 0.8288
-Val Loss: 0.4433 | Val   Acc: 0.8298
- Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8298)
+[Train] epoch 1/20 step 100/2391 loss_mean=0.7514
+[Train] epoch 1/20 step 200/2391 loss_mean=0.7759
+[Train] epoch 1/20 step 300/2391 loss_mean=0.7808
+[Train] epoch 1/20 step 400/2391 loss_mean=0.7827
+[Train] epoch 1/20 step 500/2391 loss_mean=0.8170
+[Train] epoch 1/20 step 600/2391 loss_mean=0.8091
+[Train] epoch 1/20 step 700/2391 loss_mean=0.8192
+[Train] epoch 1/20 step 800/2391 loss_mean=0.8206
+[Train] epoch 1/20 step 900/2391 loss_mean=0.7905
+[Train] epoch 1/20 step 1000/2391 loss_mean=0.8215
+[Train] epoch 1/20 step 1100/2391 loss_mean=0.7641
+[Train] epoch 1/20 step 1200/2391 loss_mean=0.8285
+[Train] epoch 1/20 step 1300/2391 loss_mean=0.7958
+[Train] epoch 1/20 step 1400/2391 loss_mean=0.8262
+[Train] epoch 1/20 step 1500/2391 loss_mean=0.8010
+[Train] epoch 1/20 step 1600/2391 loss_mean=0.7949
+[Train] epoch 1/20 step 1700/2391 loss_mean=0.8573
+[Train] epoch 1/20 step 1800/2391 loss_mean=0.7887
+[Train] epoch 1/20 step 1900/2391 loss_mean=0.8249
+[Train] epoch 1/20 step 2000/2391 loss_mean=0.8557
+[Train] epoch 1/20 step 2100/2391 loss_mean=0.8331
+[Train] epoch 1/20 step 2200/2391 loss_mean=0.8091
+[Train] epoch 1/20 step 2300/2391 loss_mean=0.7998
+[Val]   epoch 1/20 step 100/299 loss_mean=0.5051
+[Val]   epoch 1/20 step 200/299 loss_mean=0.5039
+Train Loss: 0.8070 | Train Acc: 0.5906
+Val Loss: 0.5645 | Val   Acc: 0.7078
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.7078)
 
-EPOCH 2/10
+EPOCH 2/20
 ------------------------------
-[Train] epoch 2/10 step 100/2391 loss_mean=0.4456
-[Train] epoch 2/10 step 200/2391 loss_mean=0.4413
-[Train] epoch 2/10 step 300/2391 loss_mean=0.4403
-[Train] epoch 2/10 step 400/2391 loss_mean=0.4350
-[Train] epoch 2/10 step 500/2391 loss_mean=0.4384
-[Train] epoch 2/10 step 600/2391 loss_mean=0.4431
-[Train] epoch 2/10 step 700/2391 loss_mean=0.4269
-[Train] epoch 2/10 step 800/2391 loss_mean=0.4482
-[Train] epoch 2/10 step 900/2391 loss_mean=0.4253
-[Train] epoch 2/10 step 1000/2391 loss_mean=0.4075
-[Train] epoch 2/10 step 1100/2391 loss_mean=0.4350
-[Train] epoch 2/10 step 1200/2391 loss_mean=0.4290
-[Train] epoch 2/10 step 1300/2391 loss_mean=0.4518
-[Train] epoch 2/10 step 1400/2391 loss_mean=0.4544
-[Train] epoch 2/10 step 1500/2391 loss_mean=0.4397
-[Train] epoch 2/10 step 1600/2391 loss_mean=0.4352
-[Train] epoch 2/10 step 1700/2391 loss_mean=0.4263
-[Train] epoch 2/10 step 1800/2391 loss_mean=0.4292
-[Train] epoch 2/10 step 1900/2391 loss_mean=0.4375
-[Train] epoch 2/10 step 2000/2391 loss_mean=0.4363
-[Train] epoch 2/10 step 2100/2391 loss_mean=0.4522
-[Train] epoch 2/10 step 2200/2391 loss_mean=0.4356
-[Train] epoch 2/10 step 2300/2391 loss_mean=0.4396
-[Val]   epoch 2/10 step 100/299 loss_mean=0.2174
-[Val]   epoch 2/10 step 200/299 loss_mean=0.2177
-Train Loss: 0.4364 | Train Acc: 0.8293
-Val Loss: 0.4379 | Val   Acc: 0.8301
- Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8301)
+[Train] epoch 2/20 step 100/2391 loss_mean=0.8235
+[Train] epoch 2/20 step 200/2391 loss_mean=0.8123
+[Train] epoch 2/20 step 300/2391 loss_mean=0.8068
+[Train] epoch 2/20 step 400/2391 loss_mean=0.7994
+[Train] epoch 2/20 step 500/2391 loss_mean=0.8105
+[Train] epoch 2/20 step 600/2391 loss_mean=0.9316
+[Train] epoch 2/20 step 700/2391 loss_mean=0.8290
+[Train] epoch 2/20 step 800/2391 loss_mean=0.7877
+[Train] epoch 2/20 step 900/2391 loss_mean=0.8408
+[Train] epoch 2/20 step 1000/2391 loss_mean=0.8427
+[Train] epoch 2/20 step 1100/2391 loss_mean=0.8000
+[Train] epoch 2/20 step 1200/2391 loss_mean=0.8402
+[Train] epoch 2/20 step 1300/2391 loss_mean=0.7773
+[Train] epoch 2/20 step 1400/2391 loss_mean=0.7807
+[Train] epoch 2/20 step 1500/2391 loss_mean=0.8382
+[Train] epoch 2/20 step 1600/2391 loss_mean=0.8019
+[Train] epoch 2/20 step 1700/2391 loss_mean=0.7965
+[Train] epoch 2/20 step 1800/2391 loss_mean=0.7892
+[Train] epoch 2/20 step 1900/2391 loss_mean=0.7852
+[Train] epoch 2/20 step 2000/2391 loss_mean=0.7610
+[Train] epoch 2/20 step 2100/2391 loss_mean=0.7912
+[Train] epoch 2/20 step 2200/2391 loss_mean=0.7769
+[Train] epoch 2/20 step 2300/2391 loss_mean=0.7951
+[Val]   epoch 2/20 step 100/299 loss_mean=0.5727
+[Val]   epoch 2/20 step 200/299 loss_mean=0.5619
+Train Loss: 0.8097 | Train Acc: 0.5934
+Val Loss: 0.6024 | Val   Acc: 0.6749
 
-EPOCH 3/10
+EPOCH 3/20
 ------------------------------
-[Train] epoch 3/10 step 100/2391 loss_mean=0.4343
-[Train] epoch 3/10 step 200/2391 loss_mean=0.4369
-[Train] epoch 3/10 step 300/2391 loss_mean=0.4283
-[Train] epoch 3/10 step 400/2391 loss_mean=0.4276
-[Train] epoch 3/10 step 500/2391 loss_mean=0.4541
-[Train] epoch 3/10 step 600/2391 loss_mean=0.4183
-[Train] epoch 3/10 step 700/2391 loss_mean=0.4333
-[Train] epoch 3/10 step 800/2391 loss_mean=0.4376
-[Train] epoch 3/10 step 900/2391 loss_mean=0.4458
-[Train] epoch 3/10 step 1000/2391 loss_mean=0.4224
-[Train] epoch 3/10 step 1100/2391 loss_mean=0.4320
-[Train] epoch 3/10 step 1200/2391 loss_mean=0.4453
-[Train] epoch 3/10 step 1300/2391 loss_mean=0.4139
-[Train] epoch 3/10 step 1400/2391 loss_mean=0.4300
-[Train] epoch 3/10 step 1500/2391 loss_mean=0.4348
-[Train] epoch 3/10 step 1600/2391 loss_mean=0.4377
-[Train] epoch 3/10 step 1700/2391 loss_mean=0.4354
-[Train] epoch 3/10 step 1800/2391 loss_mean=0.4189
-[Train] epoch 3/10 step 1900/2391 loss_mean=0.4518
-[Train] epoch 3/10 step 2000/2391 loss_mean=0.4421
-[Train] epoch 3/10 step 2100/2391 loss_mean=0.4206
-[Train] epoch 3/10 step 2200/2391 loss_mean=0.4173
-[Train] epoch 3/10 step 2300/2391 loss_mean=0.4534
-[Val]   epoch 3/10 step 100/299 loss_mean=0.2316
-[Val]   epoch 3/10 step 200/299 loss_mean=0.2306
-Train Loss: 0.4332 | Train Acc: 0.8297
-Val Loss: 0.4378 | Val   Acc: 0.8302
- Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8302)
+[Train] epoch 3/20 step 100/2391 loss_mean=0.7669
+[Train] epoch 3/20 step 200/2391 loss_mean=0.7932
+[Train] epoch 3/20 step 300/2391 loss_mean=0.7574
+[Train] epoch 3/20 step 400/2391 loss_mean=0.7674
+[Train] epoch 3/20 step 500/2391 loss_mean=0.7606
+[Train] epoch 3/20 step 600/2391 loss_mean=0.7469
+[Train] epoch 3/20 step 700/2391 loss_mean=0.7877
+[Train] epoch 3/20 step 800/2391 loss_mean=0.7339
+[Train] epoch 3/20 step 900/2391 loss_mean=0.7757
+[Train] epoch 3/20 step 1000/2391 loss_mean=0.7154
+[Train] epoch 3/20 step 1100/2391 loss_mean=0.7424
+[Train] epoch 3/20 step 1200/2391 loss_mean=0.7421
+[Train] epoch 3/20 step 1300/2391 loss_mean=0.7316
+[Train] epoch 3/20 step 1400/2391 loss_mean=0.7409
+[Train] epoch 3/20 step 1500/2391 loss_mean=0.7322
+[Train] epoch 3/20 step 1600/2391 loss_mean=0.7534
+[Train] epoch 3/20 step 1700/2391 loss_mean=0.7108
+[Train] epoch 3/20 step 1800/2391 loss_mean=0.7357
+[Train] epoch 3/20 step 1900/2391 loss_mean=0.7601
+[Train] epoch 3/20 step 2000/2391 loss_mean=0.7470
+[Train] epoch 3/20 step 2100/2391 loss_mean=0.7672
+[Train] epoch 3/20 step 2200/2391 loss_mean=0.7177
+[Train] epoch 3/20 step 2300/2391 loss_mean=0.7349
+[Val]   epoch 3/20 step 100/299 loss_mean=0.3829
+[Val]   epoch 3/20 step 200/299 loss_mean=0.3723
+Train Loss: 0.7483 | Train Acc: 0.6062
+Val Loss: 0.4911 | Val   Acc: 0.7800
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.7800)
 
-EPOCH 4/10
+EPOCH 4/20
 ------------------------------
-[Train] epoch 4/10 step 100/2391 loss_mean=0.4419
-[Train] epoch 4/10 step 200/2391 loss_mean=0.4396
-[Train] epoch 4/10 step 300/2391 loss_mean=0.4276
-[Train] epoch 4/10 step 400/2391 loss_mean=0.4186
-[Train] epoch 4/10 step 500/2391 loss_mean=0.4325
-[Train] epoch 4/10 step 600/2391 loss_mean=0.4428
-[Train] epoch 4/10 step 700/2391 loss_mean=0.4280
-[Train] epoch 4/10 step 800/2391 loss_mean=0.4306
-[Train] epoch 4/10 step 900/2391 loss_mean=0.4196
-[Train] epoch 4/10 step 1000/2391 loss_mean=0.4271
-[Train] epoch 4/10 step 1100/2391 loss_mean=0.4355
-[Train] epoch 4/10 step 1200/2391 loss_mean=0.4373
-[Train] epoch 4/10 step 1300/2391 loss_mean=0.4433
-[Train] epoch 4/10 step 1400/2391 loss_mean=0.4475
-[Train] epoch 4/10 step 1500/2391 loss_mean=0.4356
-[Train] epoch 4/10 step 1600/2391 loss_mean=0.4280
-[Train] epoch 4/10 step 1700/2391 loss_mean=0.4208
-[Train] epoch 4/10 step 1800/2391 loss_mean=0.4396
-[Train] epoch 4/10 step 1900/2391 loss_mean=0.4335
-[Train] epoch 4/10 step 2000/2391 loss_mean=0.4228
-[Train] epoch 4/10 step 2100/2391 loss_mean=0.4256
-[Train] epoch 4/10 step 2200/2391 loss_mean=0.4425
-[Train] epoch 4/10 step 2300/2391 loss_mean=0.4259
-[Val]   epoch 4/10 step 100/299 loss_mean=0.2086
-[Val]   epoch 4/10 step 200/299 loss_mean=0.2080
-Train Loss: 0.4322 | Train Acc: 0.8296
-Val Loss: 0.4334 | Val   Acc: 0.8299
+[Train] epoch 4/20 step 100/2391 loss_mean=0.7192
+[Train] epoch 4/20 step 200/2391 loss_mean=0.7243
+[Train] epoch 4/20 step 300/2391 loss_mean=0.7098
+[Train] epoch 4/20 step 400/2391 loss_mean=0.7074
+[Train] epoch 4/20 step 500/2391 loss_mean=0.7159
+[Train] epoch 4/20 step 600/2391 loss_mean=0.7033
+[Train] epoch 4/20 step 700/2391 loss_mean=0.7104
+[Train] epoch 4/20 step 800/2391 loss_mean=0.7063
+[Train] epoch 4/20 step 900/2391 loss_mean=0.7060
+[Train] epoch 4/20 step 1000/2391 loss_mean=0.6821
+[Train] epoch 4/20 step 1100/2391 loss_mean=0.7114
+[Train] epoch 4/20 step 1200/2391 loss_mean=0.7172
+[Train] epoch 4/20 step 1300/2391 loss_mean=0.7081
+[Train] epoch 4/20 step 1400/2391 loss_mean=0.6912
+[Train] epoch 4/20 step 1500/2391 loss_mean=0.6903
+[Train] epoch 4/20 step 1600/2391 loss_mean=0.6912
+[Train] epoch 4/20 step 1700/2391 loss_mean=0.6865
+[Train] epoch 4/20 step 1800/2391 loss_mean=0.6832
+[Train] epoch 4/20 step 1900/2391 loss_mean=0.6885
+[Train] epoch 4/20 step 2000/2391 loss_mean=0.6975
+[Train] epoch 4/20 step 2100/2391 loss_mean=0.7075
+[Train] epoch 4/20 step 2200/2391 loss_mean=0.6794
+[Train] epoch 4/20 step 2300/2391 loss_mean=0.7124
+[Val]   epoch 4/20 step 100/299 loss_mean=0.5252
+[Val]   epoch 4/20 step 200/299 loss_mean=0.5215
+Train Loss: 0.7017 | Train Acc: 0.6179
+Val Loss: 0.5623 | Val   Acc: 0.7205
 
-EPOCH 5/10
+EPOCH 5/20
 ------------------------------
-[Train] epoch 5/10 step 100/2391 loss_mean=0.4178
-[Train] epoch 5/10 step 200/2391 loss_mean=0.4247
-[Train] epoch 5/10 step 300/2391 loss_mean=0.4435
-[Train] epoch 5/10 step 400/2391 loss_mean=0.4395
-[Train] epoch 5/10 step 500/2391 loss_mean=0.4190
-[Train] epoch 5/10 step 600/2391 loss_mean=0.4292
-[Train] epoch 5/10 step 700/2391 loss_mean=0.4318
-[Train] epoch 5/10 step 800/2391 loss_mean=0.4175
-[Train] epoch 5/10 step 900/2391 loss_mean=0.4355
-[Train] epoch 5/10 step 1000/2391 loss_mean=0.4264
-[Train] epoch 5/10 step 1100/2391 loss_mean=0.4205
-[Train] epoch 5/10 step 1200/2391 loss_mean=0.4343
-[Train] epoch 5/10 step 1300/2391 loss_mean=0.4447
-[Train] epoch 5/10 step 1400/2391 loss_mean=0.4412
-[Train] epoch 5/10 step 1500/2391 loss_mean=0.4450
-[Train] epoch 5/10 step 1600/2391 loss_mean=0.4271
-[Train] epoch 5/10 step 1700/2391 loss_mean=0.4451
-[Train] epoch 5/10 step 1800/2391 loss_mean=0.4282
-[Train] epoch 5/10 step 1900/2391 loss_mean=0.4297
-[Train] epoch 5/10 step 2000/2391 loss_mean=0.4168
-[Train] epoch 5/10 step 2100/2391 loss_mean=0.4336
-[Train] epoch 5/10 step 2200/2391 loss_mean=0.4206
-[Train] epoch 5/10 step 2300/2391 loss_mean=0.4374
-[Val]   epoch 5/10 step 100/299 loss_mean=0.2304
-[Val]   epoch 5/10 step 200/299 loss_mean=0.2286
-Train Loss: 0.4309 | Train Acc: 0.8303
-Val Loss: 0.4351 | Val   Acc: 0.8306
- Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8306)
+[Train] epoch 5/20 step 100/2391 loss_mean=0.6715
+[Train] epoch 5/20 step 200/2391 loss_mean=0.6738
+[Train] epoch 5/20 step 300/2391 loss_mean=0.6673
+[Train] epoch 5/20 step 400/2391 loss_mean=0.6589
+[Train] epoch 5/20 step 500/2391 loss_mean=0.6774
+[Train] epoch 5/20 step 600/2391 loss_mean=0.6672
+[Train] epoch 5/20 step 700/2391 loss_mean=0.6639
+[Train] epoch 5/20 step 800/2391 loss_mean=0.6416
+[Train] epoch 5/20 step 900/2391 loss_mean=0.6526
+[Train] epoch 5/20 step 1000/2391 loss_mean=0.6683
+[Train] epoch 5/20 step 1100/2391 loss_mean=0.6484
+[Train] epoch 5/20 step 1200/2391 loss_mean=0.6593
+[Train] epoch 5/20 step 1300/2391 loss_mean=0.6718
+[Train] epoch 5/20 step 1400/2391 loss_mean=0.6571
+[Train] epoch 5/20 step 1500/2391 loss_mean=0.6621
+[Train] epoch 5/20 step 1600/2391 loss_mean=0.6638
+[Train] epoch 5/20 step 1700/2391 loss_mean=0.6732
+[Train] epoch 5/20 step 1800/2391 loss_mean=0.6692
+[Train] epoch 5/20 step 1900/2391 loss_mean=0.6659
+[Train] epoch 5/20 step 2000/2391 loss_mean=0.6493
+[Train] epoch 5/20 step 2100/2391 loss_mean=0.6445
+[Train] epoch 5/20 step 2200/2391 loss_mean=0.6627
+[Train] epoch 5/20 step 2300/2391 loss_mean=0.6555
+[Val]   epoch 5/20 step 100/299 loss_mean=0.6823
+[Val]   epoch 5/20 step 200/299 loss_mean=0.6723
+Train Loss: 0.6617 | Train Acc: 0.6368
+Val Loss: 0.6593 | Val   Acc: 0.6031
 
-EPOCH 6/10
+Liberando camadas
+
+EPOCH 6/20
 ------------------------------
-[Train] epoch 6/10 step 100/2391 loss_mean=0.4296
-[Train] epoch 6/10 step 200/2391 loss_mean=0.4211
-[Train] epoch 6/10 step 300/2391 loss_mean=0.4242
-[Train] epoch 6/10 step 400/2391 loss_mean=0.4529
-[Train] epoch 6/10 step 500/2391 loss_mean=0.4464
-[Train] epoch 6/10 step 600/2391 loss_mean=0.4292
-[Train] epoch 6/10 step 700/2391 loss_mean=0.4297
-[Train] epoch 6/10 step 800/2391 loss_mean=0.4259
-[Train] epoch 6/10 step 900/2391 loss_mean=0.4259
-[Train] epoch 6/10 step 1000/2391 loss_mean=0.4296
-[Train] epoch 6/10 step 1100/2391 loss_mean=0.4442
-[Train] epoch 6/10 step 1200/2391 loss_mean=0.4377
-[Train] epoch 6/10 step 1300/2391 loss_mean=0.4374
-[Train] epoch 6/10 step 1400/2391 loss_mean=0.4240
-[Train] epoch 6/10 step 1500/2391 loss_mean=0.4367
-[Train] epoch 6/10 step 1600/2391 loss_mean=0.4378
-[Train] epoch 6/10 step 1700/2391 loss_mean=0.4301
-[Train] epoch 6/10 step 1800/2391 loss_mean=0.4274
-[Train] epoch 6/10 step 1900/2391 loss_mean=0.4177
-[Train] epoch 6/10 step 2000/2391 loss_mean=0.4186
-[Train] epoch 6/10 step 2100/2391 loss_mean=0.4389
-[Train] epoch 6/10 step 2200/2391 loss_mean=0.4227
-[Train] epoch 6/10 step 2300/2391 loss_mean=0.4292
-[Val]   epoch 6/10 step 100/299 loss_mean=0.2226
-[Val]   epoch 6/10 step 200/299 loss_mean=0.2208
-Train Loss: 0.4303 | Train Acc: 0.8298
-Val Loss: 0.4330 | Val   Acc: 0.8302
+[Train] epoch 6/20 step 100/2391 loss_mean=0.6528
+[Train] epoch 6/20 step 200/2391 loss_mean=0.6280
+[Train] epoch 6/20 step 300/2391 loss_mean=0.6379
+[Train] epoch 6/20 step 400/2391 loss_mean=0.6492
+[Train] epoch 6/20 step 500/2391 loss_mean=0.6064
+[Train] epoch 6/20 step 600/2391 loss_mean=0.6309
+[Train] epoch 6/20 step 700/2391 loss_mean=0.6202
+[Train] epoch 6/20 step 800/2391 loss_mean=0.6290
+[Train] epoch 6/20 step 900/2391 loss_mean=0.6083
+[Train] epoch 6/20 step 1000/2391 loss_mean=0.5977
+[Train] epoch 6/20 step 1100/2391 loss_mean=0.5847
+[Train] epoch 6/20 step 1200/2391 loss_mean=0.5766
+[Train] epoch 6/20 step 1300/2391 loss_mean=0.5459
+[Train] epoch 6/20 step 1400/2391 loss_mean=0.5845
+[Train] epoch 6/20 step 1500/2391 loss_mean=0.5547
+[Train] epoch 6/20 step 1600/2391 loss_mean=0.5713
+[Train] epoch 6/20 step 1700/2391 loss_mean=0.5700
+[Train] epoch 6/20 step 1800/2391 loss_mean=0.5427
+[Train] epoch 6/20 step 1900/2391 loss_mean=0.5546
+[Train] epoch 6/20 step 2000/2391 loss_mean=0.5517
+[Train] epoch 6/20 step 2100/2391 loss_mean=0.5619
+[Train] epoch 6/20 step 2200/2391 loss_mean=0.5270
+[Train] epoch 6/20 step 2300/2391 loss_mean=0.5504
+[Val]   epoch 6/20 step 100/299 loss_mean=0.5088
+[Val]   epoch 6/20 step 200/299 loss_mean=0.4979
+Train Loss: 0.5862 | Train Acc: 0.7033
+Val Loss: 0.5064 | Val   Acc: 0.7505
 
-EPOCH 7/10
+EPOCH 7/20
 ------------------------------
-[Train] epoch 7/10 step 100/2391 loss_mean=0.4282
-[Train] epoch 7/10 step 200/2391 loss_mean=0.4314
-[Train] epoch 7/10 step 300/2391 loss_mean=0.4216
-[Train] epoch 7/10 step 400/2391 loss_mean=0.4273
-[Train] epoch 7/10 step 500/2391 loss_mean=0.4234
-[Train] epoch 7/10 step 600/2391 loss_mean=0.4373
-[Train] epoch 7/10 step 700/2391 loss_mean=0.4190
-[Train] epoch 7/10 step 800/2391 loss_mean=0.4355
-[Train] epoch 7/10 step 900/2391 loss_mean=0.4362
-[Train] epoch 7/10 step 1000/2391 loss_mean=0.4418
-[Train] epoch 7/10 step 1100/2391 loss_mean=0.4418
-[Train] epoch 7/10 step 1200/2391 loss_mean=0.4382
-[Train] epoch 7/10 step 1300/2391 loss_mean=0.4382
-[Train] epoch 7/10 step 1400/2391 loss_mean=0.4067
-[Train] epoch 7/10 step 1500/2391 loss_mean=0.4181
-[Train] epoch 7/10 step 1600/2391 loss_mean=0.4412
-[Train] epoch 7/10 step 1700/2391 loss_mean=0.4243
-[Train] epoch 7/10 step 1800/2391 loss_mean=0.4379
-[Train] epoch 7/10 step 1900/2391 loss_mean=0.4280
-[Train] epoch 7/10 step 2000/2391 loss_mean=0.4299
-[Train] epoch 7/10 step 2100/2391 loss_mean=0.4284
-[Train] epoch 7/10 step 2200/2391 loss_mean=0.4094
-[Train] epoch 7/10 step 2300/2391 loss_mean=0.4347
-[Val]   epoch 7/10 step 100/299 loss_mean=0.2369
-[Val]   epoch 7/10 step 200/299 loss_mean=0.2355
-Train Loss: 0.4296 | Train Acc: 0.8301
-Val Loss: 0.4354 | Val   Acc: 0.8305
+[Train] epoch 7/20 step 100/2391 loss_mean=0.5137
+[Train] epoch 7/20 step 200/2391 loss_mean=0.5088
+[Train] epoch 7/20 step 300/2391 loss_mean=0.5136
+[Train] epoch 7/20 step 400/2391 loss_mean=0.4977
+[Train] epoch 7/20 step 500/2391 loss_mean=0.5145
+[Train] epoch 7/20 step 600/2391 loss_mean=0.5051
+[Train] epoch 7/20 step 700/2391 loss_mean=0.5179
+[Train] epoch 7/20 step 800/2391 loss_mean=0.4966
+[Train] epoch 7/20 step 900/2391 loss_mean=0.4895
+[Train] epoch 7/20 step 1000/2391 loss_mean=0.5012
+[Train] epoch 7/20 step 1100/2391 loss_mean=0.4754
+[Train] epoch 7/20 step 1200/2391 loss_mean=0.5065
+[Train] epoch 7/20 step 1300/2391 loss_mean=0.4954
+[Train] epoch 7/20 step 1400/2391 loss_mean=0.5014
+[Train] epoch 7/20 step 1500/2391 loss_mean=0.4841
+[Train] epoch 7/20 step 1600/2391 loss_mean=0.4885
+[Train] epoch 7/20 step 1700/2391 loss_mean=0.4735
+[Train] epoch 7/20 step 1800/2391 loss_mean=0.4738
+[Train] epoch 7/20 step 1900/2391 loss_mean=0.4804
+[Train] epoch 7/20 step 2000/2391 loss_mean=0.4615
+[Train] epoch 7/20 step 2100/2391 loss_mean=0.4709
+[Train] epoch 7/20 step 2200/2391 loss_mean=0.4643
+[Train] epoch 7/20 step 2300/2391 loss_mean=0.4639
+[Val]   epoch 7/20 step 100/299 loss_mean=0.3593
+[Val]   epoch 7/20 step 200/299 loss_mean=0.3446
+Train Loss: 0.4903 | Train Acc: 0.7715
+Val Loss: 0.3902 | Val   Acc: 0.8232
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8232)
 
-EPOCH 8/10
+EPOCH 8/20
 ------------------------------
-[Train] epoch 8/10 step 100/2391 loss_mean=0.4367
-[Train] epoch 8/10 step 200/2391 loss_mean=0.4457
-[Train] epoch 8/10 step 300/2391 loss_mean=0.4398
-[Train] epoch 8/10 step 400/2391 loss_mean=0.4090
-[Train] epoch 8/10 step 500/2391 loss_mean=0.4200
-[Train] epoch 8/10 step 600/2391 loss_mean=0.4269
-[Train] epoch 8/10 step 700/2391 loss_mean=0.4194
-[Train] epoch 8/10 step 800/2391 loss_mean=0.4344
-[Train] epoch 8/10 step 900/2391 loss_mean=0.4391
-[Train] epoch 8/10 step 1000/2391 loss_mean=0.4195
-[Train] epoch 8/10 step 1100/2391 loss_mean=0.4338
-[Train] epoch 8/10 step 1200/2391 loss_mean=0.4399
-[Train] epoch 8/10 step 1300/2391 loss_mean=0.4373
-[Train] epoch 8/10 step 1400/2391 loss_mean=0.4181
-[Train] epoch 8/10 step 1500/2391 loss_mean=0.4225
-[Train] epoch 8/10 step 1600/2391 loss_mean=0.4301
-[Train] epoch 8/10 step 1700/2391 loss_mean=0.3984
-[Train] epoch 8/10 step 1800/2391 loss_mean=0.4370
-[Train] epoch 8/10 step 1900/2391 loss_mean=0.4536
-[Train] epoch 8/10 step 2000/2391 loss_mean=0.4400
-[Train] epoch 8/10 step 2100/2391 loss_mean=0.4324
-[Train] epoch 8/10 step 2200/2391 loss_mean=0.4216
-[Train] epoch 8/10 step 2300/2391 loss_mean=0.4249
-[Val]   epoch 8/10 step 100/299 loss_mean=0.2059
-[Val]   epoch 8/10 step 200/299 loss_mean=0.2048
-Train Loss: 0.4293 | Train Acc: 0.8300
-Val Loss: 0.4308 | Val   Acc: 0.8303
+[Train] epoch 8/20 step 100/2391 loss_mean=0.4359
+[Train] epoch 8/20 step 200/2391 loss_mean=0.4360
+[Train] epoch 8/20 step 300/2391 loss_mean=0.4559
+[Train] epoch 8/20 step 400/2391 loss_mean=0.4154
+[Train] epoch 8/20 step 500/2391 loss_mean=0.4571
+[Train] epoch 8/20 step 600/2391 loss_mean=0.4319
+[Train] epoch 8/20 step 700/2391 loss_mean=0.4281
+[Train] epoch 8/20 step 800/2391 loss_mean=0.4455
+[Train] epoch 8/20 step 900/2391 loss_mean=0.4264
+[Train] epoch 8/20 step 1000/2391 loss_mean=0.4150
+[Train] epoch 8/20 step 1100/2391 loss_mean=0.4179
+[Train] epoch 8/20 step 1200/2391 loss_mean=0.4438
+[Train] epoch 8/20 step 1300/2391 loss_mean=0.4177
+[Train] epoch 8/20 step 1400/2391 loss_mean=0.4522
+[Train] epoch 8/20 step 1500/2391 loss_mean=0.4623
+[Train] epoch 8/20 step 1600/2391 loss_mean=0.4146
+[Train] epoch 8/20 step 1700/2391 loss_mean=0.4197
+[Train] epoch 8/20 step 1800/2391 loss_mean=0.4244
+[Train] epoch 8/20 step 1900/2391 loss_mean=0.4400
+[Train] epoch 8/20 step 2000/2391 loss_mean=0.4134
+[Train] epoch 8/20 step 2100/2391 loss_mean=0.4204
+[Train] epoch 8/20 step 2200/2391 loss_mean=0.4168
+[Train] epoch 8/20 step 2300/2391 loss_mean=0.4222
+[Val]   epoch 8/20 step 100/299 loss_mean=0.3497
+[Val]   epoch 8/20 step 200/299 loss_mean=0.3360
+Train Loss: 0.4303 | Train Acc: 0.8059
+Val Loss: 0.3714 | Val   Acc: 0.8275
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8275)
 
-EPOCH 9/10
+EPOCH 9/20
 ------------------------------
-[Train] epoch 9/10 step 100/2391 loss_mean=0.4217
-[Train] epoch 9/10 step 200/2391 loss_mean=0.4355
-[Train] epoch 9/10 step 300/2391 loss_mean=0.4173
-[Train] epoch 9/10 step 400/2391 loss_mean=0.4169
-[Train] epoch 9/10 step 500/2391 loss_mean=0.4309
-[Train] epoch 9/10 step 600/2391 loss_mean=0.4264
-[Train] epoch 9/10 step 700/2391 loss_mean=0.4250
-[Train] epoch 9/10 step 800/2391 loss_mean=0.4318
-[Train] epoch 9/10 step 900/2391 loss_mean=0.4305
-[Train] epoch 9/10 step 1000/2391 loss_mean=0.4203
-[Train] epoch 9/10 step 1100/2391 loss_mean=0.4439
-[Train] epoch 9/10 step 1200/2391 loss_mean=0.4409
-[Train] epoch 9/10 step 1300/2391 loss_mean=0.4324
-[Train] epoch 9/10 step 1400/2391 loss_mean=0.4296
-[Train] epoch 9/10 step 1500/2391 loss_mean=0.4330
-[Train] epoch 9/10 step 1600/2391 loss_mean=0.4073
-[Train] epoch 9/10 step 1700/2391 loss_mean=0.4334
-[Train] epoch 9/10 step 1800/2391 loss_mean=0.4502
-[Train] epoch 9/10 step 1900/2391 loss_mean=0.4213
-[Train] epoch 9/10 step 2000/2391 loss_mean=0.4297
-[Train] epoch 9/10 step 2100/2391 loss_mean=0.4364
-[Train] epoch 9/10 step 2200/2391 loss_mean=0.4319
-[Train] epoch 9/10 step 2300/2391 loss_mean=0.4259
-[Val]   epoch 9/10 step 100/299 loss_mean=0.2131
-[Val]   epoch 9/10 step 200/299 loss_mean=0.2120
-Train Loss: 0.4289 | Train Acc: 0.8302
-Val Loss: 0.4313 | Val   Acc: 0.8307
- Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8307)
+[Train] epoch 9/20 step 100/2391 loss_mean=0.3949
+[Train] epoch 9/20 step 200/2391 loss_mean=0.3808
+[Train] epoch 9/20 step 300/2391 loss_mean=0.3874
+[Train] epoch 9/20 step 400/2391 loss_mean=0.3876
+[Train] epoch 9/20 step 500/2391 loss_mean=0.3930
+[Train] epoch 9/20 step 600/2391 loss_mean=0.3777
+[Train] epoch 9/20 step 700/2391 loss_mean=0.3785
+[Train] epoch 9/20 step 800/2391 loss_mean=0.4222
+[Train] epoch 9/20 step 900/2391 loss_mean=0.3985
+[Train] epoch 9/20 step 1000/2391 loss_mean=0.3904
+[Train] epoch 9/20 step 1100/2391 loss_mean=0.3903
+[Train] epoch 9/20 step 1200/2391 loss_mean=0.3923
+[Train] epoch 9/20 step 1300/2391 loss_mean=0.3887
+[Train] epoch 9/20 step 1400/2391 loss_mean=0.3773
+[Train] epoch 9/20 step 1500/2391 loss_mean=0.3862
+[Train] epoch 9/20 step 1600/2391 loss_mean=0.4047
+[Train] epoch 9/20 step 1700/2391 loss_mean=0.3918
+[Train] epoch 9/20 step 1800/2391 loss_mean=0.3908
+[Train] epoch 9/20 step 1900/2391 loss_mean=0.3895
+[Train] epoch 9/20 step 2000/2391 loss_mean=0.3745
+[Train] epoch 9/20 step 2100/2391 loss_mean=0.3643
+[Train] epoch 9/20 step 2200/2391 loss_mean=0.3762
+[Train] epoch 9/20 step 2300/2391 loss_mean=0.3897
+[Val]   epoch 9/20 step 100/299 loss_mean=0.3742
+[Val]   epoch 9/20 step 200/299 loss_mean=0.3610
+Train Loss: 0.3870 | Train Acc: 0.8293
+Val Loss: 0.3747 | Val   Acc: 0.8214
 
-EPOCH 10/10
+EPOCH 10/20
 ------------------------------
-[Train] epoch 10/10 step 100/2391 loss_mean=0.4140
-[Train] epoch 10/10 step 200/2391 loss_mean=0.4354
-[Train] epoch 10/10 step 300/2391 loss_mean=0.4290
-[Train] epoch 10/10 step 400/2391 loss_mean=0.4377
-[Train] epoch 10/10 step 500/2391 loss_mean=0.4092
-[Train] epoch 10/10 step 600/2391 loss_mean=0.4181
-[Train] epoch 10/10 step 700/2391 loss_mean=0.4316
-[Train] epoch 10/10 step 800/2391 loss_mean=0.4148
-[Train] epoch 10/10 step 900/2391 loss_mean=0.4388
-[Train] epoch 10/10 step 1000/2391 loss_mean=0.4248
-[Train] epoch 10/10 step 1100/2391 loss_mean=0.4159
-[Train] epoch 10/10 step 1200/2391 loss_mean=0.4284
-[Train] epoch 10/10 step 1300/2391 loss_mean=0.4383
-[Train] epoch 10/10 step 1400/2391 loss_mean=0.4235
-[Train] epoch 10/10 step 1500/2391 loss_mean=0.4266
-[Train] epoch 10/10 step 1600/2391 loss_mean=0.4563
-[Train] epoch 10/10 step 1700/2391 loss_mean=0.4437
-[Train] epoch 10/10 step 1800/2391 loss_mean=0.4329
-[Train] epoch 10/10 step 1900/2391 loss_mean=0.4589
-[Train] epoch 10/10 step 2000/2391 loss_mean=0.4350
-[Train] epoch 10/10 step 2100/2391 loss_mean=0.4183
-[Train] epoch 10/10 step 2200/2391 loss_mean=0.4150
-[Train] epoch 10/10 step 2300/2391 loss_mean=0.4414
-[Val]   epoch 10/10 step 100/299 loss_mean=0.2424
-[Val]   epoch 10/10 step 200/299 loss_mean=0.2410
-Train Loss: 0.4298 | Train Acc: 0.8297
-Val Loss: 0.4364 | Val   Acc: 0.8306
-Melhor acc: 0.8307
+[Train] epoch 10/20 step 100/2391 loss_mean=0.3430
+[Train] epoch 10/20 step 200/2391 loss_mean=0.3590
+[Train] epoch 10/20 step 300/2391 loss_mean=0.3458
+[Train] epoch 10/20 step 400/2391 loss_mean=0.3668
+[Train] epoch 10/20 step 500/2391 loss_mean=0.3405
+[Train] epoch 10/20 step 600/2391 loss_mean=0.3505
+[Train] epoch 10/20 step 700/2391 loss_mean=0.3730
+[Train] epoch 10/20 step 800/2391 loss_mean=0.3421
+[Train] epoch 10/20 step 900/2391 loss_mean=0.3311
+[Train] epoch 10/20 step 1000/2391 loss_mean=0.3366
+[Train] epoch 10/20 step 1100/2391 loss_mean=0.3627
+[Train] epoch 10/20 step 1200/2391 loss_mean=0.3418
+[Train] epoch 10/20 step 1300/2391 loss_mean=0.3591
+[Train] epoch 10/20 step 1400/2391 loss_mean=0.3626
+[Train] epoch 10/20 step 1500/2391 loss_mean=0.3458
+[Train] epoch 10/20 step 1600/2391 loss_mean=0.3678
+[Train] epoch 10/20 step 1700/2391 loss_mean=0.3559
+[Train] epoch 10/20 step 1800/2391 loss_mean=0.3502
+[Train] epoch 10/20 step 1900/2391 loss_mean=0.3619
+[Train] epoch 10/20 step 2000/2391 loss_mean=0.3396
+[Train] epoch 10/20 step 2100/2391 loss_mean=0.3315
+[Train] epoch 10/20 step 2200/2391 loss_mean=0.3339
+[Train] epoch 10/20 step 2300/2391 loss_mean=0.3428
+[Val]   epoch 10/20 step 100/299 loss_mean=0.3657
+[Val]   epoch 10/20 step 200/299 loss_mean=0.3443
+Train Loss: 0.3489 | Train Acc: 0.8478
+Val Loss: 0.3584 | Val   Acc: 0.8385
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8385)
 
-Tempo total de treino: 164m 3s
+EPOCH 11/20
+------------------------------
+[Train] epoch 11/20 step 100/2391 loss_mean=0.3143
+[Train] epoch 11/20 step 200/2391 loss_mean=0.3286
+[Train] epoch 11/20 step 300/2391 loss_mean=0.3157
+[Train] epoch 11/20 step 400/2391 loss_mean=0.3154
+[Train] epoch 11/20 step 500/2391 loss_mean=0.3223
+[Train] epoch 11/20 step 600/2391 loss_mean=0.3052
+[Train] epoch 11/20 step 700/2391 loss_mean=0.3297
+[Train] epoch 11/20 step 800/2391 loss_mean=0.3093
+[Train] epoch 11/20 step 900/2391 loss_mean=0.3193
+[Train] epoch 11/20 step 1000/2391 loss_mean=0.3248
+[Train] epoch 11/20 step 1100/2391 loss_mean=0.3190
+[Train] epoch 11/20 step 1200/2391 loss_mean=0.3131
+[Train] epoch 11/20 step 1300/2391 loss_mean=0.3097
+[Train] epoch 11/20 step 1400/2391 loss_mean=0.3225
+[Train] epoch 11/20 step 1500/2391 loss_mean=0.3090
+[Train] epoch 11/20 step 1600/2391 loss_mean=0.3098
+[Train] epoch 11/20 step 1700/2391 loss_mean=0.3212
+[Train] epoch 11/20 step 1800/2391 loss_mean=0.2958
+[Train] epoch 11/20 step 1900/2391 loss_mean=0.3361
+[Train] epoch 11/20 step 2000/2391 loss_mean=0.3294
+[Train] epoch 11/20 step 2100/2391 loss_mean=0.3109
+[Train] epoch 11/20 step 2200/2391 loss_mean=0.3030
+[Train] epoch 11/20 step 2300/2391 loss_mean=0.3438
+[Val]   epoch 11/20 step 100/299 loss_mean=0.3400
+[Val]   epoch 11/20 step 200/299 loss_mean=0.3248
+Train Loss: 0.3179 | Train Acc: 0.8620
+Val Loss: 0.3375 | Val   Acc: 0.8439
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8439)
+
+EPOCH 12/20
+------------------------------
+[Train] epoch 12/20 step 100/2391 loss_mean=0.2986
+[Train] epoch 12/20 step 200/2391 loss_mean=0.2829
+[Train] epoch 12/20 step 300/2391 loss_mean=0.3156
+[Train] epoch 12/20 step 400/2391 loss_mean=0.2714
+[Train] epoch 12/20 step 500/2391 loss_mean=0.3061
+[Train] epoch 12/20 step 600/2391 loss_mean=0.2722
+[Train] epoch 12/20 step 700/2391 loss_mean=0.2961
+[Train] epoch 12/20 step 800/2391 loss_mean=0.2769
+[Train] epoch 12/20 step 900/2391 loss_mean=0.2894
+[Train] epoch 12/20 step 1000/2391 loss_mean=0.2967
+[Train] epoch 12/20 step 1100/2391 loss_mean=0.2875
+[Train] epoch 12/20 step 1200/2391 loss_mean=0.3095
+[Train] epoch 12/20 step 1300/2391 loss_mean=0.2868
+[Train] epoch 12/20 step 1400/2391 loss_mean=0.2717
+[Train] epoch 12/20 step 1500/2391 loss_mean=0.2711
+[Train] epoch 12/20 step 1600/2391 loss_mean=0.2921
+[Train] epoch 12/20 step 1700/2391 loss_mean=0.3205
+[Train] epoch 12/20 step 1800/2391 loss_mean=0.2778
+[Train] epoch 12/20 step 1900/2391 loss_mean=0.2938
+[Train] epoch 12/20 step 2000/2391 loss_mean=0.2905
+[Train] epoch 12/20 step 2100/2391 loss_mean=0.3125
+[Train] epoch 12/20 step 2200/2391 loss_mean=0.2850
+[Train] epoch 12/20 step 2300/2391 loss_mean=0.2935
+[Val]   epoch 12/20 step 100/299 loss_mean=0.2485
+[Val]   epoch 12/20 step 200/299 loss_mean=0.2354
+Train Loss: 0.2913 | Train Acc: 0.8753
+Val Loss: 0.2869 | Val   Acc: 0.8729
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8729)
+
+EPOCH 13/20
+------------------------------
+[Train] epoch 13/20 step 100/2391 loss_mean=0.2516
+[Train] epoch 13/20 step 200/2391 loss_mean=0.2761
+[Train] epoch 13/20 step 300/2391 loss_mean=0.2529
+[Train] epoch 13/20 step 400/2391 loss_mean=0.2579
+[Train] epoch 13/20 step 500/2391 loss_mean=0.2797
+[Train] epoch 13/20 step 600/2391 loss_mean=0.2801
+[Train] epoch 13/20 step 700/2391 loss_mean=0.2532
+[Train] epoch 13/20 step 800/2391 loss_mean=0.2719
+[Train] epoch 13/20 step 900/2391 loss_mean=0.2761
+[Train] epoch 13/20 step 1000/2391 loss_mean=0.2811
+[Train] epoch 13/20 step 1100/2391 loss_mean=0.2883
+[Train] epoch 13/20 step 1200/2391 loss_mean=0.2664
+[Train] epoch 13/20 step 1300/2391 loss_mean=0.2859
+[Train] epoch 13/20 step 1400/2391 loss_mean=0.2573
+[Train] epoch 13/20 step 1500/2391 loss_mean=0.2683
+[Train] epoch 13/20 step 1600/2391 loss_mean=0.2783
+[Train] epoch 13/20 step 1700/2391 loss_mean=0.2639
+[Train] epoch 13/20 step 1800/2391 loss_mean=0.2431
+[Train] epoch 13/20 step 1900/2391 loss_mean=0.2632
+[Train] epoch 13/20 step 2000/2391 loss_mean=0.2741
+[Train] epoch 13/20 step 2100/2391 loss_mean=0.2548
+[Train] epoch 13/20 step 2200/2391 loss_mean=0.2717
+[Train] epoch 13/20 step 2300/2391 loss_mean=0.2740
+[Val]   epoch 13/20 step 100/299 loss_mean=0.2655
+[Val]   epoch 13/20 step 200/299 loss_mean=0.2545
+Train Loss: 0.2678 | Train Acc: 0.8844
+Val Loss: 0.2910 | Val   Acc: 0.8722
+
+EPOCH 14/20
+------------------------------
+[Train] epoch 14/20 step 100/2391 loss_mean=0.2377
+[Train] epoch 14/20 step 200/2391 loss_mean=0.2516
+[Train] epoch 14/20 step 300/2391 loss_mean=0.2614
+[Train] epoch 14/20 step 400/2391 loss_mean=0.2512
+[Train] epoch 14/20 step 500/2391 loss_mean=0.2649
+[Train] epoch 14/20 step 600/2391 loss_mean=0.2457
+[Train] epoch 14/20 step 700/2391 loss_mean=0.2400
+[Train] epoch 14/20 step 800/2391 loss_mean=0.2491
+[Train] epoch 14/20 step 900/2391 loss_mean=0.2424
+[Train] epoch 14/20 step 1000/2391 loss_mean=0.2480
+[Train] epoch 14/20 step 1100/2391 loss_mean=0.2470
+[Train] epoch 14/20 step 1200/2391 loss_mean=0.2554
+[Train] epoch 14/20 step 1300/2391 loss_mean=0.2412
+[Train] epoch 14/20 step 1400/2391 loss_mean=0.2484
+[Train] epoch 14/20 step 1500/2391 loss_mean=0.2297
+[Train] epoch 14/20 step 1600/2391 loss_mean=0.2375
+[Train] epoch 14/20 step 1700/2391 loss_mean=0.2667
+[Train] epoch 14/20 step 1800/2391 loss_mean=0.2402
+[Train] epoch 14/20 step 1900/2391 loss_mean=0.2519
+[Train] epoch 14/20 step 2000/2391 loss_mean=0.2593
+[Train] epoch 14/20 step 2100/2391 loss_mean=0.2420
+[Train] epoch 14/20 step 2200/2391 loss_mean=0.2736
+[Train] epoch 14/20 step 2300/2391 loss_mean=0.2497
+[Val]   epoch 14/20 step 100/299 loss_mean=0.3100
+[Val]   epoch 14/20 step 200/299 loss_mean=0.2902
+Train Loss: 0.2496 | Train Acc: 0.8946
+Val Loss: 0.3114 | Val   Acc: 0.8609
+
+EPOCH 15/20
+------------------------------
+[Train] epoch 15/20 step 100/2391 loss_mean=0.2371
+[Train] epoch 15/20 step 200/2391 loss_mean=0.2308
+[Train] epoch 15/20 step 300/2391 loss_mean=0.2315
+[Train] epoch 15/20 step 400/2391 loss_mean=0.2149
+[Train] epoch 15/20 step 500/2391 loss_mean=0.2283
+[Train] epoch 15/20 step 600/2391 loss_mean=0.2313
+[Train] epoch 15/20 step 700/2391 loss_mean=0.2121
+[Train] epoch 15/20 step 800/2391 loss_mean=0.2290
+[Train] epoch 15/20 step 900/2391 loss_mean=0.2168
+[Train] epoch 15/20 step 1000/2391 loss_mean=0.2212
+[Train] epoch 15/20 step 1100/2391 loss_mean=0.2403
+[Train] epoch 15/20 step 1200/2391 loss_mean=0.2271
+[Train] epoch 15/20 step 1300/2391 loss_mean=0.2393
+[Train] epoch 15/20 step 1400/2391 loss_mean=0.2262
+[Train] epoch 15/20 step 1500/2391 loss_mean=0.2479
+[Train] epoch 15/20 step 1600/2391 loss_mean=0.2408
+[Train] epoch 15/20 step 1700/2391 loss_mean=0.2422
+[Train] epoch 15/20 step 1800/2391 loss_mean=0.2317
+[Train] epoch 15/20 step 1900/2391 loss_mean=0.2453
+[Train] epoch 15/20 step 2000/2391 loss_mean=0.2479
+[Train] epoch 15/20 step 2100/2391 loss_mean=0.2451
+[Train] epoch 15/20 step 2200/2391 loss_mean=0.2167
+[Train] epoch 15/20 step 2300/2391 loss_mean=0.2191
+[Val]   epoch 15/20 step 100/299 loss_mean=0.2611
+[Val]   epoch 15/20 step 200/299 loss_mean=0.2487
+Train Loss: 0.2313 | Train Acc: 0.9021
+Val Loss: 0.2875 | Val   Acc: 0.8750
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8750)
+
+EPOCH 16/20
+------------------------------
+[Train] epoch 16/20 step 100/2391 loss_mean=0.2150
+[Train] epoch 16/20 step 200/2391 loss_mean=0.2098
+[Train] epoch 16/20 step 300/2391 loss_mean=0.2124
+[Train] epoch 16/20 step 400/2391 loss_mean=0.2083
+[Train] epoch 16/20 step 500/2391 loss_mean=0.2106
+[Train] epoch 16/20 step 600/2391 loss_mean=0.2337
+[Train] epoch 16/20 step 700/2391 loss_mean=0.2437
+[Train] epoch 16/20 step 800/2391 loss_mean=0.2277
+[Train] epoch 16/20 step 900/2391 loss_mean=0.2273
+[Train] epoch 16/20 step 1000/2391 loss_mean=0.2200
+[Train] epoch 16/20 step 1100/2391 loss_mean=0.2231
+[Train] epoch 16/20 step 1200/2391 loss_mean=0.2263
+[Train] epoch 16/20 step 1300/2391 loss_mean=0.2449
+[Train] epoch 16/20 step 1400/2391 loss_mean=0.2329
+[Train] epoch 16/20 step 1500/2391 loss_mean=0.2242
+[Train] epoch 16/20 step 1600/2391 loss_mean=0.2141
+[Train] epoch 16/20 step 1700/2391 loss_mean=0.2186
+[Train] epoch 16/20 step 1800/2391 loss_mean=0.2027
+[Train] epoch 16/20 step 1900/2391 loss_mean=0.2169
+[Train] epoch 16/20 step 2000/2391 loss_mean=0.2176
+[Train] epoch 16/20 step 2100/2391 loss_mean=0.2182
+[Train] epoch 16/20 step 2200/2391 loss_mean=0.2328
+[Train] epoch 16/20 step 2300/2391 loss_mean=0.2125
+[Val]   epoch 16/20 step 100/299 loss_mean=0.2451
+[Val]   epoch 16/20 step 200/299 loss_mean=0.2409
+Train Loss: 0.2204 | Train Acc: 0.9061
+Val Loss: 0.2802 | Val   Acc: 0.8828
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8828)
+
+EPOCH 17/20
+------------------------------
+[Train] epoch 17/20 step 100/2391 loss_mean=0.2195
+[Train] epoch 17/20 step 200/2391 loss_mean=0.1920
+[Train] epoch 17/20 step 300/2391 loss_mean=0.2043
+[Train] epoch 17/20 step 400/2391 loss_mean=0.2054
+[Train] epoch 17/20 step 500/2391 loss_mean=0.2204
+[Train] epoch 17/20 step 600/2391 loss_mean=0.2141
+[Train] epoch 17/20 step 700/2391 loss_mean=0.2088
+[Train] epoch 17/20 step 800/2391 loss_mean=0.2041
+[Train] epoch 17/20 step 900/2391 loss_mean=0.2208
+[Train] epoch 17/20 step 1000/2391 loss_mean=0.2180
+[Train] epoch 17/20 step 1100/2391 loss_mean=0.2174
+[Train] epoch 17/20 step 1200/2391 loss_mean=0.2039
+[Train] epoch 17/20 step 1300/2391 loss_mean=0.2244
+[Train] epoch 17/20 step 1400/2391 loss_mean=0.2010
+[Train] epoch 17/20 step 1500/2391 loss_mean=0.1962
+[Train] epoch 17/20 step 1600/2391 loss_mean=0.2023
+[Train] epoch 17/20 step 1700/2391 loss_mean=0.2146
+[Train] epoch 17/20 step 1800/2391 loss_mean=0.1978
+[Train] epoch 17/20 step 1900/2391 loss_mean=0.2019
+[Train] epoch 17/20 step 2000/2391 loss_mean=0.1958
+[Train] epoch 17/20 step 2100/2391 loss_mean=0.2315
+[Train] epoch 17/20 step 2200/2391 loss_mean=0.1965
+[Train] epoch 17/20 step 2300/2391 loss_mean=0.2068
+[Val]   epoch 17/20 step 100/299 loss_mean=0.2727
+[Val]   epoch 17/20 step 200/299 loss_mean=0.2624
+Train Loss: 0.2085 | Train Acc: 0.9122
+Val Loss: 0.2924 | Val   Acc: 0.8734
+
+EPOCH 18/20
+------------------------------
+[Train] epoch 18/20 step 100/2391 loss_mean=0.1902
+[Train] epoch 18/20 step 200/2391 loss_mean=0.2103
+[Train] epoch 18/20 step 300/2391 loss_mean=0.2087
+[Train] epoch 18/20 step 400/2391 loss_mean=0.2103
+[Train] epoch 18/20 step 500/2391 loss_mean=0.1822
+[Train] epoch 18/20 step 600/2391 loss_mean=0.2042
+[Train] epoch 18/20 step 700/2391 loss_mean=0.1880
+[Train] epoch 18/20 step 800/2391 loss_mean=0.2083
+[Train] epoch 18/20 step 900/2391 loss_mean=0.2020
+[Train] epoch 18/20 step 1000/2391 loss_mean=0.2079
+[Train] epoch 18/20 step 1100/2391 loss_mean=0.2124
+[Train] epoch 18/20 step 1200/2391 loss_mean=0.2213
+[Train] epoch 18/20 step 1300/2391 loss_mean=0.1759
+[Train] epoch 18/20 step 1400/2391 loss_mean=0.1877
+[Train] epoch 18/20 step 1500/2391 loss_mean=0.1996
+[Train] epoch 18/20 step 1600/2391 loss_mean=0.2025
+[Train] epoch 18/20 step 1700/2391 loss_mean=0.2072
+[Train] epoch 18/20 step 1800/2391 loss_mean=0.2110
+[Train] epoch 18/20 step 1900/2391 loss_mean=0.1957
+[Train] epoch 18/20 step 2000/2391 loss_mean=0.2037
+[Train] epoch 18/20 step 2100/2391 loss_mean=0.2082
+[Train] epoch 18/20 step 2200/2391 loss_mean=0.2030
+[Train] epoch 18/20 step 2300/2391 loss_mean=0.2192
+[Val]   epoch 18/20 step 100/299 loss_mean=0.2411
+[Val]   epoch 18/20 step 200/299 loss_mean=0.2276
+Train Loss: 0.2025 | Train Acc: 0.9148
+Val Loss: 0.2783 | Val   Acc: 0.8843
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8843)
+
+EPOCH 19/20
+------------------------------
+[Train] epoch 19/20 step 100/2391 loss_mean=0.1957
+[Train] epoch 19/20 step 200/2391 loss_mean=0.1895
+[Train] epoch 19/20 step 300/2391 loss_mean=0.1941
+[Train] epoch 19/20 step 400/2391 loss_mean=0.1904
+[Train] epoch 19/20 step 500/2391 loss_mean=0.2083
+[Train] epoch 19/20 step 600/2391 loss_mean=0.2164
+[Train] epoch 19/20 step 700/2391 loss_mean=0.2005
+[Train] epoch 19/20 step 800/2391 loss_mean=0.1952
+[Train] epoch 19/20 step 900/2391 loss_mean=0.1737
+[Train] epoch 19/20 step 1000/2391 loss_mean=0.1833
+[Train] epoch 19/20 step 1100/2391 loss_mean=0.2096
+[Train] epoch 19/20 step 1200/2391 loss_mean=0.2056
+[Train] epoch 19/20 step 1300/2391 loss_mean=0.2110
+[Train] epoch 19/20 step 1400/2391 loss_mean=0.1934
+[Train] epoch 19/20 step 1500/2391 loss_mean=0.1830
+[Train] epoch 19/20 step 1600/2391 loss_mean=0.2020
+[Train] epoch 19/20 step 1700/2391 loss_mean=0.1873
+[Train] epoch 19/20 step 1800/2391 loss_mean=0.1848
+[Train] epoch 19/20 step 1900/2391 loss_mean=0.1897
+[Train] epoch 19/20 step 2000/2391 loss_mean=0.2068
+[Train] epoch 19/20 step 2100/2391 loss_mean=0.1995
+[Train] epoch 19/20 step 2200/2391 loss_mean=0.2130
+[Train] epoch 19/20 step 2300/2391 loss_mean=0.2159
+[Val]   epoch 19/20 step 100/299 loss_mean=0.2275
+[Val]   epoch 19/20 step 200/299 loss_mean=0.2172
+Train Loss: 0.1979 | Train Acc: 0.9176
+Val Loss: 0.2703 | Val   Acc: 0.8874
+ Best model saved to models/xceptionNet/V1/model_df.pt (Val Acc: 0.8874)
+
+EPOCH 20/20
+------------------------------
+[Train] epoch 20/20 step 100/2391 loss_mean=0.1776
+[Train] epoch 20/20 step 200/2391 loss_mean=0.1868
+[Train] epoch 20/20 step 300/2391 loss_mean=0.1994
+[Train] epoch 20/20 step 400/2391 loss_mean=0.2081
+[Train] epoch 20/20 step 500/2391 loss_mean=0.1888
+[Train] epoch 20/20 step 600/2391 loss_mean=0.1876
+[Train] epoch 20/20 step 700/2391 loss_mean=0.1927
+[Train] epoch 20/20 step 800/2391 loss_mean=0.1778
+[Train] epoch 20/20 step 900/2391 loss_mean=0.1966
+[Train] epoch 20/20 step 1000/2391 loss_mean=0.1963
+[Train] epoch 20/20 step 1100/2391 loss_mean=0.2230
+[Train] epoch 20/20 step 1200/2391 loss_mean=0.1911
+[Train] epoch 20/20 step 1300/2391 loss_mean=0.2007
+[Train] epoch 20/20 step 1400/2391 loss_mean=0.1849
+[Train] epoch 20/20 step 1500/2391 loss_mean=0.1825
+[Train] epoch 20/20 step 1600/2391 loss_mean=0.2107
+[Train] epoch 20/20 step 1700/2391 loss_mean=0.1823
+[Train] epoch 20/20 step 1800/2391 loss_mean=0.1766
+[Train] epoch 20/20 step 1900/2391 loss_mean=0.1944
+[Train] epoch 20/20 step 2000/2391 loss_mean=0.2025
+[Train] epoch 20/20 step 2100/2391 loss_mean=0.1919
+[Train] epoch 20/20 step 2200/2391 loss_mean=0.1984
+[Train] epoch 20/20 step 2300/2391 loss_mean=0.2045
+[Val]   epoch 20/20 step 100/299 loss_mean=0.2432
+[Val]   epoch 20/20 step 200/299 loss_mean=0.2321
+Train Loss: 0.1939 | Train Acc: 0.9185
+Val Loss: 0.2761 | Val   Acc: 0.8831
+Melhor acc: 0.8874
+
+Tempo total de treino: 341m 35s

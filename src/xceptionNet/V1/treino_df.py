@@ -6,6 +6,8 @@ from torch import nn
 from torchvision import datasets, transforms
 import timm
 import time
+from collections import Counter
+import numpy as np
 
 # ---------- log ----------
 log_path = "logs/xceptionNet/V1/log_treino_df.txt"
@@ -36,10 +38,9 @@ val_path_local   = 'data/df/validacao'
 
 # data augumentation no treino
 train_transform = transforms.Compose([
-    transforms.Resize((299, 299)),
+    transforms.RandomResizedCrop(299, scale=(0.9,1.0)),
     transforms.RandomHorizontalFlip(p=0.5),
-    transforms.ColorJitter(brightness=0.2, contrast=0.2),
-    transforms.RandomRotation(10),
+    transforms.RandomApply([transforms.GaussianBlur(3)], p=0.3),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
@@ -72,28 +73,21 @@ model = timm.create_model('xception', pretrained=True)
 # -------------------------------------------------------------------
 # 4. Freeze layers
 # -------------------------------------------------------------------
-# for param in model.parameters():
-#     param.requires_grad = False
 for name, param in model.named_parameters():
-    if any(layer in name for layer in ['block12', 'conv3', 'conv4', 'bn3', 'bn4', 'fc']):
+    if any(layer in name for layer in ['fc']):
         param.requires_grad = True
     else:
         param.requires_grad = False
-
 # -------------------------------------------------------------------
 # 5. Replace classifier head for binary classification (2 classes)
 # -------------------------------------------------------------------
 if hasattr(model, 'fc'):
     in_features = model.fc.in_features
-
-    # model.fc = nn.Linear(in_features, 2)
-    
     # Colocando dropout para ver se melhora accuracy
     model.fc = nn.Sequential(
         nn.Dropout(p=0.5),
         nn.Linear(in_features, 2)
     )
-    
     trainable_params = model.fc.parameters()
 elif hasattr(model, 'head'):
     in_features = model.head.in_features
@@ -116,12 +110,17 @@ for name, p in model.named_parameters():
         print(f"  {name}")
 
 # -------------------------------------------------------------------
-# Loss, optimizer, scheduler
+# Loss, optimizer, scheduler, weights
 # -------------------------------------------------------------------
-criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(trainable_params, lr=1e-4, weight_decay=1e-5)
-scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.5)
+counts = Counter([y for _, y in train_dataset.samples])  # 0=fake,1=real
+w = np.array([1.0 / counts[i] for i in range(len(counts))], dtype=np.float32)
+w = w * (len(w) / w.sum())
+class_weights = torch.tensor(w, device=device, dtype=torch.float32)
+print("Class weights:", w)
 
+criterion = nn.CrossEntropyLoss(weight=class_weights)
+optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2, momentum=0.9, weight_decay=1e-4)
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5)
 
 # ---------- treino + validacao ----------
 best_val_acc = 0.0
@@ -131,13 +130,22 @@ save_path = "models/xceptionNet/V1/model_df.pt"
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
 # ---------- épocas ----------
-num_epochs = 10
+num_epochs = 20
 
 start_time = time.time()
 # -----------------------------
 # Treino
 # -----------------------------
 for epoch in range(num_epochs):
+
+    # libera mais camadas após 5 épocas
+    if epoch == 5:  
+        for name, param in model.named_parameters():
+            if any(name.startswith(pref) for pref in ['block9','block10','block11','block12','conv3','conv4','bn3','bn4','fc']):
+                param.requires_grad = True
+        optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-3, momentum=0.9, weight_decay=1e-4)
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=15)
+        print("\nLiberando camadas")
     print(f"\nEPOCH {epoch+1}/{num_epochs}")
     print("-" * 30)
 
