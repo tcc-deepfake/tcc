@@ -33,8 +33,8 @@ def optimize_model(model, model_name=None, prune_amount=None, quantize=True, dev
     model.eval()
 
     if verbose:
-        print(f"🔍 Modelo: {model_type.upper()}")
-        print(f"🪚 Aplicando pruning de {prune_amount*100:.0f}% das weights...")
+        print(f" Modelo: {model_type.upper()}")
+        print(f" Aplicando pruning de {prune_amount*100:.0f}% das weights...")
 
     # ----------------------------------------
     # Count params before pruning
@@ -57,23 +57,23 @@ def optimize_model(model, model_name=None, prune_amount=None, quantize=True, dev
     # ----------------------------------------
     params_after = count_nonzero_params(model)
     if verbose:
-        print(f"✅ Pruning concluído. Parametros não nulos: {params_after:,} / {params_before:,}")
+        print(f" Pruning concluído. Parametros não nulos: {params_after:,} / {params_before:,}")
 
     # ----------------------------------------
     # Apply quantization (dynamic)
     # ----------------------------------------
     if quantize:
         if verbose:
-            print("🔢 Aplicando dynamic quantization...")
+            print(" Aplicando dynamic quantization...")
         model = quantize_dynamic(
             model, 
             {nn.Linear}, 
             dtype=torch.qint8
         )
         if verbose:
-            print("✅ Quantization concluída.")
+            print(" Quantization concluída.")
 
     if verbose:
-        print(f"💾 Modelo ({model_type.upper()}) otimizado com sucesso!\n")
+        print(f" Modelo ({model_type.upper()}) otimizado com sucesso!\n")
 
     return model
