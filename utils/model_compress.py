@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.utils.prune as prune
 from torch.quantization import quantize_dynamic
 
-def optimize_model(model, model_name=None, prune_amount=None, quantize=True, device='cpu', verbose=True):
+def optimize_model(model, prune_amount=None, quantize=True, device='cpu', verbose=True):
     """
     Applies pruning + quantization to a given model (VGG from torchvision or Xception from timm).
     
@@ -16,24 +16,12 @@ def optimize_model(model, model_name=None, prune_amount=None, quantize=True, dev
         verbose (bool): Whether to print progress information.
     """
 
-    # ----------------------------------------
-    # Auto-detect model type
-    # ----------------------------------------
-    model_type = model_name or model.__class__.__name__.lower()
-    if "vgg" in model_type:
-        model_type = "vgg"
-        prune_amount = prune_amount or 0.2
-    elif "xception" in model_type:
-        model_type = "xception"
-        prune_amount = prune_amount or 0.1
-    else:
-        raise ValueError("Unsupported model type. Only 'vgg' and 'xception' are supported.")
-
+    prune_amount = prune_amount or 0.3
     model.to(device)
     model.eval()
 
     if verbose:
-        print(f" Modelo: {model_type.upper()}")
+        print(f"Modelo: {model.__class__.__name__}")
         print(f" Aplicando pruning de {prune_amount*100:.0f}% das weights...")
 
     # ----------------------------------------
@@ -74,6 +62,6 @@ def optimize_model(model, model_name=None, prune_amount=None, quantize=True, dev
             print(" Quantization concluída.")
 
     if verbose:
-        print(f" Modelo ({model_type.upper()}) otimizado com sucesso!\n")
+        print(f" Modelo {model.__class__.__name__} otimizado com sucesso!\n")
 
     return model

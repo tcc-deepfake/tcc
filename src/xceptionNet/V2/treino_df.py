@@ -72,7 +72,7 @@ val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
 # ---------- modelo ----------
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 xception = timm.create_model('xception', pretrained=True)
-model = optimize_model(xception, model_name='xception', device=device)
+model = optimize_model(xception, device=device)
 
 # -------------------------------------------------------------------
 # 4. Freeze layers
@@ -99,12 +99,6 @@ elif hasattr(model, 'head'):
     trainable_params = model.head.parameters()
 else:
     raise ValueError("Layer de classificação não encontrado.")
-
-# JÁ TÁ NO optimize_model
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# if device.type == "cuda":
-#     print(f"GPU: {torch.cuda.get_device_name(0)}")
-# model = model.to(device)
 
 print("Parametros treináveis:")
 for name, p in model.named_parameters():
