@@ -1,32 +1,30 @@
-Gravando log em: C:\Users\Thiago Borges\Desktop\teste\tcc\logs\vgg16\v1\log_teste_df.txt
+Gravando log em: logs\vgg16\v1\log_teste_df.txt
 Número de imagens (DF): 9564
 DF classes: {'fake': 0, 'real': 1}
 Número de imagens (Foren): 4782
 Foren classes: {'fake': 0, 'real': 1}
 GPU: NVIDIA GeForce RTX 3060
-c:\Users\Thiago Borges\Desktop\teste\tcc\src\vgg16\V1\teste_df.py:70: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  model.load_state_dict(torch.load(best_path, map_location=device))
 
 === TESTE NA BASE DEEPFAKE FACES ===
-Acurácia no Teste (DeepfakeFaces): 82.58%
+Acurácia no Teste (DeepfakeFaces): 82.98%
               precision    recall  f1-score   support
 
-        fake       0.86      0.94      0.90      7934
-        real       0.48      0.27      0.35      1630
+        fake       0.85      0.96      0.90      7934
+        real       0.50      0.18      0.26      1630
 
     accuracy                           0.83      9564
-   macro avg       0.67      0.60      0.62      9564
-weighted avg       0.80      0.83      0.81      9564
+   macro avg       0.68      0.57      0.58      9564
+weighted avg       0.79      0.83      0.79      9564
 
 
 === TESTE NA BASE FOREN ===
-Acurácia no Teste (Foren): 50.46%
+Acurácia no Teste (Foren): 51.19%
               precision    recall  f1-score   support
 
-        fake       0.50      0.92      0.65      2390
-        real       0.53      0.09      0.15      2392
+        fake       0.51      0.93      0.66      2390
+        real       0.57      0.09      0.16      2392
 
-    accuracy                           0.50      4782
-   macro avg       0.52      0.50      0.40      4782
-weighted avg       0.52      0.50      0.40      4782
+    accuracy                           0.51      4782
+   macro avg       0.54      0.51      0.41      4782
+weighted avg       0.54      0.51      0.41      4782
 

@@ -11,7 +11,7 @@ from collections import Counter
 import numpy as np
 
 # ---------- log ----------
-log_path = "C:\\Users\\Thiago Borges\\Desktop\\teste\\tcc\\logs\\vgg16\\v1\\log_treino_df.txt"
+log_path = "logs\\vgg16\\v1\\log_treino_df.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
@@ -34,8 +34,8 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 # ---------- df ----------
-train_path_local = 'C:\\Users\\Thiago Borges\\Desktop\\teste\\tcc\\data\\df\\treino'
-val_path_local   = 'C:\\Users\\Thiago Borges\\Desktop\\teste\\tcc\\data\\df\\validacao'
+train_path_local = 'data\\df\\treino'
+val_path_local   = 'data\\df\\validacao'
 
 # ---------- transforms ----------
 # VGG16 - 224x224
@@ -96,12 +96,12 @@ criterion = nn.CrossEntropyLoss(weight=class_weights)
 optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-3)
 
 # ---------- treino + validacao ----------
-num_epochs = 3
+num_epochs = 10
 scaler = GradScaler(device='cuda' if device.type == 'cuda' else 'cpu')
 best_acc = -1.0
 bad = 0
 patience = 3
-best_path = "C:\\Users\\Thiago Borges\\Desktop\\teste\\tcc\\models\\vgg16\\V1\\model_df.pt"
+best_path = "models\\vgg16\\V1\\model_df.pt"
 os.makedirs(os.path.dirname(best_path), exist_ok=True)
 
 start_time = time.time()

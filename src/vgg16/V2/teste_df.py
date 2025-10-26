@@ -7,7 +7,7 @@ from torchvision import datasets, transforms, models
 from sklearn.metrics import classification_report
 
 # ---------- log ----------
-log_path = "logs\\vgg16\\v1\\log_teste_foren.txt"
+log_path = "logs\\vgg16\\v2\\log_teste_df.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
@@ -30,9 +30,9 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 # ---------- bases ----------
-test_path_local = 'data\\foren\\teste'
 df_path = 'data\\df\\teste'
-best_path = 'models\\vgg16\\V1\\model_foren.pt'
+foren_path = 'data\\foren\\teste'
+best_path = 'models\\vgg16\\V2\\model_df.pt'
 
 # ---------- transforms ----------
 # VGG16 - 224x224
@@ -43,18 +43,18 @@ transform = transforms.Compose([
 ])
 
 # ---------- datasets ----------
-test_dataset = datasets.ImageFolder(root=test_path_local, transform=transform)
 df_dataset = datasets.ImageFolder(root=df_path, transform=transform)
+foren_dataset = datasets.ImageFolder(root=foren_path, transform=transform)
 
-print(f"Número de imagens (Foren): {len(test_dataset)}")
-print("Foren classes:", test_dataset.class_to_idx)
 print(f"Número de imagens (DF): {len(df_dataset)}")
-print("DF classes   :", df_dataset.class_to_idx)
+print("DF classes:", df_dataset.class_to_idx)
+print(f"Número de imagens (Foren): {len(foren_dataset)}")
+print("Foren classes:", foren_dataset.class_to_idx)
 
 # ---------- dataloaders ----------
 batch_size = 32
-test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False)
+foren_loader = DataLoader(foren_dataset, batch_size=batch_size, shuffle=False)
 
 # ---------- modelo ----------
 # Carrega VGG16 com a mesma arquitetura do treino
@@ -71,32 +71,9 @@ model.load_state_dict(torch.load(best_path, map_location=device))
 model = model.to(device)
 model.eval()
 
-# ---------- teste Foren ----------
-print("\n=== TESTE NA BASE FOREN ===")
-correct = 0
-total = 0
-all_labels = []
-all_predicted = []
-
-with torch.no_grad():
-    for images, labels in test_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
-        predicted = torch.max(outputs, 1)[1]
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
-        all_labels.extend(labels.cpu().numpy())
-        all_predicted.extend(predicted.cpu().numpy())
-
-print(f"Acurácia no Teste (Foren): {100 * correct / total:.2f}%")
-target_names = [k for k, v in sorted(test_dataset.class_to_idx.items(), key=lambda item: item[1])]
-report = classification_report(all_labels, all_predicted, target_names=target_names)
-print(report)
-
 # ---------- teste DF ----------
 print("\n=== TESTE NA BASE DEEPFAKE FACES ===")
-df_correct = 0
-df_total = 0
+df_correct = df_total = 0
 df_all_labels = []
 df_all_predicted = []
 
@@ -110,9 +87,28 @@ with torch.no_grad():
         df_all_labels.extend(labels.cpu().numpy())
         df_all_predicted.extend(predicted.cpu().numpy())
 
-df_accuracy = 100 * df_correct / df_total
-print(f"Acurácia no Teste (DeepfakeFaces): {df_accuracy:.2f}%")
-
+print(f"Acurácia no Teste (DeepfakeFaces): {100 * df_correct / df_total:.2f}%")
 df_target_names = [k for k, v in sorted(df_dataset.class_to_idx.items(), key=lambda item: item[1])]
 df_report = classification_report(df_all_labels, df_all_predicted, target_names=df_target_names)
 print(df_report)
+
+# ---------- teste Foren ----------
+print("\n=== TESTE NA BASE FOREN ===")
+f_correct = f_total = 0
+f_all_labels = []
+f_all_predicted = []
+
+with torch.no_grad():
+    for images, labels in foren_loader:
+        images, labels = images.to(device), labels.to(device)
+        outputs = model(images)
+        predicted = torch.max(outputs, 1)[1]
+        f_total += labels.size(0)
+        f_correct += (predicted == labels).sum().item()
+        f_all_labels.extend(labels.cpu().numpy())
+        f_all_predicted.extend(predicted.cpu().numpy())
+
+print(f"Acurácia no Teste (Foren): {100 * f_correct / f_total:.2f}%")
+f_target_names = [k for k, v in sorted(foren_dataset.class_to_idx.items(), key=lambda item: item[1])]
+f_report = classification_report(f_all_labels, f_all_predicted, target_names=f_target_names)
+print(f_report)

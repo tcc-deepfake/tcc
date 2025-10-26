@@ -1,0 +1,30 @@
+Gravando log em: logs\vgg16\v2\log_teste_foren.txt
+Número de imagens (Foren): 4782
+Foren classes: {'fake': 0, 'real': 1}
+Número de imagens (DF): 9564
+DF classes   : {'fake': 0, 'real': 1}
+GPU: NVIDIA GeForce RTX 3060
+
+=== TESTE NA BASE FOREN ===
+Acurácia no Teste (Foren): 91.99%
+              precision    recall  f1-score   support
+
+        fake       0.93      0.91      0.92      2390
+        real       0.91      0.93      0.92      2392
+
+    accuracy                           0.92      4782
+   macro avg       0.92      0.92      0.92      4782
+weighted avg       0.92      0.92      0.92      4782
+
+
+=== TESTE NA BASE DEEPFAKE FACES ===
+Acurácia no Teste (DeepfakeFaces): 61.53%
+              precision    recall  f1-score   support
+
+        fake       0.85      0.65      0.74      7934
+        real       0.21      0.45      0.29      1630
+
+    accuracy                           0.62      9564
+   macro avg       0.53      0.55      0.51      9564
+weighted avg       0.74      0.62      0.66      9564
+

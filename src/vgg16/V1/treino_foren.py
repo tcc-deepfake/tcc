@@ -9,7 +9,7 @@ from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
 
 # ---------- log ----------
-log_path = "C:\\Users\\Thiago Borges\\Desktop\\teste\\tcc\\logs\\vgg16\\v1\\log_treino_foren.txt"
+log_path = "logs\\vgg16\\v1\\log_treino_foren.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
@@ -32,8 +32,8 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 # ---------- foren ----------
-train_path_local = 'C:\\Users\\Thiago Borges\\Desktop\\teste\\tcc\\data\\foren\\treino'
-val_path_local   = 'C:\\Users\\Thiago Borges\\Desktop\\teste\\tcc\\data\\foren\\validacao'
+train_path_local = 'data\\foren\\treino'
+val_path_local   = 'data\\foren\\validacao'
 
 # ---------- transforms ----------
 # VGG16 - 224x224
@@ -87,12 +87,12 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-3)
 
 # ---------- treino + validacao ----------
-num_epochs = 3
+num_epochs = 10
 scaler = GradScaler(device='cuda' if device.type == 'cuda' else 'cpu')
 best_acc = -1.0
 bad = 0
 patience = 3
-best_path = "C:\\Users\\Thiago Borges\\Desktop\\teste\\tcc\\models\\vgg16\\V1\\model_foren.pt"
+best_path = "models\\vgg16\\V1\\model_foren.pt"
 os.makedirs(os.path.dirname(best_path), exist_ok=True)
 
 start_time = time.time()
