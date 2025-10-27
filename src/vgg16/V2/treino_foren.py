@@ -134,7 +134,7 @@ def main():
     best_acc = -1.0
     bad = 0
     patience = 5
-    best_path = "C:\\Users\\Thiago Borges\\Desktop\\teste\\tcc\\models\\vgg16\\V2\\model_foren.pt"
+    best_path = "models\\vgg16\\V2\\model_foren.pt"
     os.makedirs(os.path.dirname(best_path), exist_ok=True)
 
     start_time = time.time()
