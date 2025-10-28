@@ -1,0 +1,12 @@
+Gravando log em: logs/xceptionNet/V2/log_treino_df.txt
+Número de imagens no dataset de treino: 76507
+Número de imagens no dataset de validação: 9563
+
+Classes detectadas no treino: ['fake', 'real']
+Mapeamento de classe para índice: {'fake': 0, 'real': 1}
+/home/sato/virtualpy/lib/python3.13/site-packages/timm/models/_factory.py:138: UserWarning: Mapping deprecated model name xception to current legacy_xception.
+  model = create_fn(
+--- Pruning 20%
+GPU: NVIDIA GeForce RTX 2060
+Class weights: [0.34072697 1.6592729 ]
+[Train] epoch 1/8 step 100/2391 loss_mean=0.2003

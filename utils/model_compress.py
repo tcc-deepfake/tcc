@@ -3,65 +3,42 @@ import torch.nn as nn
 import torch.nn.utils.prune as prune
 from torch.quantization import quantize_dynamic
 
-def optimize_model(model, prune_amount=None, quantize=True, device='cpu', verbose=True):
-    """
-    Applies pruning + quantization to a given model (VGG from torchvision or Xception from timm).
-    
-    Args:
-        model (nn.Module): The model to optimize.
-        model_name (str): 'vgg' or 'xception'. If None, inferred automatically.
-        prune_amount (float): Fraction of weights to prune. Defaults depend on model type.
-        quantize (bool): Whether to apply dynamic quantization.
-        device (str): 'cpu' or 'cuda'.
-        verbose (bool): Whether to print progress information.
-    """
+# ---------- função auxiliar (pruning) ----------
+def encontra_podas(model, incluir_convs: bool = False):
+    camadas = []
+    for m in model.modules():
+        if isinstance(m, nn.Linear):
+            camadas.append((m, 'weight'))
+        elif incluir_convs and isinstance(m, nn.Conv2d):
+            camadas.append((m, 'weight'))
+    return camadas
 
-    prune_amount = prune_amount or 0.3
-    model.to(device)
+# ---------- pruning ----------
+def aplica_pruning(model, prune_amount=0.2, incluir_convs=False, verbose=True):
     model.eval()
-
+    alvos = encontra_podas(model, incluir_convs=incluir_convs)
+    if not alvos:
+        if verbose: print("Nada para podar.")
+        return model
+    prune.global_unstructured(alvos, pruning_method=prune.L1Unstructured, amount=prune_amount)
     if verbose:
-        print(f"Modelo: {model.__class__.__name__}")
-        print(f" Aplicando pruning de {prune_amount*100:.0f}% das weights...")
-
-    # ----------------------------------------
-    # Count params before pruning
-    # ----------------------------------------
-    def count_nonzero_params(model):
-        return sum(p.count_nonzero().item() for p in model.parameters())
-
-    params_before = count_nonzero_params(model)
-
-    # ----------------------------------------
-    # Apply pruning
-    # ----------------------------------------
-    for name, module in model.named_modules():
-        if isinstance(module, (nn.Conv2d, nn.Linear)):
-            prune.l1_unstructured(module, name="weight", amount=prune_amount)
-            prune.remove(module, "weight")
-
-    # ----------------------------------------
-    # Count params after pruning
-    # ----------------------------------------
-    params_after = count_nonzero_params(model)
-    if verbose:
-        print(f" Pruning concluído. Parametros não nulos: {params_after:,} / {params_before:,}")
-
-    # ----------------------------------------
-    # Apply quantization (dynamic)
-    # ----------------------------------------
-    if quantize:
-        if verbose:
-            print(" Aplicando dynamic quantization...")
-        model = quantize_dynamic(
-            model, 
-            {nn.Linear}, 
-            dtype=torch.qint8
-        )
-        if verbose:
-            print(" Quantization concluída.")
-
-    if verbose:
-        print(f" Modelo {model.__class__.__name__} otimizado com sucesso!\n")
-
+        print(f"--- Pruning {prune_amount*100:.0f}%")
     return model
+
+# ---------- remove pesos originais ----------
+def limpa_pesos(model):
+    model.eval()
+    for m in model.modules():
+        if isinstance(m, (nn.Conv2d, nn.Linear)) and prune.is_pruned(m):
+            prune.remove(m, 'weight')
+    return model
+
+# ---------- quantização ----------
+def aplica_quantizacao(model_pruned, verbose=True):
+    if verbose:
+        print("--- Aplicando Quantização Dinâmica ---")
+        
+    model_cpu = model_pruned.to("cpu")
+    model_cpu.eval()
+    
+    return quantize_dynamic(model_cpu, {nn.Linear}, dtype=torch.qint8)

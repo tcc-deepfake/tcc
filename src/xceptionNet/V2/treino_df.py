@@ -9,7 +9,7 @@ import time
 from collections import Counter
 import numpy as np
 
-from utils.model_compress import optimize_model # Pruning e Quantization
+from utils.model_compress import aplica_pruning, limpa_pesos
 
 # ---------- log ----------
 log_path = "logs/xceptionNet/V2/log_treino_df.txt"
@@ -34,11 +34,12 @@ torch.manual_seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-# ---------- df ----------
+# ---------- paths ----------
 train_path_local = 'data/df/treino'
 val_path_local   = 'data/df/validacao'
+path_v1 = "models/xceptionNet/V1/model_df.pt"
 
-# data augumentation no treino
+# ---------- data augmentation ----------
 train_transform = transforms.Compose([
     transforms.RandomResizedCrop(299, scale=(0.9,1.0)),
     transforms.RandomHorizontalFlip(p=0.5),
@@ -50,7 +51,6 @@ train_transform = transforms.Compose([
 transform = transforms.Compose([
     transforms.Resize((299, 299)), # Resize 299x299 pro Xception
     transforms.ToTensor(),         # Imagem para PyTorch Tensor
-    #transforms.Lambda(lambda x: x - transforms.GaussianBlur(5)(x)),  # residual
     # Normalização com média e desvio da ImageNet
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
@@ -70,44 +70,39 @@ train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
 
 # ---------- modelo ----------
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-xception = timm.create_model('xception', pretrained=True)
-model = optimize_model(xception, device=device)
+model = timm.create_model('xception', pretrained=True)
 
-# -------------------------------------------------------------------
-# 4. Freeze layers
-# -------------------------------------------------------------------
-for name, param in model.named_parameters():
-    if any(layer in name for layer in ['fc']):
-        param.requires_grad = True
-    else:
-        param.requires_grad = False
-# -------------------------------------------------------------------
-# 5. Replace classifier head for binary classification (2 classes)
-# -------------------------------------------------------------------
+# ---------- subsititui camada classificadora ----------
 if hasattr(model, 'fc'):
     in_features = model.fc.in_features
-    # Colocando dropout para ver se melhora accuracy
-    model.fc = nn.Sequential(
-        nn.Dropout(p=0.5),
-        nn.Linear(in_features, 2)
-    )
-    trainable_params = model.fc.parameters()
+    model.fc = nn.Sequential(nn.Dropout(p=0.5), nn.Linear(in_features, 2))
+    head_params = model.fc.parameters()
 elif hasattr(model, 'head'):
     in_features = model.head.in_features
     model.head = nn.Linear(in_features, 2)
-    trainable_params = model.head.parameters()
+    head_params = model.head.parameters()
 else:
     raise ValueError("Layer de classificação não encontrado.")
 
-print("Parametros treináveis:")
-for name, p in model.named_parameters():
-    if p.requires_grad:
-        print(f"  {name}")
+# ---------- carrega v1 ----------
+state_v1 = torch.load(path_v1, map_location='cpu')
+model.load_state_dict(state_v1, strict=True)
 
-# -------------------------------------------------------------------
-# Loss, optimizer, scheduler, weights
-# -------------------------------------------------------------------
+# ---------- congela backbone ----------
+for n, p in model.named_parameters():
+    p.requires_grad = False
+for p in head_params:
+    p.requires_grad = True
+
+# ---------- pruning ----------
+model = aplica_pruning(model, prune_amount=0.2, incluir_convs=False, verbose=True)
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+if device.type == "cuda":
+    print(f"GPU: {torch.cuda.get_device_name(0)}")
+model = model.to(device)
+
+# ---------- loss, optimizer, weights ----------
 counts = Counter([y for _, y in train_dataset.samples])  # 0=fake,1=real
 w = np.array([1.0 / counts[i] for i in range(len(counts))], dtype=np.float32)
 w = w * (len(w) / w.sum())
@@ -115,10 +110,9 @@ class_weights = torch.tensor(w, device=device, dtype=torch.float32)
 print("Class weights:", w)
 
 criterion = nn.CrossEntropyLoss(weight=class_weights)
-optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2, momentum=0.9, weight_decay=1e-4)
-scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5)
+optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-4, momentum=0.9, weight_decay=1e-4)
 
-# ---------- treino + validacao ----------
+# ---------- parametros ----------
 best_val_acc = 0.0
 patience = 5        # Paciência de 5 épocas
 bad_epochs = 0      # Contador pra early stopping
@@ -126,26 +120,13 @@ save_path = "models/xceptionNet/V2/model_df.pt"
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
 # ---------- épocas ----------
-num_epochs = 20
+num_epochs = 8
 
 start_time = time.time()
-# -----------------------------
-# Treino
-# -----------------------------
+
+# ---------- treino ----------
 for epoch in range(num_epochs):
 
-    # libera mais camadas após 5 épocas
-    if epoch == 5:  
-        for name, param in model.named_parameters():
-            if any(name.startswith(pref) for pref in ['block9','block10','block11','block12','conv3','conv4','bn3','bn4','fc']):
-                param.requires_grad = True
-        optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-3, momentum=0.9, weight_decay=1e-4)
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=15)
-        print("\nLiberando camadas")
-    print(f"\nEPOCH {epoch+1}/{num_epochs}")
-    print("-" * 30)
-
-    # -------- treino --------
     model.train()
     train_loss, train_correct, total = 0.0, 0, 0
     running = 0.0
@@ -199,8 +180,6 @@ for epoch in range(num_epochs):
     val_acc = val_correct / val_total
     val_loss /= val_total
 
-    scheduler.step()
-
     print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.4f}")
     print(f"Val Loss: {val_loss:.4f} | Val   Acc: {val_acc:.4f}")
 
@@ -220,6 +199,11 @@ end_time = time.time()
 elapsed_time = end_time - start_time
 minutes = int(elapsed_time // 60)
 seconds = int(elapsed_time % 60)
+
+# ---------- limpa pesos ----------
+model.load_state_dict(torch.load(save_path, map_location=device))
+model = limpa_pesos(model)
+torch.save(model.state_dict(), save_path)
 
 print(f"Melhor acc: {best_val_acc:.4f}")
 print(f"\nTempo total de treino: {minutes}m {seconds}s")

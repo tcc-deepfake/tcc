@@ -32,11 +32,11 @@ torch.manual_seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-# ---------- df ----------
+# ---------- paths ----------
 train_path_local = 'data/df/treino'
 val_path_local   = 'data/df/validacao'
 
-# data augumentation no treino
+# ---------- data augmentation ----------
 train_transform = transforms.Compose([
     transforms.RandomResizedCrop(299, scale=(0.9,1.0)),
     transforms.RandomHorizontalFlip(p=0.5),
@@ -48,7 +48,6 @@ train_transform = transforms.Compose([
 transform = transforms.Compose([
     transforms.Resize((299, 299)), # Resize 299x299 pro Xception
     transforms.ToTensor(),         # Imagem para PyTorch Tensor
-    #transforms.Lambda(lambda x: x - transforms.GaussianBlur(5)(x)),  # residual
     # Normalização com média e desvio da ImageNet
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
@@ -69,18 +68,19 @@ val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
 
 # ---------- modelo ----------
 model = timm.create_model('xception', pretrained=True)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+if device.type == "cuda":
+    print(f"GPU: {torch.cuda.get_device_name(0)}")
+model = model.to(device)
 
-# -------------------------------------------------------------------
-# 4. Freeze layers
-# -------------------------------------------------------------------
+# ---------- congela camada ----------
 for name, param in model.named_parameters():
     if any(layer in name for layer in ['fc']):
         param.requires_grad = True
     else:
         param.requires_grad = False
-# -------------------------------------------------------------------
-# 5. Replace classifier head for binary classification (2 classes)
-# -------------------------------------------------------------------
+
+# ---------- subsititui camada classificadora ----------
 if hasattr(model, 'fc'):
     in_features = model.fc.in_features
     # Colocando dropout para ver se melhora accuracy
@@ -96,22 +96,12 @@ elif hasattr(model, 'head'):
 else:
     raise ValueError("Layer de classificação não encontrado.")
 
-# -------------------------------------------------------------------
-# Modelo pra GPU se disponível
-# -------------------------------------------------------------------
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-if device.type == "cuda":
-    print(f"GPU: {torch.cuda.get_device_name(0)}")
-model = model.to(device)
-
 print("Parametros treináveis:")
 for name, p in model.named_parameters():
     if p.requires_grad:
         print(f"  {name}")
 
-# -------------------------------------------------------------------
-# Loss, optimizer, scheduler, weights
-# -------------------------------------------------------------------
+# ---------- loss, optimizer, weights ----------
 counts = Counter([y for _, y in train_dataset.samples])  # 0=fake,1=real
 w = np.array([1.0 / counts[i] for i in range(len(counts))], dtype=np.float32)
 w = w * (len(w) / w.sum())
@@ -122,7 +112,7 @@ criterion = nn.CrossEntropyLoss(weight=class_weights)
 optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2, momentum=0.9, weight_decay=1e-4)
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5)
 
-# ---------- treino + validacao ----------
+# ---------- parametros ----------
 best_val_acc = 0.0
 patience = 5        # Paciência de 5 épocas
 bad_epochs = 0      # Contador pra early stopping
@@ -133,9 +123,8 @@ os.makedirs(os.path.dirname(save_path), exist_ok=True)
 num_epochs = 20
 
 start_time = time.time()
-# -----------------------------
-# Treino
-# -----------------------------
+
+# ---------- treino ----------
 for epoch in range(num_epochs):
 
     # libera mais camadas após 5 épocas
@@ -149,7 +138,6 @@ for epoch in range(num_epochs):
     print(f"\nEPOCH {epoch+1}/{num_epochs}")
     print("-" * 30)
 
-    # -------- treino --------
     model.train()
     train_loss, train_correct, total = 0.0, 0, 0
     running = 0.0

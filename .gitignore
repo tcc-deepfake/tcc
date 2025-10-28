@@ -1,3 +1,5 @@
 # Datasets
 data/
 data_old/
+
+__pycache__/

@@ -35,7 +35,7 @@ df_path  = 'data/df/teste'
 foren_path  = 'data_old/foren/teste/person'
 best_path = "models/xceptionNet/V1/model_df.pt"
 
-# ---------- Transform ----------
+# ---------- transform ----------
 transform = transforms.Compose([
     transforms.Resize((299, 299)), # Resize 299x299 pro Xception
     transforms.ToTensor(),         # Imagem para PyTorch Tensor
