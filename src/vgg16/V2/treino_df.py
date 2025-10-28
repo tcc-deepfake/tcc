@@ -136,7 +136,8 @@ def main():
     print(f"Class weights: {w}\n")
 
     criterion = nn.CrossEntropyLoss(weight=class_weights)
-    optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2)
+    optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-4)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10)
 
     # ---------- treino + validação ----------
     num_epochs = 100
@@ -193,6 +194,8 @@ def main():
 
         val_acc = correct / total if total else 0.0
         print(f"[Val] Epoch {epoch} | Acc={val_acc:.4f}")
+
+        scheduler.step()
 
         # ---- early stopping + best model ----
         if val_acc > best_acc:

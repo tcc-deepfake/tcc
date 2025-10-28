@@ -36,10 +36,9 @@ val_path_local   = 'data/foren/validacao'
 
 # data augumentation no treino
 train_transform = transforms.Compose([
-    transforms.Resize((299, 299)),
+    transforms.RandomResizedCrop(299, scale=(0.9,1.0)),
     transforms.RandomHorizontalFlip(p=0.5),
-    transforms.ColorJitter(brightness=0.2, contrast=0.2),
-    transforms.RandomRotation(10),
+    transforms.RandomApply([transforms.GaussianBlur(3)], p=0.3),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
@@ -47,7 +46,6 @@ train_transform = transforms.Compose([
 transform = transforms.Compose([
     transforms.Resize((299, 299)), # Resize 299x299 pro Xception
     transforms.ToTensor(),         # Imagem para PyTorch Tensor
-    #transforms.Lambda(lambda x: x - transforms.GaussianBlur(5)(x)),  # residual
     # Normalização com média e desvio da ImageNet
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
@@ -69,23 +67,21 @@ val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
 # ---------- modelo ----------
 model = timm.create_model('xception', pretrained=True)
 
-# -------------------------------------------------------------------
-# 4. Freeze ALL layers (safe baseline)
-# -------------------------------------------------------------------
-for param in model.parameters():
-    param.requires_grad = False
+# ---------- congela camada ----------
+for name, param in model.named_parameters():
+    if any(layer in name for layer in ['fc']):
+        param.requires_grad = True
+    else:
+        param.requires_grad = False
 
-# # Then unfreeze the final feature extraction layers and classifier head
-# for name, param in model.named_parameters():
-#     if any(key in name for key in ['block12', 'block13', 'block14', 'conv4', 'bn4', 'fc', 'head']):
-#         param.requires_grad = True
-
-# -------------------------------------------------------------------
-# 5. Replace classifier head for binary classification (2 classes)
-# -------------------------------------------------------------------
+# ---------- subsititui camada classificadora ----------
 if hasattr(model, 'fc'):
     in_features = model.fc.in_features
-    model.fc = nn.Linear(in_features, 2)
+    # Colocando dropout para ver se melhora accuracy
+    model.fc = nn.Sequential(
+        nn.Dropout(p=0.5),
+        nn.Linear(in_features, 2)
+    )
     trainable_params = model.fc.parameters()
 elif hasattr(model, 'head'):
     in_features = model.head.in_features
@@ -94,25 +90,16 @@ elif hasattr(model, 'head'):
 else:
     raise ValueError("Layer de classificação não encontrado.")
 
-# -------------------------------------------------------------------
-# Modelo pra GPU se disponível
-# -------------------------------------------------------------------
+# ---------- verifica gpu ----------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if device.type == "cuda":
     print(f"GPU: {torch.cuda.get_device_name(0)}")
 model = model.to(device)
 
-print("Parametros treináveis:")
-for name, p in model.named_parameters():
-    if p.requires_grad:
-        print(f"  {name}")
-
-# -------------------------------------------------------------------
-# Loss, optimizer, scheduler
-# -------------------------------------------------------------------
+# ---------- loss, optimizer, scheduler ----------
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(trainable_params, lr=1e-4, weight_decay=1e-5)
-scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.5)
+optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2, momentum=0.9, weight_decay=1e-4)
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5) 
 
 
 # ---------- treino + validacao ----------
@@ -123,23 +110,31 @@ save_path = "models/xceptionNet/V1/model_foren.pt"
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
 # ---------- épocas ----------
-num_epochs = 10
+num_epochs = 20
 
 start_time = time.time()
-# -----------------------------
-# Treino
-# -----------------------------
+
+# ---------- treino ----------
 for epoch in range(num_epochs):
     
+    # libera mais camadas após 5 épocas (PADRÃO DF)
+    if epoch == 5:  
+        for name, param in model.named_parameters():
+            if any(name.startswith(pref) for pref in ['block9','block10','block11','block12','conv3','conv4','bn3','bn4','fc']):
+                param.requires_grad = True
+        optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-3, momentum=0.9, weight_decay=1e-4)
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=15) 
+        print("\nLiberando camadas")
     print(f"\nEPOCH {epoch+1}/{num_epochs}")
     print("-" * 30)
 
     model.train()
     train_loss, train_correct, total = 0.0, 0, 0
+    running = 0.0 # Para log a cada 100 steps
 
-    # for images, labels in tqdm(train_loader, desc="Treinando", leave=False):
-    for images, labels in train_loader:
-        images, labels = images.to(device), labels.to(device)
+    for i, (images, labels) in enumerate(train_loader, 1):
+        images = images.to(device, non_blocking=True)
+        labels = labels.to(device, non_blocking=True)
 
         optimizer.zero_grad()
         outputs = model(images)
@@ -148,48 +143,50 @@ for epoch in range(num_epochs):
         optimizer.step()
 
         train_loss += loss.item() * images.size(0)
+        running += loss.item()
         _, preds = torch.max(outputs, 1)
         train_correct += (preds == labels).sum().item()
         total += labels.size(0)
 
-    train_acc = train_correct / total
-    train_loss = train_loss / total
+        # Log a cada 100 steps (padrão df.py)
+        if i % 100 == 0:
+            print(f"[Train] epoch {epoch+1}/{num_epochs} step {i}/{len(train_loader)} loss_mean={running/100:.4f}")
+            running = 0.0
 
-    # -----------------------------
-    # Validação
-    # -----------------------------
+    train_acc = train_correct / total
+    train_loss /= total
+
+    # -------- validação --------
     model.eval()
     val_loss, val_correct, val_total = 0.0, 0, 0
+    running_val = 0.0 
 
     with torch.no_grad():
-
-        # for images, labels in tqdm(val_loader, desc="Validação", leave=False):
-        for images, labels in val_loader:
-            images, labels = images.to(device, non_blocking=True), labels.to(device, non_blocking=True)
+        for j, (images, labels) in enumerate(val_loader, 1):
+            images = images.to(device, non_blocking=True)
+            labels = labels.to(device, non_blocking=True)
 
             outputs = model(images)
             loss = criterion(outputs, labels)
 
             val_loss += loss.item() * images.size(0)
+            running_val += loss.item()
             _, preds = torch.max(outputs, 1)
             val_correct += (preds == labels).sum().item()
             val_total += labels.size(0)
 
-    val_acc = val_correct / val_total
-    val_loss = val_loss / val_total
+            if j % 100 == 0:
+                print(f"[Val]   epoch {epoch+1}/{num_epochs} step {j}/{len(val_loader)} loss_mean={running_val/100:.4f}")
+                running_val = 0.0
 
-    # -----------------------------
-    # SCHEDULER STEP
-    # -----------------------------
+    val_acc = val_correct / val_total
+    val_loss /= val_total
+
     scheduler.step()
-    # -----------------------------
-    # Resumo da época
-    # -----------------------------
+
     print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.4f}")
-    print(f"Val   Loss: {val_loss:.4f} | Val   Acc: {val_acc:.4f}")
-    # -----------------------------
-    # Early stopping
-    # -----------------------------
+    print(f"Val Loss: {val_loss:.4f} | Val   Acc: {val_acc:.4f}")
+
     if val_acc > best_val_acc:
         best_val_acc = val_acc
         bad_epochs = 0

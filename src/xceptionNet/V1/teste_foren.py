@@ -63,10 +63,16 @@ model = timm.create_model('xception', pretrained=True)
 
 if hasattr(model, 'fc'):
     in_features = model.fc.in_features
-    model.fc = nn.Linear(in_features, 2)
+    model.fc = nn.Sequential(
+        nn.Dropout(p=0.5),
+        nn.Linear(in_features, 2)
+    )
 elif hasattr(model, 'head'):
     in_features = model.head.in_features
-    model.head = nn.Linear(in_features, 2)
+    model.head = nn.Sequential(
+        nn.Dropout(p=0.5),
+        nn.Linear(in_features, 2)
+    )
 else:
     raise RuntimeError("Layer de classificação não encontrada.")
 
