@@ -98,7 +98,7 @@ class VGG4point5M(nn.Module):
 
 # ---------- bases ----------
 df_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "df", "teste"))
-foren_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "foren", "teste"))
+foren_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "data_old", "foren", "teste", "person"))
 best_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "models", "Vgg4", "V1", "model_df.pt"))
 
 # ---------- transforms ----------

@@ -99,8 +99,8 @@ class VGG4point5M(nn.Module):
         return out
 
 # ---------- foren ----------
-train_path_local = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "data", "foren", "treino"))
-val_path_local   = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "data", "foren", "validacao"))
+train_path_local = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "foren", "treino"))
+val_path_local   = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "foren", "validacao"))
 
 # ---------- transforms ----------
 # VGG4.5M - 224x224
@@ -147,7 +147,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-4, weight_decay=1e-4)
 
 # ---------- treino + validacao ----------
-num_epochs = 100
+num_epochs = 20
 scaler = GradScaler(device='cuda' if device.type == 'cuda' else 'cpu')
 best_acc = -1.0
 bad = 0

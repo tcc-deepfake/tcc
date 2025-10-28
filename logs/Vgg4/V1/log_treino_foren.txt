@@ -1,532 +1,270 @@
-Gravando log em: c:\Users\lgng\Desktop\Projeto Transformador II\tcc\logs\Vgg4\V1\log_treino_foren.txt
+Gravando log em: c:\Users\lgng\Desktop\Projeto Transformador II\repo\tcc\logs\Vgg4\V1\log_treino_foren.txt
 Número de imagens no dataset de treino: 38246
 Número de imagens no dataset de validação: 4781
 
 Classes detectadas no treino: ['fake', 'real']
 Mapeamento de classe para índice: {'fake': 0, 'real': 1}
 GPU: NVIDIA GeForce GTX 1050 Ti
-Epoch 1/100 | Step 100/1196 | Loss 0.7041
-Epoch 1/100 | Step 200/1196 | Loss 0.6955
-Epoch 1/100 | Step 300/1196 | Loss 0.7018
-Epoch 1/100 | Step 400/1196 | Loss 0.6949
-Epoch 1/100 | Step 500/1196 | Loss 0.6962
-Epoch 1/100 | Step 600/1196 | Loss 0.6932
-Epoch 1/100 | Step 700/1196 | Loss 0.6985
-Epoch 1/100 | Step 800/1196 | Loss 0.6963
-Epoch 1/100 | Step 900/1196 | Loss 0.6904
-Epoch 1/100 | Step 1000/1196 | Loss 0.6928
-Epoch 1/100 | Step 1100/1196 | Loss 0.6927
+Epoch 1/20 | Step 100/1196 | Loss 0.7041
+Epoch 1/20 | Step 200/1196 | Loss 0.6955
+Epoch 1/20 | Step 300/1196 | Loss 0.7018
+Epoch 1/20 | Step 400/1196 | Loss 0.6949
+Epoch 1/20 | Step 500/1196 | Loss 0.6962
+Epoch 1/20 | Step 600/1196 | Loss 0.6932
+Epoch 1/20 | Step 700/1196 | Loss 0.6985
+Epoch 1/20 | Step 800/1196 | Loss 0.6963
+Epoch 1/20 | Step 900/1196 | Loss 0.6904
+Epoch 1/20 | Step 1000/1196 | Loss 0.6928
+Epoch 1/20 | Step 1100/1196 | Loss 0.6927
 [Val] Epoch 1 | Acc=0.5457
 [OK] Melhor modelo salvo! Val Acc: 0.5457
-Epoch 2/100 | Step 100/1196 | Loss 0.6923
-Epoch 2/100 | Step 200/1196 | Loss 0.6904
-Epoch 2/100 | Step 300/1196 | Loss 0.6917
-Epoch 2/100 | Step 400/1196 | Loss 0.6898
-Epoch 2/100 | Step 500/1196 | Loss 0.6902
-Epoch 2/100 | Step 600/1196 | Loss 0.6856
-Epoch 2/100 | Step 700/1196 | Loss 0.6899
-Epoch 2/100 | Step 800/1196 | Loss 0.6889
-Epoch 2/100 | Step 900/1196 | Loss 0.6854
-Epoch 2/100 | Step 1000/1196 | Loss 0.6908
-Epoch 2/100 | Step 1100/1196 | Loss 0.6807
+Epoch 2/20 | Step 100/1196 | Loss 0.6923
+Epoch 2/20 | Step 200/1196 | Loss 0.6904
+Epoch 2/20 | Step 300/1196 | Loss 0.6917
+Epoch 2/20 | Step 400/1196 | Loss 0.6898
+Epoch 2/20 | Step 500/1196 | Loss 0.6902
+Epoch 2/20 | Step 600/1196 | Loss 0.6856
+Epoch 2/20 | Step 700/1196 | Loss 0.6899
+Epoch 2/20 | Step 800/1196 | Loss 0.6889
+Epoch 2/20 | Step 900/1196 | Loss 0.6854
+Epoch 2/20 | Step 1000/1196 | Loss 0.6908
+Epoch 2/20 | Step 1100/1196 | Loss 0.6807
 [Val] Epoch 2 | Acc=0.5223
 Sem melhora há 1 épocas
-Epoch 3/100 | Step 100/1196 | Loss 0.6923
-Epoch 3/100 | Step 200/1196 | Loss 0.6777
-Epoch 3/100 | Step 300/1196 | Loss 0.6759
-Epoch 3/100 | Step 400/1196 | Loss 0.6720
-Epoch 3/100 | Step 500/1196 | Loss 0.6730
-Epoch 3/100 | Step 600/1196 | Loss 0.6555
-Epoch 3/100 | Step 700/1196 | Loss 0.6551
-Epoch 3/100 | Step 800/1196 | Loss 0.6571
-Epoch 3/100 | Step 900/1196 | Loss 0.6437
-Epoch 3/100 | Step 1000/1196 | Loss 0.6461
-Epoch 3/100 | Step 1100/1196 | Loss 0.6378
+Epoch 3/20 | Step 100/1196 | Loss 0.6923
+Epoch 3/20 | Step 200/1196 | Loss 0.6777
+Epoch 3/20 | Step 300/1196 | Loss 0.6759
+Epoch 3/20 | Step 400/1196 | Loss 0.6720
+Epoch 3/20 | Step 500/1196 | Loss 0.6730
+Epoch 3/20 | Step 600/1196 | Loss 0.6555
+Epoch 3/20 | Step 700/1196 | Loss 0.6551
+Epoch 3/20 | Step 800/1196 | Loss 0.6571
+Epoch 3/20 | Step 900/1196 | Loss 0.6437
+Epoch 3/20 | Step 1000/1196 | Loss 0.6461
+Epoch 3/20 | Step 1100/1196 | Loss 0.6378
 [Val] Epoch 3 | Acc=0.5976
 [OK] Melhor modelo salvo! Val Acc: 0.5976
-Epoch 4/100 | Step 100/1196 | Loss 0.6393
-Epoch 4/100 | Step 200/1196 | Loss 0.6189
-Epoch 4/100 | Step 300/1196 | Loss 0.6148
-Epoch 4/100 | Step 400/1196 | Loss 0.6010
-Epoch 4/100 | Step 500/1196 | Loss 0.6004
-Epoch 4/100 | Step 600/1196 | Loss 0.5832
-Epoch 4/100 | Step 700/1196 | Loss 0.5543
-Epoch 4/100 | Step 800/1196 | Loss 0.5290
-Epoch 4/100 | Step 900/1196 | Loss 0.5187
-Epoch 4/100 | Step 1000/1196 | Loss 0.5036
-Epoch 4/100 | Step 1100/1196 | Loss 0.4506
+Epoch 4/20 | Step 100/1196 | Loss 0.6393
+Epoch 4/20 | Step 200/1196 | Loss 0.6189
+Epoch 4/20 | Step 300/1196 | Loss 0.6148
+Epoch 4/20 | Step 400/1196 | Loss 0.6010
+Epoch 4/20 | Step 500/1196 | Loss 0.6004
+Epoch 4/20 | Step 600/1196 | Loss 0.5832
+Epoch 4/20 | Step 700/1196 | Loss 0.5543
+Epoch 4/20 | Step 800/1196 | Loss 0.5290
+Epoch 4/20 | Step 900/1196 | Loss 0.5187
+Epoch 4/20 | Step 1000/1196 | Loss 0.5036
+Epoch 4/20 | Step 1100/1196 | Loss 0.4506
 [Val] Epoch 4 | Acc=0.8528
 [OK] Melhor modelo salvo! Val Acc: 0.8528
-Epoch 5/100 | Step 100/1196 | Loss 0.4273
-Epoch 5/100 | Step 200/1196 | Loss 0.4028
-Epoch 5/100 | Step 300/1196 | Loss 0.3904
-Epoch 5/100 | Step 400/1196 | Loss 0.3840
-Epoch 5/100 | Step 500/1196 | Loss 0.3305
-Epoch 5/100 | Step 600/1196 | Loss 0.3410
-Epoch 5/100 | Step 700/1196 | Loss 0.3240
-Epoch 5/100 | Step 800/1196 | Loss 0.3224
-Epoch 5/100 | Step 900/1196 | Loss 0.2818
-Epoch 5/100 | Step 1000/1196 | Loss 0.3072
-Epoch 5/100 | Step 1100/1196 | Loss 0.2816
+Epoch 5/20 | Step 100/1196 | Loss 0.4273
+Epoch 5/20 | Step 200/1196 | Loss 0.4028
+Epoch 5/20 | Step 300/1196 | Loss 0.3904
+Epoch 5/20 | Step 400/1196 | Loss 0.3840
+Epoch 5/20 | Step 500/1196 | Loss 0.3305
+Epoch 5/20 | Step 600/1196 | Loss 0.3410
+Epoch 5/20 | Step 700/1196 | Loss 0.3240
+Epoch 5/20 | Step 800/1196 | Loss 0.3224
+Epoch 5/20 | Step 900/1196 | Loss 0.2818
+Epoch 5/20 | Step 1000/1196 | Loss 0.3072
+Epoch 5/20 | Step 1100/1196 | Loss 0.2816
 [Val] Epoch 5 | Acc=0.8950
 [OK] Melhor modelo salvo! Val Acc: 0.8950
-Epoch 6/100 | Step 100/1196 | Loss 0.2707
-Epoch 6/100 | Step 200/1196 | Loss 0.2636
-Epoch 6/100 | Step 300/1196 | Loss 0.2509
-Epoch 6/100 | Step 400/1196 | Loss 0.2431
-Epoch 6/100 | Step 500/1196 | Loss 0.2543
-Epoch 6/100 | Step 600/1196 | Loss 0.2515
-Epoch 6/100 | Step 700/1196 | Loss 0.2632
-Epoch 6/100 | Step 800/1196 | Loss 0.2392
-Epoch 6/100 | Step 900/1196 | Loss 0.2226
-Epoch 6/100 | Step 1000/1196 | Loss 0.2035
-Epoch 6/100 | Step 1100/1196 | Loss 0.2140
+Epoch 6/20 | Step 100/1196 | Loss 0.2707
+Epoch 6/20 | Step 200/1196 | Loss 0.2636
+Epoch 6/20 | Step 300/1196 | Loss 0.2509
+Epoch 6/20 | Step 400/1196 | Loss 0.2431
+Epoch 6/20 | Step 500/1196 | Loss 0.2543
+Epoch 6/20 | Step 600/1196 | Loss 0.2515
+Epoch 6/20 | Step 700/1196 | Loss 0.2632
+Epoch 6/20 | Step 800/1196 | Loss 0.2392
+Epoch 6/20 | Step 900/1196 | Loss 0.2226
+Epoch 6/20 | Step 1000/1196 | Loss 0.2035
+Epoch 6/20 | Step 1100/1196 | Loss 0.2140
 [Val] Epoch 6 | Acc=0.8753
 Sem melhora há 1 épocas
-Epoch 7/100 | Step 100/1196 | Loss 0.1980
-Epoch 7/100 | Step 200/1196 | Loss 0.2026
-Epoch 7/100 | Step 300/1196 | Loss 0.2029
-Epoch 7/100 | Step 400/1196 | Loss 0.2074
-Epoch 7/100 | Step 500/1196 | Loss 0.1874
-Epoch 7/100 | Step 600/1196 | Loss 0.1853
-Epoch 7/100 | Step 700/1196 | Loss 0.1969
-Epoch 7/100 | Step 800/1196 | Loss 0.1917
-Epoch 7/100 | Step 900/1196 | Loss 0.1876
-Epoch 7/100 | Step 1000/1196 | Loss 0.1581
-Epoch 7/100 | Step 1100/1196 | Loss 0.1600
+Epoch 7/20 | Step 100/1196 | Loss 0.1980
+Epoch 7/20 | Step 200/1196 | Loss 0.2026
+Epoch 7/20 | Step 300/1196 | Loss 0.2029
+Epoch 7/20 | Step 400/1196 | Loss 0.2074
+Epoch 7/20 | Step 500/1196 | Loss 0.1874
+Epoch 7/20 | Step 600/1196 | Loss 0.1853
+Epoch 7/20 | Step 700/1196 | Loss 0.1969
+Epoch 7/20 | Step 800/1196 | Loss 0.1917
+Epoch 7/20 | Step 900/1196 | Loss 0.1876
+Epoch 7/20 | Step 1000/1196 | Loss 0.1581
+Epoch 7/20 | Step 1100/1196 | Loss 0.1600
 [Val] Epoch 7 | Acc=0.9557
 [OK] Melhor modelo salvo! Val Acc: 0.9557
-Epoch 8/100 | Step 100/1196 | Loss 0.1771
-Epoch 8/100 | Step 200/1196 | Loss 0.1542
-Epoch 8/100 | Step 300/1196 | Loss 0.1808
-Epoch 8/100 | Step 400/1196 | Loss 0.1645
-Epoch 8/100 | Step 500/1196 | Loss 0.1464
-Epoch 8/100 | Step 600/1196 | Loss 0.1858
-Epoch 8/100 | Step 700/1196 | Loss 0.1459
-Epoch 8/100 | Step 800/1196 | Loss 0.1533
-Epoch 8/100 | Step 900/1196 | Loss 0.1580
-Epoch 8/100 | Step 1000/1196 | Loss 0.1481
-Epoch 8/100 | Step 1100/1196 | Loss 0.1484
+Epoch 8/20 | Step 100/1196 | Loss 0.1771
+Epoch 8/20 | Step 200/1196 | Loss 0.1542
+Epoch 8/20 | Step 300/1196 | Loss 0.1808
+Epoch 8/20 | Step 400/1196 | Loss 0.1645
+Epoch 8/20 | Step 500/1196 | Loss 0.1464
+Epoch 8/20 | Step 600/1196 | Loss 0.1858
+Epoch 8/20 | Step 700/1196 | Loss 0.1459
+Epoch 8/20 | Step 800/1196 | Loss 0.1533
+Epoch 8/20 | Step 900/1196 | Loss 0.1580
+Epoch 8/20 | Step 1000/1196 | Loss 0.1481
+Epoch 8/20 | Step 1100/1196 | Loss 0.1484
 [Val] Epoch 8 | Acc=0.9590
 [OK] Melhor modelo salvo! Val Acc: 0.9590
-Epoch 9/100 | Step 100/1196 | Loss 0.1674
-Epoch 9/100 | Step 200/1196 | Loss 0.1456
-Epoch 9/100 | Step 300/1196 | Loss 0.1608
-Epoch 9/100 | Step 400/1196 | Loss 0.1503
-Epoch 9/100 | Step 500/1196 | Loss 0.1470
-Epoch 9/100 | Step 600/1196 | Loss 0.1334
-Epoch 9/100 | Step 700/1196 | Loss 0.1455
-Epoch 9/100 | Step 800/1196 | Loss 0.1373
-Epoch 9/100 | Step 900/1196 | Loss 0.1289
-Epoch 9/100 | Step 1000/1196 | Loss 0.1343
-Epoch 9/100 | Step 1100/1196 | Loss 0.1135
+Epoch 9/20 | Step 100/1196 | Loss 0.1674
+Epoch 9/20 | Step 200/1196 | Loss 0.1456
+Epoch 9/20 | Step 300/1196 | Loss 0.1608
+Epoch 9/20 | Step 400/1196 | Loss 0.1503
+Epoch 9/20 | Step 500/1196 | Loss 0.1470
+Epoch 9/20 | Step 600/1196 | Loss 0.1334
+Epoch 9/20 | Step 700/1196 | Loss 0.1455
+Epoch 9/20 | Step 800/1196 | Loss 0.1373
+Epoch 9/20 | Step 900/1196 | Loss 0.1289
+Epoch 9/20 | Step 1000/1196 | Loss 0.1343
+Epoch 9/20 | Step 1100/1196 | Loss 0.1135
 [Val] Epoch 9 | Acc=0.9661
 [OK] Melhor modelo salvo! Val Acc: 0.9661
-Epoch 10/100 | Step 100/1196 | Loss 0.1424
-Epoch 10/100 | Step 200/1196 | Loss 0.1279
-Epoch 10/100 | Step 300/1196 | Loss 0.1210
-Epoch 10/100 | Step 400/1196 | Loss 0.1372
-Epoch 10/100 | Step 500/1196 | Loss 0.1251
-Epoch 10/100 | Step 600/1196 | Loss 0.1192
-Epoch 10/100 | Step 700/1196 | Loss 0.1303
-Epoch 10/100 | Step 800/1196 | Loss 0.1146
-Epoch 10/100 | Step 900/1196 | Loss 0.1046
-Epoch 10/100 | Step 1000/1196 | Loss 0.1133
-Epoch 10/100 | Step 1100/1196 | Loss 0.1115
+Epoch 10/20 | Step 100/1196 | Loss 0.1424
+Epoch 10/20 | Step 200/1196 | Loss 0.1279
+Epoch 10/20 | Step 300/1196 | Loss 0.1210
+Epoch 10/20 | Step 400/1196 | Loss 0.1372
+Epoch 10/20 | Step 500/1196 | Loss 0.1251
+Epoch 10/20 | Step 600/1196 | Loss 0.1192
+Epoch 10/20 | Step 700/1196 | Loss 0.1303
+Epoch 10/20 | Step 800/1196 | Loss 0.1146
+Epoch 10/20 | Step 900/1196 | Loss 0.1046
+Epoch 10/20 | Step 1000/1196 | Loss 0.1133
+Epoch 10/20 | Step 1100/1196 | Loss 0.1115
 [Val] Epoch 10 | Acc=0.9713
 [OK] Melhor modelo salvo! Val Acc: 0.9713
-Epoch 11/100 | Step 100/1196 | Loss 0.1115
-Epoch 11/100 | Step 200/1196 | Loss 0.1392
-Epoch 11/100 | Step 300/1196 | Loss 0.1278
-Epoch 11/100 | Step 400/1196 | Loss 0.1101
-Epoch 11/100 | Step 500/1196 | Loss 0.1108
-Epoch 11/100 | Step 600/1196 | Loss 0.1210
-Epoch 11/100 | Step 700/1196 | Loss 0.1099
-Epoch 11/100 | Step 800/1196 | Loss 0.1010
-Epoch 11/100 | Step 900/1196 | Loss 0.1004
-Epoch 11/100 | Step 1000/1196 | Loss 0.1149
-Epoch 11/100 | Step 1100/1196 | Loss 0.1182
+Epoch 11/20 | Step 100/1196 | Loss 0.1115
+Epoch 11/20 | Step 200/1196 | Loss 0.1392
+Epoch 11/20 | Step 300/1196 | Loss 0.1278
+Epoch 11/20 | Step 400/1196 | Loss 0.1101
+Epoch 11/20 | Step 500/1196 | Loss 0.1108
+Epoch 11/20 | Step 600/1196 | Loss 0.1210
+Epoch 11/20 | Step 700/1196 | Loss 0.1099
+Epoch 11/20 | Step 800/1196 | Loss 0.1010
+Epoch 11/20 | Step 900/1196 | Loss 0.1004
+Epoch 11/20 | Step 1000/1196 | Loss 0.1149
+Epoch 11/20 | Step 1100/1196 | Loss 0.1182
 [Val] Epoch 11 | Acc=0.9755
 [OK] Melhor modelo salvo! Val Acc: 0.9755
-Epoch 12/100 | Step 100/1196 | Loss 0.0992
-Epoch 12/100 | Step 200/1196 | Loss 0.1142
-Epoch 12/100 | Step 300/1196 | Loss 0.1098
-Epoch 12/100 | Step 400/1196 | Loss 0.0935
-Epoch 12/100 | Step 500/1196 | Loss 0.1075
-Epoch 12/100 | Step 600/1196 | Loss 0.1030
-Epoch 12/100 | Step 700/1196 | Loss 0.1029
-Epoch 12/100 | Step 800/1196 | Loss 0.1060
-Epoch 12/100 | Step 900/1196 | Loss 0.1155
-Epoch 12/100 | Step 1000/1196 | Loss 0.0818
-Epoch 12/100 | Step 1100/1196 | Loss 0.1004
+Epoch 12/20 | Step 100/1196 | Loss 0.0992
+Epoch 12/20 | Step 200/1196 | Loss 0.1142
+Epoch 12/20 | Step 300/1196 | Loss 0.1098
+Epoch 12/20 | Step 400/1196 | Loss 0.0935
+Epoch 12/20 | Step 500/1196 | Loss 0.1075
+Epoch 12/20 | Step 600/1196 | Loss 0.1030
+Epoch 12/20 | Step 700/1196 | Loss 0.1029
+Epoch 12/20 | Step 800/1196 | Loss 0.1060
+Epoch 12/20 | Step 900/1196 | Loss 0.1155
+Epoch 12/20 | Step 1000/1196 | Loss 0.0818
+Epoch 12/20 | Step 1100/1196 | Loss 0.1004
 [Val] Epoch 12 | Acc=0.9782
 [OK] Melhor modelo salvo! Val Acc: 0.9782
-Epoch 13/100 | Step 100/1196 | Loss 0.0900
-Epoch 13/100 | Step 200/1196 | Loss 0.1032
-Epoch 13/100 | Step 300/1196 | Loss 0.1005
-Epoch 13/100 | Step 400/1196 | Loss 0.1098
-Epoch 13/100 | Step 500/1196 | Loss 0.1021
-Epoch 13/100 | Step 600/1196 | Loss 0.1075
-Epoch 13/100 | Step 700/1196 | Loss 0.1194
-Epoch 13/100 | Step 800/1196 | Loss 0.0980
-Epoch 13/100 | Step 900/1196 | Loss 0.1127
-Epoch 13/100 | Step 1000/1196 | Loss 0.0824
-Epoch 13/100 | Step 1100/1196 | Loss 0.0868
+Epoch 13/20 | Step 100/1196 | Loss 0.0900
+Epoch 13/20 | Step 200/1196 | Loss 0.1032
+Epoch 13/20 | Step 300/1196 | Loss 0.1005
+Epoch 13/20 | Step 400/1196 | Loss 0.1098
+Epoch 13/20 | Step 500/1196 | Loss 0.1021
+Epoch 13/20 | Step 600/1196 | Loss 0.1075
+Epoch 13/20 | Step 700/1196 | Loss 0.1194
+Epoch 13/20 | Step 800/1196 | Loss 0.0980
+Epoch 13/20 | Step 900/1196 | Loss 0.1127
+Epoch 13/20 | Step 1000/1196 | Loss 0.0824
+Epoch 13/20 | Step 1100/1196 | Loss 0.0868
 [Val] Epoch 13 | Acc=0.9782
 Sem melhora há 1 épocas
-Epoch 14/100 | Step 100/1196 | Loss 0.0947
-Epoch 14/100 | Step 200/1196 | Loss 0.1073
-Epoch 14/100 | Step 300/1196 | Loss 0.0841
-Epoch 14/100 | Step 400/1196 | Loss 0.0893
-Epoch 14/100 | Step 500/1196 | Loss 0.0929
-Epoch 14/100 | Step 600/1196 | Loss 0.0902
-Epoch 14/100 | Step 700/1196 | Loss 0.0958
-Epoch 14/100 | Step 800/1196 | Loss 0.0921
-Epoch 14/100 | Step 900/1196 | Loss 0.1120
-Epoch 14/100 | Step 1000/1196 | Loss 0.0839
-Epoch 14/100 | Step 1100/1196 | Loss 0.1066
+Epoch 14/20 | Step 100/1196 | Loss 0.0947
+Epoch 14/20 | Step 200/1196 | Loss 0.1073
+Epoch 14/20 | Step 300/1196 | Loss 0.0841
+Epoch 14/20 | Step 400/1196 | Loss 0.0893
+Epoch 14/20 | Step 500/1196 | Loss 0.0929
+Epoch 14/20 | Step 600/1196 | Loss 0.0902
+Epoch 14/20 | Step 700/1196 | Loss 0.0958
+Epoch 14/20 | Step 800/1196 | Loss 0.0921
+Epoch 14/20 | Step 900/1196 | Loss 0.1120
+Epoch 14/20 | Step 1000/1196 | Loss 0.0839
+Epoch 14/20 | Step 1100/1196 | Loss 0.1066
 [Val] Epoch 14 | Acc=0.9787
 [OK] Melhor modelo salvo! Val Acc: 0.9787
-Epoch 15/100 | Step 100/1196 | Loss 0.0930
-Epoch 15/100 | Step 200/1196 | Loss 0.0974
-Epoch 15/100 | Step 300/1196 | Loss 0.0859
-Epoch 15/100 | Step 400/1196 | Loss 0.0751
-Epoch 15/100 | Step 500/1196 | Loss 0.0927
-Epoch 15/100 | Step 600/1196 | Loss 0.0742
-Epoch 15/100 | Step 700/1196 | Loss 0.0861
-Epoch 15/100 | Step 800/1196 | Loss 0.0897
-Epoch 15/100 | Step 900/1196 | Loss 0.0756
-Epoch 15/100 | Step 1000/1196 | Loss 0.0849
-Epoch 15/100 | Step 1100/1196 | Loss 0.0887
+Epoch 15/20 | Step 100/1196 | Loss 0.0930
+Epoch 15/20 | Step 200/1196 | Loss 0.0974
+Epoch 15/20 | Step 300/1196 | Loss 0.0859
+Epoch 15/20 | Step 400/1196 | Loss 0.0751
+Epoch 15/20 | Step 500/1196 | Loss 0.0927
+Epoch 15/20 | Step 600/1196 | Loss 0.0742
+Epoch 15/20 | Step 700/1196 | Loss 0.0861
+Epoch 15/20 | Step 800/1196 | Loss 0.0897
+Epoch 15/20 | Step 900/1196 | Loss 0.0756
+Epoch 15/20 | Step 1000/1196 | Loss 0.0849
+Epoch 15/20 | Step 1100/1196 | Loss 0.0887
 [Val] Epoch 15 | Acc=0.9734
 Sem melhora há 1 épocas
-Epoch 16/100 | Step 100/1196 | Loss 0.0959
-Epoch 16/100 | Step 200/1196 | Loss 0.0960
-Epoch 16/100 | Step 300/1196 | Loss 0.0904
-Epoch 16/100 | Step 400/1196 | Loss 0.0706
-Epoch 16/100 | Step 500/1196 | Loss 0.0745
-Epoch 16/100 | Step 600/1196 | Loss 0.0944
-Epoch 16/100 | Step 700/1196 | Loss 0.0906
-Epoch 16/100 | Step 800/1196 | Loss 0.0946
-Epoch 16/100 | Step 900/1196 | Loss 0.0939
-Epoch 16/100 | Step 1000/1196 | Loss 0.0596
-Epoch 16/100 | Step 1100/1196 | Loss 0.0725
+Epoch 16/20 | Step 100/1196 | Loss 0.0959
+Epoch 16/20 | Step 200/1196 | Loss 0.0960
+Epoch 16/20 | Step 300/1196 | Loss 0.0904
+Epoch 16/20 | Step 400/1196 | Loss 0.0706
+Epoch 16/20 | Step 500/1196 | Loss 0.0745
+Epoch 16/20 | Step 600/1196 | Loss 0.0944
+Epoch 16/20 | Step 700/1196 | Loss 0.0906
+Epoch 16/20 | Step 800/1196 | Loss 0.0946
+Epoch 16/20 | Step 900/1196 | Loss 0.0939
+Epoch 16/20 | Step 1000/1196 | Loss 0.0596
+Epoch 16/20 | Step 1100/1196 | Loss 0.0725
 [Val] Epoch 16 | Acc=0.9770
 Sem melhora há 2 épocas
-Epoch 17/100 | Step 100/1196 | Loss 0.0756
-Epoch 17/100 | Step 200/1196 | Loss 0.0854
-Epoch 17/100 | Step 300/1196 | Loss 0.0869
-Epoch 17/100 | Step 400/1196 | Loss 0.0888
-Epoch 17/100 | Step 500/1196 | Loss 0.0594
-Epoch 17/100 | Step 600/1196 | Loss 0.0898
-Epoch 17/100 | Step 700/1196 | Loss 0.0722
-Epoch 17/100 | Step 800/1196 | Loss 0.0696
-Epoch 17/100 | Step 900/1196 | Loss 0.0849
-Epoch 17/100 | Step 1000/1196 | Loss 0.0637
-Epoch 17/100 | Step 1100/1196 | Loss 0.0716
+Epoch 17/20 | Step 100/1196 | Loss 0.0756
+Epoch 17/20 | Step 200/1196 | Loss 0.0854
+Epoch 17/20 | Step 300/1196 | Loss 0.0869
+Epoch 17/20 | Step 400/1196 | Loss 0.0888
+Epoch 17/20 | Step 500/1196 | Loss 0.0594
+Epoch 17/20 | Step 600/1196 | Loss 0.0898
+Epoch 17/20 | Step 700/1196 | Loss 0.0722
+Epoch 17/20 | Step 800/1196 | Loss 0.0696
+Epoch 17/20 | Step 900/1196 | Loss 0.0849
+Epoch 17/20 | Step 1000/1196 | Loss 0.0637
+Epoch 17/20 | Step 1100/1196 | Loss 0.0716
 [Val] Epoch 17 | Acc=0.9695
 Sem melhora há 3 épocas
-Epoch 18/100 | Step 100/1196 | Loss 0.0691
-Epoch 18/100 | Step 200/1196 | Loss 0.0853
-Epoch 18/100 | Step 300/1196 | Loss 0.0743
-Epoch 18/100 | Step 400/1196 | Loss 0.0704
-Epoch 18/100 | Step 500/1196 | Loss 0.0730
-Epoch 18/100 | Step 600/1196 | Loss 0.0780
-Epoch 18/100 | Step 700/1196 | Loss 0.0681
-Epoch 18/100 | Step 800/1196 | Loss 0.0707
-Epoch 18/100 | Step 900/1196 | Loss 0.0656
-Epoch 18/100 | Step 1000/1196 | Loss 0.0813
-Epoch 18/100 | Step 1100/1196 | Loss 0.0735
+Epoch 18/20 | Step 100/1196 | Loss 0.0691
+Epoch 18/20 | Step 200/1196 | Loss 0.0853
+Epoch 18/20 | Step 300/1196 | Loss 0.0743
+Epoch 18/20 | Step 400/1196 | Loss 0.0704
+Epoch 18/20 | Step 500/1196 | Loss 0.0730
+Epoch 18/20 | Step 600/1196 | Loss 0.0780
+Epoch 18/20 | Step 700/1196 | Loss 0.0681
+Epoch 18/20 | Step 800/1196 | Loss 0.0707
+Epoch 18/20 | Step 900/1196 | Loss 0.0656
+Epoch 18/20 | Step 1000/1196 | Loss 0.0813
+Epoch 18/20 | Step 1100/1196 | Loss 0.0735
 [Val] Epoch 18 | Acc=0.9726
 Sem melhora há 4 épocas
-Epoch 19/100 | Step 100/1196 | Loss 0.0761
-Epoch 19/100 | Step 200/1196 | Loss 0.0598
-Epoch 19/100 | Step 300/1196 | Loss 0.0817
-Epoch 19/100 | Step 400/1196 | Loss 0.0813
-Epoch 19/100 | Step 500/1196 | Loss 0.0574
-Epoch 19/100 | Step 600/1196 | Loss 0.0520
-Epoch 19/100 | Step 700/1196 | Loss 0.0760
-Epoch 19/100 | Step 800/1196 | Loss 0.0643
-Epoch 19/100 | Step 900/1196 | Loss 0.0775
-Epoch 19/100 | Step 1000/1196 | Loss 0.0803
-Epoch 19/100 | Step 1100/1196 | Loss 0.0608
+Epoch 19/20 | Step 100/1196 | Loss 0.0761
+Epoch 19/20 | Step 200/1196 | Loss 0.0598
+Epoch 19/20 | Step 300/1196 | Loss 0.0817
+Epoch 19/20 | Step 400/1196 | Loss 0.0813
+Epoch 19/20 | Step 500/1196 | Loss 0.0574
+Epoch 19/20 | Step 600/1196 | Loss 0.0520
+Epoch 19/20 | Step 700/1196 | Loss 0.0760
+Epoch 19/20 | Step 800/1196 | Loss 0.0643
+Epoch 19/20 | Step 900/1196 | Loss 0.0775
+Epoch 19/20 | Step 1000/1196 | Loss 0.0803
+Epoch 19/20 | Step 1100/1196 | Loss 0.0608
 [Val] Epoch 19 | Acc=0.9831
 [OK] Melhor modelo salvo! Val Acc: 0.9831
-Epoch 20/100 | Step 100/1196 | Loss 0.0693
-Epoch 20/100 | Step 200/1196 | Loss 0.0627
-Epoch 20/100 | Step 300/1196 | Loss 0.0749
-Epoch 20/100 | Step 400/1196 | Loss 0.0702
-Epoch 20/100 | Step 500/1196 | Loss 0.0770
-Epoch 20/100 | Step 600/1196 | Loss 0.0570
-Epoch 20/100 | Step 700/1196 | Loss 0.0742
-Epoch 20/100 | Step 800/1196 | Loss 0.0743
-Epoch 20/100 | Step 900/1196 | Loss 0.0618
-Epoch 20/100 | Step 1000/1196 | Loss 0.0736
-Epoch 20/100 | Step 1100/1196 | Loss 0.0580
+Epoch 20/20 | Step 100/1196 | Loss 0.0693
+Epoch 20/20 | Step 200/1196 | Loss 0.0627
+Epoch 20/20 | Step 300/1196 | Loss 0.0749
+Epoch 20/20 | Step 400/1196 | Loss 0.0702
+Epoch 20/20 | Step 500/1196 | Loss 0.0770
+Epoch 20/20 | Step 600/1196 | Loss 0.0570
+Epoch 20/20 | Step 700/1196 | Loss 0.0742
+Epoch 20/20 | Step 800/1196 | Loss 0.0743
+Epoch 20/20 | Step 900/1196 | Loss 0.0618
+Epoch 20/20 | Step 1000/1196 | Loss 0.0736
+Epoch 20/20 | Step 1100/1196 | Loss 0.0580
 [Val] Epoch 20 | Acc=0.9841
 [OK] Melhor modelo salvo! Val Acc: 0.9841
-Epoch 21/100 | Step 100/1196 | Loss 0.0546
-Epoch 21/100 | Step 200/1196 | Loss 0.0777
-Epoch 21/100 | Step 300/1196 | Loss 0.0643
-Epoch 21/100 | Step 400/1196 | Loss 0.0681
-Epoch 21/100 | Step 500/1196 | Loss 0.0724
-Epoch 21/100 | Step 600/1196 | Loss 0.0733
-Epoch 21/100 | Step 700/1196 | Loss 0.0544
-Epoch 21/100 | Step 800/1196 | Loss 0.0627
-Epoch 21/100 | Step 900/1196 | Loss 0.0684
-Epoch 21/100 | Step 1000/1196 | Loss 0.0726
-Epoch 21/100 | Step 1100/1196 | Loss 0.0558
-[Val] Epoch 21 | Acc=0.9847
-[OK] Melhor modelo salvo! Val Acc: 0.9847
-Epoch 22/100 | Step 100/1196 | Loss 0.0619
-Epoch 22/100 | Step 200/1196 | Loss 0.0716
-Epoch 22/100 | Step 300/1196 | Loss 0.0729
-Epoch 22/100 | Step 400/1196 | Loss 0.0490
-Epoch 22/100 | Step 500/1196 | Loss 0.0649
-Epoch 22/100 | Step 600/1196 | Loss 0.0530
-Epoch 22/100 | Step 700/1196 | Loss 0.0684
-Epoch 22/100 | Step 800/1196 | Loss 0.0715
-Epoch 22/100 | Step 900/1196 | Loss 0.0668
-Epoch 22/100 | Step 1000/1196 | Loss 0.0641
-Epoch 22/100 | Step 1100/1196 | Loss 0.0519
-[Val] Epoch 22 | Acc=0.9837
-Sem melhora há 1 épocas
-Epoch 23/100 | Step 100/1196 | Loss 0.0642
-Epoch 23/100 | Step 200/1196 | Loss 0.0589
-Epoch 23/100 | Step 300/1196 | Loss 0.0746
-Epoch 23/100 | Step 400/1196 | Loss 0.0577
-Epoch 23/100 | Step 500/1196 | Loss 0.0568
-Epoch 23/100 | Step 600/1196 | Loss 0.0554
-Epoch 23/100 | Step 700/1196 | Loss 0.0565
-Epoch 23/100 | Step 800/1196 | Loss 0.0750
-Epoch 23/100 | Step 900/1196 | Loss 0.0658
-Epoch 23/100 | Step 1000/1196 | Loss 0.0523
-Epoch 23/100 | Step 1100/1196 | Loss 0.0589
-[Val] Epoch 23 | Acc=0.9875
-[OK] Melhor modelo salvo! Val Acc: 0.9875
-Epoch 24/100 | Step 100/1196 | Loss 0.0589
-Epoch 24/100 | Step 200/1196 | Loss 0.0450
-Epoch 24/100 | Step 300/1196 | Loss 0.0519
-Epoch 24/100 | Step 400/1196 | Loss 0.0741
-Epoch 24/100 | Step 500/1196 | Loss 0.0580
-Epoch 24/100 | Step 600/1196 | Loss 0.0573
-Epoch 24/100 | Step 700/1196 | Loss 0.0601
-Epoch 24/100 | Step 800/1196 | Loss 0.0562
-Epoch 24/100 | Step 900/1196 | Loss 0.0654
-Epoch 24/100 | Step 1000/1196 | Loss 0.0628
-Epoch 24/100 | Step 1100/1196 | Loss 0.0515
-[Val] Epoch 24 | Acc=0.9902
-[OK] Melhor modelo salvo! Val Acc: 0.9902
-Epoch 25/100 | Step 100/1196 | Loss 0.0557
-Epoch 25/100 | Step 200/1196 | Loss 0.0515
-Epoch 25/100 | Step 300/1196 | Loss 0.0692
-Epoch 25/100 | Step 400/1196 | Loss 0.0631
-Epoch 25/100 | Step 500/1196 | Loss 0.0669
-Epoch 25/100 | Step 600/1196 | Loss 0.0478
-Epoch 25/100 | Step 700/1196 | Loss 0.0600
-Epoch 25/100 | Step 800/1196 | Loss 0.0618
-Epoch 25/100 | Step 900/1196 | Loss 0.0450
-Epoch 25/100 | Step 1000/1196 | Loss 0.0405
-Epoch 25/100 | Step 1100/1196 | Loss 0.0476
-[Val] Epoch 25 | Acc=0.9854
-Sem melhora há 1 épocas
-Epoch 26/100 | Step 100/1196 | Loss 0.0518
-Epoch 26/100 | Step 200/1196 | Loss 0.0543
-Epoch 26/100 | Step 300/1196 | Loss 0.0514
-Epoch 26/100 | Step 400/1196 | Loss 0.0752
-Epoch 26/100 | Step 500/1196 | Loss 0.0523
-Epoch 26/100 | Step 600/1196 | Loss 0.0725
-Epoch 26/100 | Step 700/1196 | Loss 0.0611
-Epoch 26/100 | Step 800/1196 | Loss 0.0505
-Epoch 26/100 | Step 900/1196 | Loss 0.0537
-Epoch 26/100 | Step 1000/1196 | Loss 0.0567
-Epoch 26/100 | Step 1100/1196 | Loss 0.0647
-[Val] Epoch 26 | Acc=0.9904
-[OK] Melhor modelo salvo! Val Acc: 0.9904
-Epoch 27/100 | Step 100/1196 | Loss 0.0478
-Epoch 27/100 | Step 200/1196 | Loss 0.0531
-Epoch 27/100 | Step 300/1196 | Loss 0.0478
-Epoch 27/100 | Step 400/1196 | Loss 0.0481
-Epoch 27/100 | Step 500/1196 | Loss 0.0608
-Epoch 27/100 | Step 600/1196 | Loss 0.0542
-Epoch 27/100 | Step 700/1196 | Loss 0.0504
-Epoch 27/100 | Step 800/1196 | Loss 0.0521
-Epoch 27/100 | Step 900/1196 | Loss 0.0545
-Epoch 27/100 | Step 1000/1196 | Loss 0.0609
-Epoch 27/100 | Step 1100/1196 | Loss 0.0423
-[Val] Epoch 27 | Acc=0.9856
-Sem melhora há 1 épocas
-Epoch 28/100 | Step 100/1196 | Loss 0.0610
-Epoch 28/100 | Step 200/1196 | Loss 0.0357
-Epoch 28/100 | Step 300/1196 | Loss 0.0658
-Epoch 28/100 | Step 400/1196 | Loss 0.0481
-Epoch 28/100 | Step 500/1196 | Loss 0.0457
-Epoch 28/100 | Step 600/1196 | Loss 0.0579
-Epoch 28/100 | Step 700/1196 | Loss 0.0442
-Epoch 28/100 | Step 800/1196 | Loss 0.0596
-Epoch 28/100 | Step 900/1196 | Loss 0.0549
-Epoch 28/100 | Step 1000/1196 | Loss 0.0414
-Epoch 28/100 | Step 1100/1196 | Loss 0.0490
-[Val] Epoch 28 | Acc=0.9881
-Sem melhora há 2 épocas
-Epoch 29/100 | Step 100/1196 | Loss 0.0479
-Epoch 29/100 | Step 200/1196 | Loss 0.0575
-Epoch 29/100 | Step 300/1196 | Loss 0.0502
-Epoch 29/100 | Step 400/1196 | Loss 0.0482
-Epoch 29/100 | Step 500/1196 | Loss 0.0493
-Epoch 29/100 | Step 600/1196 | Loss 0.0426
-Epoch 29/100 | Step 700/1196 | Loss 0.0452
-Epoch 29/100 | Step 800/1196 | Loss 0.0577
-Epoch 29/100 | Step 900/1196 | Loss 0.0520
-Epoch 29/100 | Step 1000/1196 | Loss 0.0495
-Epoch 29/100 | Step 1100/1196 | Loss 0.0610
-[Val] Epoch 29 | Acc=0.9910
-[OK] Melhor modelo salvo! Val Acc: 0.9910
-Epoch 30/100 | Step 100/1196 | Loss 0.0470
-Epoch 30/100 | Step 200/1196 | Loss 0.0434
-Epoch 30/100 | Step 300/1196 | Loss 0.0495
-Epoch 30/100 | Step 400/1196 | Loss 0.0455
-Epoch 30/100 | Step 500/1196 | Loss 0.0488
-Epoch 30/100 | Step 600/1196 | Loss 0.0476
-Epoch 30/100 | Step 700/1196 | Loss 0.0483
-Epoch 30/100 | Step 800/1196 | Loss 0.0319
-Epoch 30/100 | Step 900/1196 | Loss 0.0617
-Epoch 30/100 | Step 1000/1196 | Loss 0.0541
-Epoch 30/100 | Step 1100/1196 | Loss 0.0435
-[Val] Epoch 30 | Acc=0.9912
-[OK] Melhor modelo salvo! Val Acc: 0.9912
-Epoch 31/100 | Step 100/1196 | Loss 0.0416
-Epoch 31/100 | Step 200/1196 | Loss 0.0384
-Epoch 31/100 | Step 300/1196 | Loss 0.0421
-Epoch 31/100 | Step 400/1196 | Loss 0.0467
-Epoch 31/100 | Step 500/1196 | Loss 0.0334
-Epoch 31/100 | Step 600/1196 | Loss 0.0438
-Epoch 31/100 | Step 700/1196 | Loss 0.0571
-Epoch 31/100 | Step 800/1196 | Loss 0.0492
-Epoch 31/100 | Step 900/1196 | Loss 0.0342
-Epoch 31/100 | Step 1000/1196 | Loss 0.0506
-Epoch 31/100 | Step 1100/1196 | Loss 0.0383
-[Val] Epoch 31 | Acc=0.9921
-[OK] Melhor modelo salvo! Val Acc: 0.9921
-Epoch 32/100 | Step 100/1196 | Loss 0.0393
-Epoch 32/100 | Step 200/1196 | Loss 0.0436
-Epoch 32/100 | Step 300/1196 | Loss 0.0483
-Epoch 32/100 | Step 400/1196 | Loss 0.0501
-Epoch 32/100 | Step 500/1196 | Loss 0.0480
-Epoch 32/100 | Step 600/1196 | Loss 0.0452
-Epoch 32/100 | Step 700/1196 | Loss 0.0389
-Epoch 32/100 | Step 800/1196 | Loss 0.0503
-Epoch 32/100 | Step 900/1196 | Loss 0.0484
-Epoch 32/100 | Step 1000/1196 | Loss 0.0496
-Epoch 32/100 | Step 1100/1196 | Loss 0.0406
-[Val] Epoch 32 | Acc=0.9883
-Sem melhora há 1 épocas
-Epoch 33/100 | Step 100/1196 | Loss 0.0527
-Epoch 33/100 | Step 200/1196 | Loss 0.0310
-Epoch 33/100 | Step 300/1196 | Loss 0.0380
-Epoch 33/100 | Step 400/1196 | Loss 0.0443
-Epoch 33/100 | Step 500/1196 | Loss 0.0439
-Epoch 33/100 | Step 600/1196 | Loss 0.0500
-Epoch 33/100 | Step 700/1196 | Loss 0.0515
-Epoch 33/100 | Step 800/1196 | Loss 0.0339
-Epoch 33/100 | Step 900/1196 | Loss 0.0401
-Epoch 33/100 | Step 1000/1196 | Loss 0.0482
-Epoch 33/100 | Step 1100/1196 | Loss 0.0322
-[Val] Epoch 33 | Acc=0.9879
-Sem melhora há 2 épocas
-Epoch 34/100 | Step 100/1196 | Loss 0.0377
-Epoch 34/100 | Step 200/1196 | Loss 0.0486
-Epoch 34/100 | Step 300/1196 | Loss 0.0347
-Epoch 34/100 | Step 400/1196 | Loss 0.0386
-Epoch 34/100 | Step 500/1196 | Loss 0.0385
-Epoch 34/100 | Step 600/1196 | Loss 0.0510
-Epoch 34/100 | Step 700/1196 | Loss 0.0383
-Epoch 34/100 | Step 800/1196 | Loss 0.0332
-Epoch 34/100 | Step 900/1196 | Loss 0.0543
-Epoch 34/100 | Step 1000/1196 | Loss 0.0367
-Epoch 34/100 | Step 1100/1196 | Loss 0.0381
-[Val] Epoch 34 | Acc=0.9895
-Sem melhora há 3 épocas
-Epoch 35/100 | Step 100/1196 | Loss 0.0475
-Epoch 35/100 | Step 200/1196 | Loss 0.0409
-Epoch 35/100 | Step 300/1196 | Loss 0.0336
-Epoch 35/100 | Step 400/1196 | Loss 0.0405
-Epoch 35/100 | Step 500/1196 | Loss 0.0379
-Epoch 35/100 | Step 600/1196 | Loss 0.0357
-Epoch 35/100 | Step 700/1196 | Loss 0.0381
-Epoch 35/100 | Step 800/1196 | Loss 0.0353
-Epoch 35/100 | Step 900/1196 | Loss 0.0348
-Epoch 35/100 | Step 1000/1196 | Loss 0.0483
-Epoch 35/100 | Step 1100/1196 | Loss 0.0402
-[Val] Epoch 35 | Acc=0.9891
-Sem melhora há 4 épocas
-Epoch 36/100 | Step 100/1196 | Loss 0.0368
-Epoch 36/100 | Step 200/1196 | Loss 0.0350
-Epoch 36/100 | Step 300/1196 | Loss 0.0426
-Epoch 36/100 | Step 400/1196 | Loss 0.0387
-Epoch 36/100 | Step 500/1196 | Loss 0.0393
-Epoch 36/100 | Step 600/1196 | Loss 0.0311
-Epoch 36/100 | Step 700/1196 | Loss 0.0380
-Epoch 36/100 | Step 800/1196 | Loss 0.0546
-Epoch 36/100 | Step 900/1196 | Loss 0.0284
-Epoch 36/100 | Step 1000/1196 | Loss 0.0321
-Epoch 36/100 | Step 1100/1196 | Loss 0.0474
-[Val] Epoch 36 | Acc=0.9885
-Sem melhora há 5 épocas
-Epoch 37/100 | Step 100/1196 | Loss 0.0558
-Epoch 37/100 | Step 200/1196 | Loss 0.0402
-Epoch 37/100 | Step 300/1196 | Loss 0.0462
-Epoch 37/100 | Step 400/1196 | Loss 0.0311
-Epoch 37/100 | Step 500/1196 | Loss 0.0288
-Epoch 37/100 | Step 600/1196 | Loss 0.0403
-Epoch 37/100 | Step 700/1196 | Loss 0.0427
-Epoch 37/100 | Step 800/1196 | Loss 0.0304
-Epoch 37/100 | Step 900/1196 | Loss 0.0404
-Epoch 37/100 | Step 1000/1196 | Loss 0.0311
-Epoch 37/100 | Step 1100/1196 | Loss 0.0411
-[Val] Epoch 37 | Acc=0.9929
-[OK] Melhor modelo salvo! Val Acc: 0.9929
-Epoch 38/100 | Step 100/1196 | Loss 0.0527
-Epoch 38/100 | Step 200/1196 | Loss 0.0433
-Epoch 38/100 | Step 300/1196 | Loss 0.0389
-Epoch 38/100 | Step 400/1196 | Loss 0.0354
-Epoch 38/100 | Step 500/1196 | Loss 0.0363
-Epoch 38/100 | Step 600/1196 | Loss 0.0325
-Epoch 38/100 | Step 700/1196 | Loss 0.0508
-Epoch 38/100 | Step 800/1196 | Loss 0.0297
-Epoch 38/100 | Step 900/1196 | Loss 0.0387
-Epoch 38/100 | Step 1000/1196 | Loss 0.0392
-Epoch 38/100 | Step 1100/1196 | Loss 0.0431
-[Val] Epoch 38 | Acc=0.9933
-[OK] Melhor modelo salvo! Val Acc: 0.9933
-Epoch 39/100 | Step 100/1196 | Loss 0.0293
-Epoch 39/100 | Step 200/1196 | Loss 0.0394
-Epoch 39/100 | Step 300/1196 | Loss 0.0317
-Epoch 39/100 | Step 400/1196 | Loss 0.0354
-Epoch 39/100 | Step 500/1196 | Loss 0.0502
-Epoch 39/100 | Step 600/1196 | Loss 0.0258
-Epoch 39/100 | Step 700/1196 | Loss 0.0486
-Epoch 39/100 | Step 800/1196 | Loss 0.0428
-Epoch 39/100 | Step 900/1196 | Loss 0.0366
-Epoch 39/100 | Step 1000/1196 | Loss 0.0332
-Epoch 39/100 | Step 1100/1196 | Loss 0.0398
-[Val] Epoch 39 | Acc=0.9937
-[OK] Melhor modelo salvo! Val Acc: 0.9937
-Epoch 40/100 | Step 100/1196 | Loss 0.0376
-Epoch 40/100 | Step 200/1196 | Loss 0.0265
-Epoch 40/100 | Step 300/1196 | Loss 0.0346
-Epoch 40/100 | Step 400/1196 | Loss 0.0330
-Epoch 40/100 | Step 500/1196 | Loss 0.0417
-Epoch 40/100 | Step 600/1196 | Loss 0.0343
-Epoch 40/100 | Step 700/1196 | Loss 0.0392
-Epoch 40/100 | Step 800/1196 | Loss 0.0481
-Epoch 40/100 | Step 900/1196 | Loss 0.0341
-Epoch 40/100 | Step 1000/1196 | Loss 0.0466
-Epoch 40/100 | Step 1100/1196 | Loss 0.0375
-[Val] Epoch 40 | Acc=0.9824
-Sem melhora há 1 épocas
-Epoch 41/100 | Step 100/1196 | Loss 0.0379
-Epoch 41/100 | Step 200/1196 | Loss 0.0339
-Epoch 41/100 | Step 300/1196 | Loss 0.0357
-Epoch 41/100 | Step 400/1196 | Loss 0.0341
-Epoch 41/100 | Step 500/1196 | Loss 0.0359
+
+Melhor acc: 0.9841
+Tempo total de treino: 524m 12s
