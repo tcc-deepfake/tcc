@@ -7,7 +7,7 @@ from torchvision import datasets, transforms, models
 from sklearn.metrics import classification_report
 
 # ---------- log ----------
-log_path = "logs\\vgg16\\v1\\log_teste_foren.txt"
+log_path = "logs\\Vgg16\\V1\\log_teste_foren.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
@@ -32,7 +32,7 @@ torch.backends.cudnn.benchmark = False
 # ---------- bases ----------
 test_path_local = 'data\\foren\\teste'
 df_path = 'data\\df\\teste'
-best_path = 'models\\vgg16\\V1\\model_foren.pt'
+best_path = 'models\\Vgg16\\V1\\model_foren.pt'
 
 # ---------- transforms ----------
 # VGG16 - 224x224

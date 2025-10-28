@@ -9,7 +9,7 @@ from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
 
 # ---------- log ----------
-log_path = "logs\\vgg16\\v2\\log_treino_foren.txt"
+log_path = "logs\\Vgg16\\V2\\log_treino_foren.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
@@ -134,7 +134,7 @@ def main():
     best_acc = -1.0
     bad = 0
     patience = 5
-    best_path = "models\\vgg16\\V2\\model_foren.pt"
+    best_path = "models\\Vgg16\\V2\\model_foren.pt"
     os.makedirs(os.path.dirname(best_path), exist_ok=True)
 
     start_time = time.time()

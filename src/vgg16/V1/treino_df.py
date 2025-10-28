@@ -11,7 +11,7 @@ from collections import Counter
 import numpy as np
 
 # ---------- log ----------
-log_path = "logs\\vgg16\\v1\\log_treino_df.txt"
+log_path = "logs\\Vgg16\\V1\\log_treino_df.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
@@ -101,7 +101,7 @@ scaler = GradScaler(device='cuda' if device.type == 'cuda' else 'cpu')
 best_acc = -1.0
 bad = 0
 patience = 3
-best_path = "models\\vgg16\\V1\\model_df.pt"
+best_path = "models\\Vgg16\\V1\\model_df.pt"
 os.makedirs(os.path.dirname(best_path), exist_ok=True)
 
 start_time = time.time()
