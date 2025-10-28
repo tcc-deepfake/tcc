@@ -65,7 +65,7 @@ print(f"\nClasses detectadas no treino: {train_dataset.classes}")
 print(f"Mapeamento de classe para índice: {train_dataset.class_to_idx}")
 
 # ---------- dataloaders ----------
-batch_size = 32
+batch_size = 16
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
 
@@ -88,14 +88,8 @@ else:
 state_v1 = torch.load(path_v1, map_location='cpu')
 model.load_state_dict(state_v1, strict=True)
 
-# ---------- congela backbone ----------
-for n, p in model.named_parameters():
-    p.requires_grad = False
-for p in head_params:
-    p.requires_grad = True
-
 # ---------- pruning ----------
-model = aplica_pruning(model, prune_amount=0.2, incluir_convs=False, verbose=True)
+model = aplica_pruning(model, prune_amount=0.2, incluir_convs=True, verbose=True)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if device.type == "cuda":

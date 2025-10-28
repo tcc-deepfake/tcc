@@ -9,4 +9,32 @@ Mapeamento de classe para índice: {'fake': 0, 'real': 1}
 --- Pruning 20%
 GPU: NVIDIA GeForce RTX 2060
 Class weights: [0.34072697 1.6592729 ]
-[Train] epoch 1/8 step 100/2391 loss_mean=0.2003
+[Train] epoch 1/8 step 100/4782 loss_mean=0.2384
+[Train] epoch 1/8 step 200/4782 loss_mean=0.2421
+[Train] epoch 1/8 step 300/4782 loss_mean=0.2213
+[Train] epoch 1/8 step 400/4782 loss_mean=0.2462
+[Train] epoch 1/8 step 500/4782 loss_mean=0.2488
+[Train] epoch 1/8 step 600/4782 loss_mean=0.2143
+[Train] epoch 1/8 step 700/4782 loss_mean=0.2305
+[Train] epoch 1/8 step 800/4782 loss_mean=0.2165
+[Train] epoch 1/8 step 900/4782 loss_mean=0.2414
+[Train] epoch 1/8 step 1000/4782 loss_mean=0.2039
+[Train] epoch 1/8 step 1100/4782 loss_mean=0.2381
+[Train] epoch 1/8 step 1200/4782 loss_mean=0.2260
+[Train] epoch 1/8 step 1300/4782 loss_mean=0.2288
+[Train] epoch 1/8 step 1400/4782 loss_mean=0.2172
+[Train] epoch 1/8 step 1500/4782 loss_mean=0.2146
+[Train] epoch 1/8 step 1600/4782 loss_mean=0.2127
+[Train] epoch 1/8 step 1700/4782 loss_mean=0.2540
+[Train] epoch 1/8 step 1800/4782 loss_mean=0.2259
+[Train] epoch 1/8 step 1900/4782 loss_mean=0.2291
+[Train] epoch 1/8 step 2000/4782 loss_mean=0.2045
+[Train] epoch 1/8 step 2100/4782 loss_mean=0.2076
+[Train] epoch 1/8 step 2200/4782 loss_mean=0.2290
+[Train] epoch 1/8 step 2300/4782 loss_mean=0.1980
+[Train] epoch 1/8 step 2400/4782 loss_mean=0.2221
+[Train] epoch 1/8 step 2500/4782 loss_mean=0.2198
+[Train] epoch 1/8 step 2600/4782 loss_mean=0.2054
+[Train] epoch 1/8 step 2700/4782 loss_mean=0.2665
+[Train] epoch 1/8 step 2800/4782 loss_mean=0.2286
+[Train] epoch 1/8 step 2900/4782 loss_mean=0.2189
