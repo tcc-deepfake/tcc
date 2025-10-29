@@ -144,7 +144,7 @@ def main():
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5) 
 
     # ---------- treino + validação ----------
-    num_epochs = 30
+    num_epochs = 20
     scaler = GradScaler(device='cuda' if device.type == 'cuda' else 'cpu')
     best_acc = -1.0
     bad = 0
