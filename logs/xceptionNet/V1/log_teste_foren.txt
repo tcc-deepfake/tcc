@@ -5,23 +5,23 @@ Número de imagens (DF): 9564
 DF classes   : {'fake': 0, 'real': 1}
 /home/sato/virtualpy/lib/python3.13/site-packages/timm/models/_factory.py:138: UserWarning: Mapping deprecated model name xception to current legacy_xception.
   model = create_fn(
-Acurácia no Teste (Foren): 83.29%
+Acurácia no Teste (Foren): 99.00%
               precision    recall  f1-score   support
 
-        fake       0.88      0.77      0.82      2390
-        real       0.79      0.90      0.84      2392
+        fake       0.99      0.99      0.99      2390
+        real       0.99      0.99      0.99      2392
 
-    accuracy                           0.83      4782
-   macro avg       0.84      0.83      0.83      4782
-weighted avg       0.84      0.83      0.83      4782
+    accuracy                           0.99      4782
+   macro avg       0.99      0.99      0.99      4782
+weighted avg       0.99      0.99      0.99      4782
 
-Acurácia no Teste (DeepfakeFaces): 25.79%
+Acurácia no Teste (DeepfakeFaces): 17.42%
               precision    recall  f1-score   support
 
-        fake       0.85      0.13      0.22      7934
-        real       0.17      0.89      0.29      1630
+        fake       0.89      0.01      0.01      7934
+        real       0.17      1.00      0.29      1630
 
-    accuracy                           0.26      9564
-   macro avg       0.51      0.51      0.26      9564
-weighted avg       0.73      0.26      0.23      9564
+    accuracy                           0.17      9564
+   macro avg       0.53      0.50      0.15      9564
+weighted avg       0.77      0.17      0.06      9564
 

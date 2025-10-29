@@ -42,3 +42,27 @@ def aplica_quantizacao(model_pruned, verbose=True):
     model_cpu.eval()
     
     return quantize_dynamic(model_cpu, {nn.Linear}, dtype=torch.qint8)
+
+# ---------- checa esparsidade ----------
+def check_sparsity(model, verbose=True):
+    total_zeros = 0
+    total_elements = 0
+    
+    for name, param in model.named_parameters():
+        if 'weight' in name:
+            total_zeros += torch.sum(param == 0).item()
+            total_elements += param.nelement()
+    
+    if total_elements > 0:
+        sparsity = (total_zeros / total_elements) * 100
+        if verbose:
+            print(f"Total de Zeros nos Pesos: {total_zeros}")
+            print(f"Total de Elementos nos Pesos: {total_elements}")
+            print(f"Esparsidade Global: {sparsity:.2f}%")
+        print("="*40 + "\n")
+        return sparsity
+    else:
+        if verbose:
+            print("Nenhum peso encontrado para verificar.")
+        print("="*40 + "\n")
+        return 0.0

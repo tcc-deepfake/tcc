@@ -435,3 +435,17 @@ Val Loss: 0.2289 | Val   Acc: 0.9059
 [Train] epoch 8/8 step 4100/4782 loss_mean=0.1392
 [Train] epoch 8/8 step 4200/4782 loss_mean=0.1552
 [Train] epoch 8/8 step 4300/4782 loss_mean=0.1476
+[Train] epoch 8/8 step 4400/4782 loss_mean=0.1189
+[Train] epoch 8/8 step 4500/4782 loss_mean=0.1349
+[Train] epoch 8/8 step 4600/4782 loss_mean=0.1205
+[Train] epoch 8/8 step 4700/4782 loss_mean=0.1098
+[Val]   epoch 8/8 step 100/598 loss_mean=0.1866
+[Val]   epoch 8/8 step 200/598 loss_mean=0.1870
+[Val]   epoch 8/8 step 300/598 loss_mean=0.1422
+[Val]   epoch 8/8 step 400/598 loss_mean=0.1969
+[Val]   epoch 8/8 step 500/598 loss_mean=0.1871
+Train Loss: 0.1310 | Train Acc: 0.9487
+Val Loss: 0.2352 | Val   Acc: 0.9056
+Melhor acc: 0.9059
+
+Tempo total de treino: 348m 6s

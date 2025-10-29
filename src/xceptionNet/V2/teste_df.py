@@ -6,6 +6,7 @@ from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms
 from sklearn.metrics import classification_report
+from utils.model_compress import check_sparsity
 
 # ---------- log ----------
 log_path = "logs/xceptionNet/V2/log_teste_df.txt"
@@ -81,6 +82,7 @@ model.load_state_dict(torch.load(best_path, map_location=device))
 model = model.to(device)
 model.eval()
 
+check_sparsity(model, verbose=True)
 # ---------- teste DF ----------
 df_correct = 0
 df_total = 0
