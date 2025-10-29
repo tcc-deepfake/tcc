@@ -6,6 +6,8 @@ from torch import nn
 from torchvision import datasets, transforms
 import timm
 import time
+from torch.amp.autocast_mode import autocast
+from torch.amp.grad_scaler import GradScaler
 
 # ---------- log ----------
 log_path = "logs/xceptionNet/V1/log_treino_foren.txt"
@@ -38,6 +40,7 @@ val_path_local   = 'data/foren/validacao'
 train_transform = transforms.Compose([
     transforms.RandomResizedCrop(299, scale=(0.9,1.0)),
     transforms.RandomHorizontalFlip(p=0.5),
+    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1), 
     transforms.RandomApply([transforms.GaussianBlur(3)], p=0.3),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
@@ -60,9 +63,11 @@ print(f"\nClasses detectadas no treino: {train_dataset.classes}")
 print(f"Mapeamento de classe para índice: {train_dataset.class_to_idx}")
 
 # ---------- dataloaders ----------
-batch_size = 32
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
+batch_size = 64 
+num_workers = 4 
+pin_memory = True 
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
+val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 
 # ---------- modelo ----------
 model = timm.create_model('xception', pretrained=True)
@@ -98,9 +103,10 @@ model = model.to(device)
 
 # ---------- loss, optimizer, scheduler ----------
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2, momentum=0.9, weight_decay=1e-4)
-scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5) 
+optimizer = torch.optim.AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-3, weight_decay=1e-3)
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10) 
 
+scaler = GradScaler(device=device.type if device.type == 'cuda' else 'cpu', enabled=(device.type == 'cuda'))
 
 # ---------- treino + validacao ----------
 best_val_acc = 0.0
@@ -110,21 +116,13 @@ save_path = "models/xceptionNet/V1/model_foren.pt"
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
 # ---------- épocas ----------
-num_epochs = 20
+num_epochs = 10
 
 start_time = time.time()
 
 # ---------- treino ----------
 for epoch in range(num_epochs):
-    
-    # libera mais camadas após 5 épocas (PADRÃO DF)
-    if epoch == 5:  
-        for name, param in model.named_parameters():
-            if any(name.startswith(pref) for pref in ['block9','block10','block11','block12','conv3','conv4','bn3','bn4','fc']):
-                param.requires_grad = True
-        optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-3, momentum=0.9, weight_decay=1e-4)
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=15) 
-        print("\nLiberando camadas")
+
     print(f"\nEPOCH {epoch+1}/{num_epochs}")
     print("-" * 30)
 
@@ -136,11 +134,14 @@ for epoch in range(num_epochs):
         images = images.to(device, non_blocking=True)
         labels = labels.to(device, non_blocking=True)
 
-        optimizer.zero_grad()
-        outputs = model(images)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
+        optimizer.zero_grad(set_to_none=True) 
+        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+
+        scaler.scale(loss).backward()
+        scaler.step(optimizer)
+        scaler.update()
 
         train_loss += loss.item() * images.size(0)
         running += loss.item()
