@@ -74,7 +74,7 @@ def main():
     print(f"Mapeamento de classe para índice: {train_dataset.class_to_idx}")
 
     # ---------- dataloaders ----------
-    batch_size = 256  # Aumentado para usar mais GPU
+    batch_size = 64  # Aumentado para usar mais GPU
     num_workers = 4   # Carrega dados em paralelo
     pin_memory = True # Acelera transferência CPU -> GPU
 
@@ -107,8 +107,10 @@ def main():
     for param in model.classifier.parameters():
         param.requires_grad = True
 
-    model.classifier[6] = nn.Linear(4096, 2)
-
+    model.classifier[6] = nn.Sequential(
+        nn.Dropout(p=0.5),
+        nn.Linear(4096, 2)
+    )
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type == "cuda":
         print(f"\nGPU: {torch.cuda.get_device_name(0)}")
