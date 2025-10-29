@@ -74,7 +74,7 @@ def main():
     print(f"Mapeamento de classe para índice: {train_dataset.class_to_idx}")
 
     # ---------- dataloaders ----------
-    batch_size = 64  # Aumentado para usar mais GPU
+    batch_size = 256
     num_workers = 4   # Carrega dados em paralelo
     pin_memory = True # Acelera transferência CPU -> GPU
 
