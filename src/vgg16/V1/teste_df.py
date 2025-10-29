@@ -31,7 +31,7 @@ torch.backends.cudnn.benchmark = False
 
 # ---------- bases ----------
 df_path = 'data\\df\\teste'
-foren_path = 'data\\foren\\teste'
+foren_path = 'data_old\\foren\\teste\\person'
 best_path = 'models\\Vgg16\\V1\\model_df.pt'
 
 # ---------- transforms ----------
@@ -59,7 +59,7 @@ foren_loader = DataLoader(foren_dataset, batch_size=batch_size, shuffle=False)
 # ---------- modelo ----------
 # Carrega VGG16 com a mesma arquitetura do treino
 model = models.vgg16(weights=None)  # Não carrega pesos pré-treinados
-model.classifier[6] = nn.Linear(4096, 2)  # 2 classes: FAKE e REAL
+model.classifier[6] = nn.Linear(4096, 2)   
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if device.type == "cuda":
