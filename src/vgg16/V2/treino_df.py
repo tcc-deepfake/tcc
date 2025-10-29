@@ -57,10 +57,9 @@ def main():
     ])
 
     train_transform = transforms.Compose([
-        transforms.Resize((224, 224)),
+        transforms.RandomResizedCrop(224, scale=(0.9,1.0)),
         transforms.RandomHorizontalFlip(p=0.5),
-        transforms.ColorJitter(brightness=0.2, contrast=0.2),
-        transforms.RandomRotation(10),
+        transforms.RandomApply([transforms.GaussianBlur(3)], p=0.3),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
@@ -101,10 +100,13 @@ def main():
     model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
 
     # Congela feature extractor
-    for param in model.features.parameters():
+    for param in model.parameters():
         param.requires_grad = False
+    
+    # Descongela o CLASSIFICADOR inteiro
+    for param in model.classifier.parameters():
+        param.requires_grad = True
 
-    # Modifica classificador para 2 classes
     model.classifier[6] = nn.Linear(4096, 2)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -136,11 +138,11 @@ def main():
     print(f"Class weights: {w}\n")
 
     criterion = nn.CrossEntropyLoss(weight=class_weights)
-    optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-4)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10)
+    optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2, momentum=0.9, weight_decay=1e-4)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5) 
 
     # ---------- treino + validação ----------
-    num_epochs = 100
+    num_epochs = 20
     scaler = GradScaler(device='cuda' if device.type == 'cuda' else 'cpu')
     best_acc = -1.0
     bad = 0
@@ -153,8 +155,17 @@ def main():
     print(f"Iniciando treinamento com batch_size={batch_size}, num_workers={num_workers}")
     print(f"{'='*60}\n")
 
-    for epoch in range(1, num_epochs + 1):
+    for epoch in range(num_epochs):
+
         # ---- train ----
+        if epoch == 5:
+            for name, param in model.features.named_parameters():
+                if name.startswith('24') or name.startswith('26') or name.startswith('28'):
+                    param.requires_grad = True
+            optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), 
+                                        lr=1e-3, momentum=0.9, weight_decay=1e-4)
+            scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=15)
+
         model.train()
         running = 0.0
         epoch_start = time.time()
@@ -180,7 +191,7 @@ def main():
                 running = 0.0
 
         epoch_time = time.time() - epoch_start
-        print(f"TEMPO DO EPOCH {epoch}: {epoch_time:.2f}s")
+        print(f"TEMPO DO EPOCH {epoch+1}: {epoch_time:.2f}s")
 
         # ---- validation ----
         model.eval()
@@ -193,7 +204,7 @@ def main():
                 total += labels.size(0)
 
         val_acc = correct / total if total else 0.0
-        print(f"[Val] Epoch {epoch} | Acc={val_acc:.4f}")
+        print(f"[Val] Epoch {epoch+1} | Acc={val_acc:.4f}")
 
         scheduler.step()
 
