@@ -28,220 +28,202 @@ Distribuição de classes: {0: 63473, 1: 13034}
 Class weights: [0.34072697 1.6592729 ]
 
 ============================================================
-Iniciando treinamento com batch_size=256, num_workers=4
+Iniciando treinamento com batch_size=64, num_workers=4
 ============================================================
 
-Epoch 0/30 | Step 50/299 | Loss 0.7061 | GPU Alloc: 1.55GB | Reserved: 8.21GB
-Epoch 0/30 | Step 100/299 | Loss 0.6598 | GPU Alloc: 1.55GB | Reserved: 8.21GB
-Epoch 0/30 | Step 150/299 | Loss 0.6406 | GPU Alloc: 1.55GB | Reserved: 8.21GB
-Epoch 0/30 | Step 200/299 | Loss 0.6304 | GPU Alloc: 1.55GB | Reserved: 8.21GB
-Epoch 0/30 | Step 250/299 | Loss 0.6216 | GPU Alloc: 1.55GB | Reserved: 8.21GB
-TEMPO DO EPOCH 1: 183.90s
-[Val] Epoch 1 | Acc=0.6433
-O NOVO MELHOR MODELO SALVO (acc=0.6433)
+Epoch 0/20 | Step 50/1196 | Loss 1.0056 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 100/1196 | Loss 0.8247 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 150/1196 | Loss 0.7727 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 200/1196 | Loss 0.7358 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 250/1196 | Loss 0.7285 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 300/1196 | Loss 0.7196 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 350/1196 | Loss 0.7522 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 400/1196 | Loss 0.7191 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 450/1196 | Loss 0.7067 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 500/1196 | Loss 0.7127 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 550/1196 | Loss 0.7111 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 600/1196 | Loss 0.7325 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 650/1196 | Loss 0.7179 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 700/1196 | Loss 0.7299 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 750/1196 | Loss 0.7117 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 800/1196 | Loss 0.7316 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 850/1196 | Loss 0.7052 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 900/1196 | Loss 0.7070 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 950/1196 | Loss 0.7251 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 1000/1196 | Loss 0.7006 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 1050/1196 | Loss 0.7301 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 1100/1196 | Loss 0.7006 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+Epoch 0/20 | Step 1150/1196 | Loss 0.7099 | GPU Alloc: 1.44GB | Reserved: 3.59GB
+TEMPO DO EPOCH 1: 202.25s
+[Val] Epoch 1 | Acc=0.7585
+O NOVO MELHOR MODELO SALVO (acc=0.7585)
 ------------------------------------------------------------
-Epoch 1/30 | Step 50/299 | Loss 0.6037 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 1/30 | Step 100/299 | Loss 0.6041 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 1/30 | Step 150/299 | Loss 0.5946 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 1/30 | Step 200/299 | Loss 0.5816 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 1/30 | Step 250/299 | Loss 0.5850 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-TEMPO DO EPOCH 2: 159.18s
-[Val] Epoch 2 | Acc=0.7629
-O NOVO MELHOR MODELO SALVO (acc=0.7629)
+Epoch 1/20 | Step 50/1196 | Loss 0.7203 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 100/1196 | Loss 0.7063 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 150/1196 | Loss 0.6866 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 200/1196 | Loss 0.6924 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 250/1196 | Loss 0.6822 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 300/1196 | Loss 0.6945 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 350/1196 | Loss 0.6904 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 400/1196 | Loss 0.6849 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 450/1196 | Loss 0.6736 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 500/1196 | Loss 0.7003 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 550/1196 | Loss 0.6869 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 600/1196 | Loss 0.6973 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 650/1196 | Loss 0.6800 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 700/1196 | Loss 0.6787 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 750/1196 | Loss 0.6787 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 800/1196 | Loss 0.6840 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 850/1196 | Loss 0.6652 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 900/1196 | Loss 0.6733 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 950/1196 | Loss 0.6789 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 1000/1196 | Loss 0.6700 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 1050/1196 | Loss 0.6835 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 1100/1196 | Loss 0.6794 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 1/20 | Step 1150/1196 | Loss 0.6824 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+TEMPO DO EPOCH 2: 189.04s
+[Val] Epoch 2 | Acc=0.8288
+O NOVO MELHOR MODELO SALVO (acc=0.8288)
 ------------------------------------------------------------
-Epoch 2/30 | Step 50/299 | Loss 0.5580 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 2/30 | Step 100/299 | Loss 0.5534 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 2/30 | Step 150/299 | Loss 0.5592 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 2/30 | Step 200/299 | Loss 0.5534 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 2/30 | Step 250/299 | Loss 0.5430 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-TEMPO DO EPOCH 3: 159.25s
-[Val] Epoch 3 | Acc=0.7697
-O NOVO MELHOR MODELO SALVO (acc=0.7697)
-------------------------------------------------------------
-Epoch 3/30 | Step 50/299 | Loss 0.5287 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 3/30 | Step 100/299 | Loss 0.5257 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 3/30 | Step 150/299 | Loss 0.5230 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 3/30 | Step 200/299 | Loss 0.5092 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 3/30 | Step 250/299 | Loss 0.5173 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-TEMPO DO EPOCH 4: 159.34s
-[Val] Epoch 4 | Acc=0.7524
+Epoch 2/20 | Step 50/1196 | Loss 0.6621 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 100/1196 | Loss 0.6380 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 150/1196 | Loss 0.6612 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 200/1196 | Loss 0.6508 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 250/1196 | Loss 0.6408 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 300/1196 | Loss 0.6440 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 350/1196 | Loss 0.6312 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 400/1196 | Loss 0.6389 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 450/1196 | Loss 0.6552 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 500/1196 | Loss 0.6479 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 550/1196 | Loss 0.6448 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 600/1196 | Loss 0.6479 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 650/1196 | Loss 0.6435 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 700/1196 | Loss 0.6382 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 750/1196 | Loss 0.6503 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 800/1196 | Loss 0.6616 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 850/1196 | Loss 0.6321 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 900/1196 | Loss 0.6505 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 950/1196 | Loss 0.6324 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 1000/1196 | Loss 0.6432 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 1050/1196 | Loss 0.6519 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 1100/1196 | Loss 0.6351 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 2/20 | Step 1150/1196 | Loss 0.6568 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+TEMPO DO EPOCH 3: 185.34s
+[Val] Epoch 3 | Acc=0.7342
 X SEM MELHORA (1/5)
 ------------------------------------------------------------
-Epoch 4/30 | Step 50/299 | Loss 0.4926 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 4/30 | Step 100/299 | Loss 0.4974 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 4/30 | Step 150/299 | Loss 0.4864 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 4/30 | Step 200/299 | Loss 0.4902 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-Epoch 4/30 | Step 250/299 | Loss 0.4962 | GPU Alloc: 1.55GB | Reserved: 8.06GB
-TEMPO DO EPOCH 5: 158.76s
-[Val] Epoch 5 | Acc=0.7734
-O NOVO MELHOR MODELO SALVO (acc=0.7734)
-------------------------------------------------------------
-Epoch 5/30 | Step 50/299 | Loss 0.4914 | GPU Alloc: 1.60GB | Reserved: 11.51GB
-Epoch 5/30 | Step 100/299 | Loss 0.4796 | GPU Alloc: 1.60GB | Reserved: 11.51GB
-Epoch 5/30 | Step 150/299 | Loss 0.4811 | GPU Alloc: 1.60GB | Reserved: 11.51GB
-Epoch 5/30 | Step 200/299 | Loss 0.4789 | GPU Alloc: 1.60GB | Reserved: 11.51GB
-Epoch 5/30 | Step 250/299 | Loss 0.4621 | GPU Alloc: 1.60GB | Reserved: 11.51GB
-TEMPO DO EPOCH 6: 203.35s
-[Val] Epoch 6 | Acc=0.7381
-X SEM MELHORA (1/5)
-------------------------------------------------------------
-Epoch 6/30 | Step 50/299 | Loss 0.4500 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 6/30 | Step 100/299 | Loss 0.4500 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 6/30 | Step 150/299 | Loss 0.4353 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 6/30 | Step 200/299 | Loss 0.4264 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 6/30 | Step 250/299 | Loss 0.4465 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 7: 177.20s
-[Val] Epoch 7 | Acc=0.7959
-O NOVO MELHOR MODELO SALVO (acc=0.7959)
-------------------------------------------------------------
-Epoch 7/30 | Step 50/299 | Loss 0.4186 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 7/30 | Step 100/299 | Loss 0.4167 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 7/30 | Step 150/299 | Loss 0.4268 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 7/30 | Step 200/299 | Loss 0.4075 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 7/30 | Step 250/299 | Loss 0.4123 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 8: 177.10s
-[Val] Epoch 8 | Acc=0.8140
-O NOVO MELHOR MODELO SALVO (acc=0.8140)
-------------------------------------------------------------
-Epoch 8/30 | Step 50/299 | Loss 0.3997 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 8/30 | Step 100/299 | Loss 0.4066 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 8/30 | Step 150/299 | Loss 0.3910 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 8/30 | Step 200/299 | Loss 0.4131 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 8/30 | Step 250/299 | Loss 0.3866 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 9: 176.88s
-[Val] Epoch 9 | Acc=0.7791
-X SEM MELHORA (1/5)
-------------------------------------------------------------
-Epoch 9/30 | Step 50/299 | Loss 0.3845 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 9/30 | Step 100/299 | Loss 0.3720 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 9/30 | Step 150/299 | Loss 0.3789 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 9/30 | Step 200/299 | Loss 0.3786 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 9/30 | Step 250/299 | Loss 0.3728 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 10: 176.87s
-[Val] Epoch 10 | Acc=0.8170
-O NOVO MELHOR MODELO SALVO (acc=0.8170)
-------------------------------------------------------------
-Epoch 10/30 | Step 50/299 | Loss 0.3648 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 10/30 | Step 100/299 | Loss 0.3481 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 10/30 | Step 150/299 | Loss 0.3527 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 10/30 | Step 200/299 | Loss 0.3543 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 10/30 | Step 250/299 | Loss 0.3574 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 11: 176.92s
-[Val] Epoch 11 | Acc=0.7683
-X SEM MELHORA (1/5)
-------------------------------------------------------------
-Epoch 11/30 | Step 50/299 | Loss 0.3449 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 11/30 | Step 100/299 | Loss 0.3357 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 11/30 | Step 150/299 | Loss 0.3536 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 11/30 | Step 200/299 | Loss 0.3317 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 11/30 | Step 250/299 | Loss 0.3400 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 12: 176.89s
-[Val] Epoch 12 | Acc=0.8407
-O NOVO MELHOR MODELO SALVO (acc=0.8407)
-------------------------------------------------------------
-Epoch 12/30 | Step 50/299 | Loss 0.3286 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 12/30 | Step 100/299 | Loss 0.3233 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 12/30 | Step 150/299 | Loss 0.3310 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 12/30 | Step 200/299 | Loss 0.3220 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 12/30 | Step 250/299 | Loss 0.3329 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 13: 176.63s
-[Val] Epoch 13 | Acc=0.8052
-X SEM MELHORA (1/5)
-------------------------------------------------------------
-Epoch 13/30 | Step 50/299 | Loss 0.3110 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 13/30 | Step 100/299 | Loss 0.3087 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 13/30 | Step 150/299 | Loss 0.3150 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 13/30 | Step 200/299 | Loss 0.3280 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 13/30 | Step 250/299 | Loss 0.3091 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 14: 176.89s
-[Val] Epoch 14 | Acc=0.8494
-O NOVO MELHOR MODELO SALVO (acc=0.8494)
-------------------------------------------------------------
-Epoch 14/30 | Step 50/299 | Loss 0.3092 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 14/30 | Step 100/299 | Loss 0.3076 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 14/30 | Step 150/299 | Loss 0.3131 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 14/30 | Step 200/299 | Loss 0.2987 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 14/30 | Step 250/299 | Loss 0.3106 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 15: 176.70s
-[Val] Epoch 15 | Acc=0.8472
-X SEM MELHORA (1/5)
-------------------------------------------------------------
-Epoch 15/30 | Step 50/299 | Loss 0.2992 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 15/30 | Step 100/299 | Loss 0.2925 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 15/30 | Step 150/299 | Loss 0.2989 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 15/30 | Step 200/299 | Loss 0.2973 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 15/30 | Step 250/299 | Loss 0.2987 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 16: 176.80s
-[Val] Epoch 16 | Acc=0.8349
+Epoch 3/20 | Step 50/1196 | Loss 0.6362 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 100/1196 | Loss 0.6218 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 150/1196 | Loss 0.6084 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 200/1196 | Loss 0.6133 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 250/1196 | Loss 0.6144 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 300/1196 | Loss 0.6104 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 350/1196 | Loss 0.6035 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 400/1196 | Loss 0.5929 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 450/1196 | Loss 0.6061 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 500/1196 | Loss 0.5873 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 550/1196 | Loss 0.6080 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 600/1196 | Loss 0.5976 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 650/1196 | Loss 0.6012 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 700/1196 | Loss 0.5845 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 750/1196 | Loss 0.6024 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 800/1196 | Loss 0.5894 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 850/1196 | Loss 0.5889 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 900/1196 | Loss 0.5762 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 950/1196 | Loss 0.5977 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 1000/1196 | Loss 0.5861 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 1050/1196 | Loss 0.6047 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 1100/1196 | Loss 0.5943 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 3/20 | Step 1150/1196 | Loss 0.5988 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+TEMPO DO EPOCH 4: 185.15s
+[Val] Epoch 4 | Acc=0.7042
 X SEM MELHORA (2/5)
 ------------------------------------------------------------
-Epoch 16/30 | Step 50/299 | Loss 0.2864 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 16/30 | Step 100/299 | Loss 0.2822 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 16/30 | Step 150/299 | Loss 0.2898 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 16/30 | Step 200/299 | Loss 0.2938 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 16/30 | Step 250/299 | Loss 0.2828 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 17: 177.49s
-[Val] Epoch 17 | Acc=0.8656
-O NOVO MELHOR MODELO SALVO (acc=0.8656)
-------------------------------------------------------------
-Epoch 17/30 | Step 50/299 | Loss 0.2907 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 17/30 | Step 100/299 | Loss 0.2856 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 17/30 | Step 150/299 | Loss 0.2893 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 17/30 | Step 200/299 | Loss 0.2797 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 17/30 | Step 250/299 | Loss 0.2830 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 18: 176.54s
-[Val] Epoch 18 | Acc=0.8660
-O NOVO MELHOR MODELO SALVO (acc=0.8660)
-------------------------------------------------------------
-Epoch 18/30 | Step 50/299 | Loss 0.2735 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 18/30 | Step 100/299 | Loss 0.2882 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 18/30 | Step 150/299 | Loss 0.2780 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 18/30 | Step 200/299 | Loss 0.2779 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 18/30 | Step 250/299 | Loss 0.2862 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 19: 176.78s
-[Val] Epoch 19 | Acc=0.8507
-X SEM MELHORA (1/5)
-------------------------------------------------------------
-Epoch 19/30 | Step 50/299 | Loss 0.2703 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 19/30 | Step 100/299 | Loss 0.2707 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 19/30 | Step 150/299 | Loss 0.2892 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 19/30 | Step 200/299 | Loss 0.2863 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 19/30 | Step 250/299 | Loss 0.2744 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 20: 176.76s
-[Val] Epoch 20 | Acc=0.8521
-X SEM MELHORA (2/5)
-------------------------------------------------------------
-Epoch 20/30 | Step 50/299 | Loss 0.2724 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 20/30 | Step 100/299 | Loss 0.2771 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 20/30 | Step 150/299 | Loss 0.2832 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 20/30 | Step 200/299 | Loss 0.2766 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 20/30 | Step 250/299 | Loss 0.2851 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 21: 176.79s
-[Val] Epoch 21 | Acc=0.8521
+Epoch 4/20 | Step 50/1196 | Loss 0.5726 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 100/1196 | Loss 0.5645 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 150/1196 | Loss 0.5797 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 200/1196 | Loss 0.5641 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 250/1196 | Loss 0.5614 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 300/1196 | Loss 0.5638 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 350/1196 | Loss 0.5760 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 400/1196 | Loss 0.5580 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 450/1196 | Loss 0.5528 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 500/1196 | Loss 0.5726 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 550/1196 | Loss 0.5559 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 600/1196 | Loss 0.5706 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 650/1196 | Loss 0.5687 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 700/1196 | Loss 0.5719 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 750/1196 | Loss 0.5466 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 800/1196 | Loss 0.5608 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 850/1196 | Loss 0.5686 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 900/1196 | Loss 0.5656 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 950/1196 | Loss 0.5568 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 1000/1196 | Loss 0.5408 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 1050/1196 | Loss 0.5702 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 1100/1196 | Loss 0.5631 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+Epoch 4/20 | Step 1150/1196 | Loss 0.5653 | GPU Alloc: 1.44GB | Reserved: 3.36GB
+TEMPO DO EPOCH 5: 185.17s
+[Val] Epoch 5 | Acc=0.7030
 X SEM MELHORA (3/5)
 ------------------------------------------------------------
-Epoch 21/30 | Step 50/299 | Loss 0.2724 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 21/30 | Step 100/299 | Loss 0.2786 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 21/30 | Step 150/299 | Loss 0.2816 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 21/30 | Step 200/299 | Loss 0.2773 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 21/30 | Step 250/299 | Loss 0.2715 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 22: 176.98s
-[Val] Epoch 22 | Acc=0.8530
+Epoch 5/20 | Step 50/1196 | Loss 0.5626 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 100/1196 | Loss 0.5604 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 150/1196 | Loss 0.5635 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 200/1196 | Loss 0.5648 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 250/1196 | Loss 0.5565 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 300/1196 | Loss 0.5368 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 350/1196 | Loss 0.5328 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 400/1196 | Loss 0.5365 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 450/1196 | Loss 0.5499 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 500/1196 | Loss 0.5340 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 550/1196 | Loss 0.5440 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 600/1196 | Loss 0.5125 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 650/1196 | Loss 0.5464 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 700/1196 | Loss 0.5393 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 750/1196 | Loss 0.5393 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 800/1196 | Loss 0.5210 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 850/1196 | Loss 0.5165 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 900/1196 | Loss 0.4887 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 950/1196 | Loss 0.5224 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 1000/1196 | Loss 0.5146 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 1050/1196 | Loss 0.5141 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 1100/1196 | Loss 0.5268 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 5/20 | Step 1150/1196 | Loss 0.5445 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+TEMPO DO EPOCH 6: 205.65s
+[Val] Epoch 6 | Acc=0.7036
 X SEM MELHORA (4/5)
 ------------------------------------------------------------
-Epoch 22/30 | Step 50/299 | Loss 0.2704 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 22/30 | Step 100/299 | Loss 0.2815 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 22/30 | Step 150/299 | Loss 0.2816 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 22/30 | Step 200/299 | Loss 0.2771 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-Epoch 22/30 | Step 250/299 | Loss 0.2927 | GPU Alloc: 1.60GB | Reserved: 9.97GB
-TEMPO DO EPOCH 23: 176.73s
-[Val] Epoch 23 | Acc=0.8558
+Epoch 6/20 | Step 50/1196 | Loss 0.4887 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 100/1196 | Loss 0.4975 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 150/1196 | Loss 0.4934 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 200/1196 | Loss 0.4841 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 250/1196 | Loss 0.4864 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 300/1196 | Loss 0.4829 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 350/1196 | Loss 0.4807 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 400/1196 | Loss 0.4701 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 450/1196 | Loss 0.4903 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 500/1196 | Loss 0.4773 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 550/1196 | Loss 0.4613 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 600/1196 | Loss 0.4540 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 650/1196 | Loss 0.4541 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 700/1196 | Loss 0.4576 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 750/1196 | Loss 0.4318 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 800/1196 | Loss 0.4598 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 850/1196 | Loss 0.4559 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 900/1196 | Loss 0.4532 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 950/1196 | Loss 0.4554 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 1000/1196 | Loss 0.4356 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 1050/1196 | Loss 0.4622 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 1100/1196 | Loss 0.4640 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+Epoch 6/20 | Step 1150/1196 | Loss 0.4569 | GPU Alloc: 1.50GB | Reserved: 3.93GB
+TEMPO DO EPOCH 7: 205.27s
+[Val] Epoch 7 | Acc=0.8056
 X SEM MELHORA (5/5)
 EARLY STOPPING ATIVADO.
 
 ============================================================
-Melhor acurácia: 0.8660
-Tempo total de treino: 74m 52s
+Melhor acurácia: 0.8288
+Tempo total de treino: 25m 4s
 ============================================================
 
 Limpando recursos...
