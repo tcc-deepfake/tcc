@@ -1,4 +1,5 @@
 import torch
+import time
 import os
 import sys
 from torch.utils.data import DataLoader
@@ -77,6 +78,8 @@ df_correct = df_total = 0
 df_all_labels = []
 df_all_predicted = []
 
+start_time_df = time.time()
+
 with torch.no_grad():
     for images, labels in df_loader:
         images, labels = images.to(device), labels.to(device)
@@ -86,6 +89,12 @@ with torch.no_grad():
         df_correct += (predicted == labels).sum().item()
         df_all_labels.extend(labels.cpu().numpy())
         df_all_predicted.extend(predicted.cpu().numpy())
+
+end_time_df = time.time()
+elapsed_time_df = end_time_df - start_time_df
+minutes_df = int(elapsed_time_df // 60)
+seconds_df = int(elapsed_time_df % 60)
+print(f"Tempo total de inferência: {minutes_df}m {seconds_df}s")
 
 print(f"Acurácia no Teste (DeepfakeFaces): {100 * df_correct / df_total:.2f}%")
 df_target_names = [k for k, v in sorted(df_dataset.class_to_idx.items(), key=lambda item: item[1])]
@@ -98,6 +107,8 @@ f_correct = f_total = 0
 f_all_labels = []
 f_all_predicted = []
 
+start_time_foren = time.time()
+
 with torch.no_grad():
     for images, labels in foren_loader:
         images, labels = images.to(device), labels.to(device)
@@ -107,6 +118,12 @@ with torch.no_grad():
         f_correct += (predicted == labels).sum().item()
         f_all_labels.extend(labels.cpu().numpy())
         f_all_predicted.extend(predicted.cpu().numpy())
+
+end_time_foren = time.time()
+elapsed_time_foren = end_time_foren - start_time_foren
+minutes_foren = int(elapsed_time_foren // 60)
+seconds_foren = int(elapsed_time_foren % 60)
+print(f"Tempo total de inferência: {minutes_foren}m {seconds_foren}s")
 
 print(f"Acurácia no Teste (Foren): {100 * f_correct / f_total:.2f}%")
 f_target_names = [k for k, v in sorted(foren_dataset.class_to_idx.items(), key=lambda item: item[1])]
