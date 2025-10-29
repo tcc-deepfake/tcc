@@ -6,25 +6,25 @@ DF classes   : {'fake': 0, 'real': 1}
 GPU: NVIDIA GeForce GTX 1050 Ti
 
 === TESTE NA BASE FOREN ===
-Acurácia no Teste (Foren): 98.33%
+Acurácia no Teste (Foren): 97.41%
               precision    recall  f1-score   support
 
-        fake       0.98      0.99      0.98      2390
-        real       0.99      0.98      0.98      2392
+        fake       0.98      0.97      0.97      2390
+        real       0.97      0.98      0.97      2392
 
-    accuracy                           0.98      4782
-   macro avg       0.98      0.98      0.98      4782
-weighted avg       0.98      0.98      0.98      4782
+    accuracy                           0.97      4782
+   macro avg       0.97      0.97      0.97      4782
+weighted avg       0.97      0.97      0.97      4782
 
 
 === TESTE NA BASE DEEPFAKE FACES ===
-Acurácia no Teste (DeepfakeFaces): 17.05%
+Acurácia no Teste (DeepfakeFaces): 17.03%
               precision    recall  f1-score   support
 
-        fake       0.67      0.00      0.00      7934
+        fake       0.00      0.00      0.00      7934
         real       0.17      1.00      0.29      1630
 
     accuracy                           0.17      9564
-   macro avg       0.42      0.50      0.15      9564
-weighted avg       0.58      0.17      0.05      9564
+   macro avg       0.09      0.50      0.15      9564
+weighted avg       0.03      0.17      0.05      9564
 
