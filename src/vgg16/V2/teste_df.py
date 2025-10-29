@@ -31,7 +31,7 @@ torch.backends.cudnn.benchmark = False
 
 # ---------- bases ----------
 df_path = 'data\\df\\teste'
-foren_path = 'data\\foren\\teste'
+foren_path = 'data_old\\foren\\teste\\person'
 best_path = 'models\\Vgg16\\V2\\model_df.pt'
 
 # ---------- transforms ----------

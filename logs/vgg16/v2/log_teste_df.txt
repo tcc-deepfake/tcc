@@ -1,30 +1,30 @@
-Gravando log em: logs\vgg16\v2\log_teste_df.txt
+Gravando log em: logs\Vgg16\V2\log_teste_df.txt
 Número de imagens (DF): 9564
 DF classes: {'fake': 0, 'real': 1}
-Número de imagens (Foren): 4782
+Número de imagens (Foren): 11403
 Foren classes: {'fake': 0, 'real': 1}
 GPU: NVIDIA GeForce RTX 3060
 
 === TESTE NA BASE DEEPFAKE FACES ===
-Acurácia no Teste (DeepfakeFaces): 82.95%
+Acurácia no Teste (DeepfakeFaces): 86.99%
               precision    recall  f1-score   support
 
-        fake       0.83      1.00      0.91      7934
-        real       0.00      0.00      0.00      1630
+        fake       0.95      0.90      0.92      7934
+        real       0.59      0.75      0.66      1630
 
-    accuracy                           0.83      9564
-   macro avg       0.41      0.50      0.45      9564
-weighted avg       0.69      0.83      0.75      9564
+    accuracy                           0.87      9564
+   macro avg       0.77      0.82      0.79      9564
+weighted avg       0.89      0.87      0.88      9564
 
 
 === TESTE NA BASE FOREN ===
-Acurácia no Teste (Foren): 50.00%
+Acurácia no Teste (Foren): 58.55%
               precision    recall  f1-score   support
 
-        fake       0.50      0.93      0.65      2390
-        real       0.50      0.07      0.13      2392
+        fake       0.62      0.44      0.52      5697
+        real       0.57      0.73      0.64      5706
 
-    accuracy                           0.50      4782
-   macro avg       0.50      0.50      0.39      4782
-weighted avg       0.50      0.50      0.39      4782
+    accuracy                           0.59     11403
+   macro avg       0.59      0.59      0.58     11403
+weighted avg       0.59      0.59      0.58     11403
 

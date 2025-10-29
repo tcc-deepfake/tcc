@@ -2,4 +2,7 @@
 data/
 data_old/
 
+# Models
+models/Vgg16/
+
 __pycache__/
