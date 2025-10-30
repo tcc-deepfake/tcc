@@ -103,8 +103,8 @@ model = model.to(device)
 
 # ---------- loss, optimizer, scheduler ----------
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-3, weight_decay=1e-3)
-scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10) 
+optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2, momentum=0.9, weight_decay=1e-4)
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5) 
 
 scaler = GradScaler(device=device.type if device.type == 'cuda' else 'cpu', enabled=(device.type == 'cuda'))
 
@@ -116,12 +116,24 @@ save_path = "models/xceptionNet/V1/model_foren.pt"
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
 # ---------- épocas ----------
-num_epochs = 10
+num_epochs = 15
 
 start_time = time.time()
 
 # ---------- treino ----------
 for epoch in range(num_epochs):
+
+    if epoch == 5:
+        for name, param in model.named_parameters():
+            if name.startswith('block11') or name.startswith('block12') or name.startswith('fc'):
+                 param.requires_grad = True
+        params_to_update = [
+            {'params': model.block11.parameters(), 'lr': 1e-5},  
+            {'params': model.block12.parameters(), 'lr': 1e-5}, 
+            {'params': model.fc.parameters(), 'lr': 1e-4}  
+        ]
+        optimizer = torch.optim.SGD(params_to_update, momentum=0.9, weight_decay=1e-4)
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=(10))
 
     print(f"\nEPOCH {epoch+1}/{num_epochs}")
     print("-" * 30)
