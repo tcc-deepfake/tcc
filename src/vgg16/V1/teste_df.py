@@ -59,8 +59,15 @@ foren_loader = DataLoader(foren_dataset, batch_size=batch_size, shuffle=False)
 
 # ---------- modelo ----------
 # Carrega VGG16 com a mesma arquitetura do treino
-model = models.vgg16(weights=None)  # Não carrega pesos pré-treinados
-model.classifier[6] = nn.Linear(4096, 2)   
+model = models.vgg16_bn(weights=None)  # Não carrega pesos pré-treinados
+in_features_classifier = model.classifier[0].in_features
+
+model.classifier = nn.Sequential(
+    nn.Linear(in_features_classifier, 512), 
+    nn.ReLU(inplace=True),
+    nn.Dropout(p=0.5),
+    nn.Linear(512, 2)
+)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if device.type == "cuda":

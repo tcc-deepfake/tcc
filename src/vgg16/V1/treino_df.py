@@ -97,17 +97,23 @@ def main():
     )
 
     # ---------- modelo ----------
-    model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+    model = models.vgg16_bn(weights=models.VGG16_BN_Weights.IMAGENET1K_V1)
+    in_features_classifier = model.classifier[0].in_features
 
     # Congela feature extractor
     for param in model.parameters():
         param.requires_grad = False
     
+    model.classifier = nn.Sequential(
+        nn.Linear(in_features_classifier, 512),
+        nn.ReLU(inplace=True),
+        nn.Dropout(p=0.5),
+        nn.Linear(512, 2)
+    )
+
     # Descongela o CLASSIFICADOR inteiro
     for param in model.classifier.parameters():
         param.requires_grad = True
-
-    model.classifier[6] = nn.Linear(4096, 2)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type == "cuda":
@@ -137,7 +143,7 @@ def main():
     print(f"Distribuição de classes: {dict(counts)}")
     print(f"Class weights: {w}\n")
 
-    criterion = nn.CrossEntropyLoss(weight=class_weights)
+    criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=0.1)
     optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2, momentum=0.9, weight_decay=1e-4)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5) 
 

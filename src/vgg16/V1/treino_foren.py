@@ -95,17 +95,24 @@ def main():
     )
 
     # ---------- modelo ----------
-    model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+    model = models.vgg16_bn(weights=models.VGG16_BN_Weights.IMAGENET1K_V1)
+    in_features_classifier = model.classifier[0].in_features
 
     # Congela feature extractor
     for param in model.parameters():
         param.requires_grad = False
     
+    model.classifier = nn.Sequential(
+        nn.Linear(in_features_classifier, 512),
+        nn.ReLU(inplace=True),
+        nn.Dropout(p=0.5),
+        nn.Linear(512, 2)
+    )
+
     # Descongela o CLASSIFICADOR inteiro
     for param in model.classifier.parameters():
         param.requires_grad = True
 
-    model.classifier[6] = nn.Linear(4096, 2)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type == "cuda":
@@ -150,7 +157,7 @@ def main():
         # ---- train ----
         if epoch == 5:
             for name, param in model.features.named_parameters():
-                if name.startswith('24') or name.startswith('26') or name.startswith('28'):
+                if any(name.startswith(p) for p in ['17', '19', '21', '24', '26', '28']):
                     param.requires_grad = True
             optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), 
                                         lr=1e-3, momentum=0.9, weight_decay=1e-4)
