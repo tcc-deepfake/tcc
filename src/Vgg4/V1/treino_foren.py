@@ -8,6 +8,8 @@ from torchvision import datasets, transforms
 from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
 
+from torchvision.transforms import InterpolationMode
+from utils.augmentation import RandomJPEGReencode, RandomCenterCropResize 
 # ---------- log ----------
 log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "logs", "Vgg4", "V1", "log_treino_foren.txt"))
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
@@ -110,15 +112,15 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
-# data augmentation no treino
 train_transform = transforms.Compose([
-    transforms.RandomResizedCrop(224, scale=(0.85, 1.0)), 
+    transforms.Resize((256, 256), interpolation=InterpolationMode.BILINEAR),
+    transforms.RandomApply([transforms.RandomRotation(degrees=5, interpolation=InterpolationMode.BILINEAR)], p=0.5),
+    RandomCenterCropResize(scale_min=0.85, scale_max=1.0, out_size=(224,224)),
     transforms.RandomHorizontalFlip(p=0.5),
-    transforms.RandomApply([
-        transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2, hue=0.1),
-        transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 2.0))
-    ], p=0.5), 
-    transforms.ToTensor(),
+    transforms.RandomApply([transforms.GaussianBlur(kernel_size=3, sigma=(0.1,1.5))], p=0.5),
+    transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2, hue=0.05),
+    transforms.RandomApply([RandomJPEGReencode(qmin=40, qmax=80, p=1.0)], p=0.5),
+    transforms.ToTensor(), 
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
@@ -132,9 +134,11 @@ print(f"\nClasses detectadas no treino: {train_dataset.classes}")
 print(f"Mapeamento de classe para índice: {train_dataset.class_to_idx}")
 
 # ---------- dataloaders ----------
-batch_size = 32
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
+batch_size = 64 
+num_workers = 4 
+pin_memory = True 
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
+val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 
 # ---------- modelo ----------
 # Inicializa VGG4.5M (treinamento do zero)
@@ -146,7 +150,8 @@ if device.type == "cuda":
 model = model.to(device)
 
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-4, weight_decay=1e-4)
+optimizer = torch.optim.SGD(model.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4)
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=20)
 
 # ---------- treino + validacao ----------
 num_epochs = 20
@@ -191,6 +196,8 @@ for epoch in range(1, num_epochs + 1):
 
     val_acc = correct / total if total else 0.0
     print(f"[Val] Epoch {epoch} | Acc={val_acc:.4f}")
+
+    scheduler.step()
 
     # ---- early stopping + best model ----
     if val_acc > best_acc:

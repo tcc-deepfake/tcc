@@ -1,30 +1,30 @@
-Gravando log em: c:\Users\lgng\Desktop\Projeto Transformador II\repo\tcc\logs\Vgg4\V1\log_teste_foren.txt
+Gravando log em: /home/sato/Documentos/tcc/logs/Vgg4/V1/log_teste_foren.txt
 Número de imagens (Foren): 4782
 Foren classes: {'fake': 0, 'real': 1}
 Número de imagens (DF): 9564
 DF classes   : {'fake': 0, 'real': 1}
-GPU: NVIDIA GeForce GTX 1050 Ti
+GPU: NVIDIA GeForce RTX 2060
 
 === TESTE NA BASE FOREN ===
-Acurácia no Teste (Foren): 97.41%
+Acurácia no Teste (Foren): 72.04%
               precision    recall  f1-score   support
 
-        fake       0.98      0.97      0.97      2390
-        real       0.97      0.98      0.97      2392
+        fake       0.67      0.87      0.76      2390
+        real       0.81      0.57      0.67      2392
 
-    accuracy                           0.97      4782
-   macro avg       0.97      0.97      0.97      4782
-weighted avg       0.97      0.97      0.97      4782
+    accuracy                           0.72      4782
+   macro avg       0.74      0.72      0.71      4782
+weighted avg       0.74      0.72      0.71      4782
 
 
 === TESTE NA BASE DEEPFAKE FACES ===
-Acurácia no Teste (DeepfakeFaces): 17.03%
+Acurácia no Teste (DeepfakeFaces): 55.78%
               precision    recall  f1-score   support
 
-        fake       0.00      0.00      0.00      7934
-        real       0.17      1.00      0.29      1630
+        fake       0.85      0.56      0.68      7934
+        real       0.20      0.53      0.29      1630
 
-    accuracy                           0.17      9564
-   macro avg       0.09      0.50      0.15      9564
-weighted avg       0.03      0.17      0.05      9564
+    accuracy                           0.56      9564
+   macro avg       0.53      0.55      0.49      9564
+weighted avg       0.74      0.56      0.61      9564
 

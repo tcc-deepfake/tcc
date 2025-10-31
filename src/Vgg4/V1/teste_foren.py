@@ -5,6 +5,7 @@ from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms
 from sklearn.metrics import classification_report
+from torch.amp.autocast_mode import autocast
 
 # ---------- log ----------
 log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "logs", "Vgg4", "V1", "log_teste_foren.txt"))
@@ -120,8 +121,10 @@ print("DF classes   :", df_dataset.class_to_idx)
 
 # ---------- dataloaders ----------
 batch_size = 32
-test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
-df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False)
+num_workers = 4 
+pin_memory = True 
+test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
+df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 
 # ---------- modelo ----------
 # Carrega VGG4.5M com a mesma arquitetura do treino
@@ -146,9 +149,13 @@ all_predicted = []
 
 with torch.no_grad():
     for images, labels in test_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
+        images = images.to(device, non_blocking=True)
+        labels = labels.to(device, non_blocking=True) 
+
+        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
+            outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
+
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
         all_labels.extend(labels.cpu().numpy())
@@ -168,9 +175,13 @@ df_all_predicted = []
 
 with torch.no_grad():
     for images, labels in df_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
+        images = images.to(device, non_blocking=True)
+        labels = labels.to(device, non_blocking=True) 
+
+        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
+            outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
+
         df_total += labels.size(0)
         df_correct += (predicted == labels).sum().item()
         df_all_labels.extend(labels.cpu().numpy())
