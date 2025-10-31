@@ -4,10 +4,12 @@ import torch
 from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms
+from torchvision.transforms import InterpolationMode
 import timm
 import time
 from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
+from utils.aug import RandomJPEGReencode, RandomCenterCropResize 
 
 # ---------- log ----------
 log_path = "logs/xceptionNet/V1/log_treino_foren.txt"
@@ -38,11 +40,14 @@ val_path_local   = 'data/foren/validacao'
 
 # data augumentation no treino
 train_transform = transforms.Compose([
-    transforms.RandomResizedCrop(299, scale=(0.9,1.0)),
+    transforms.Resize((320, 320), interpolation=InterpolationMode.BILINEAR),
+    transforms.RandomApply([transforms.RandomRotation(degrees=5, interpolation=InterpolationMode.BILINEAR)], p=0.5),
+    RandomCenterCropResize(scale_min=0.85, scale_max=1.0, out_size=(299,299)),
     transforms.RandomHorizontalFlip(p=0.5),
-    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1), 
-    transforms.RandomApply([transforms.GaussianBlur(3)], p=0.3),
-    transforms.ToTensor(),
+    transforms.RandomApply([transforms.GaussianBlur(kernel_size=3, sigma=(0.1,1.5))], p=0.5),
+    transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2, hue=0.05),
+    transforms.RandomApply([RandomJPEGReencode(qmin=40, qmax=80, p=1.0)], p=0.5),
+    transforms.ToTensor(), 
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
@@ -62,8 +67,8 @@ print(f"Número de imagens no dataset de validação: {len(val_dataset)}")
 print(f"\nClasses detectadas no treino: {train_dataset.classes}")
 print(f"Mapeamento de classe para índice: {train_dataset.class_to_idx}")
 
-# ---------- dataloaders ----------
 batch_size = 64 
+# ---------- dataloaders ----------
 num_workers = 4 
 pin_memory = True 
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
@@ -71,13 +76,6 @@ val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False, n
 
 # ---------- modelo ----------
 model = timm.create_model('xception', pretrained=True)
-
-# ---------- congela camada ----------
-for name, param in model.named_parameters():
-    if any(layer in name for layer in ['fc']):
-        param.requires_grad = True
-    else:
-        param.requires_grad = False
 
 # ---------- subsititui camada classificadora ----------
 if hasattr(model, 'fc'):
@@ -95,6 +93,14 @@ elif hasattr(model, 'head'):
 else:
     raise ValueError("Layer de classificação não encontrado.")
 
+# ---------- congela camada ----------
+for p in model.parameters():
+    p.requires_grad = False
+
+for name, param in model.named_parameters():
+    if any(tag in name for tag in ['fc', 'block10', 'block11', 'block12']):
+        param.requires_grad = True
+
 # ---------- verifica gpu ----------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if device.type == "cuda":
@@ -103,8 +109,8 @@ model = model.to(device)
 
 # ---------- loss, optimizer, scheduler ----------
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-2, momentum=0.9, weight_decay=1e-4)
-scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5) 
+optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=5e-4, momentum=0.9, weight_decay=1e-4)
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=15) 
 
 scaler = GradScaler(device=device.type if device.type == 'cuda' else 'cpu', enabled=(device.type == 'cuda'))
 
@@ -122,18 +128,6 @@ start_time = time.time()
 
 # ---------- treino ----------
 for epoch in range(num_epochs):
-
-    if epoch == 5:
-        for name, param in model.named_parameters():
-            if name.startswith('block11') or name.startswith('block12') or name.startswith('fc'):
-                 param.requires_grad = True
-        params_to_update = [
-            {'params': model.block11.parameters(), 'lr': 1e-5},  
-            {'params': model.block12.parameters(), 'lr': 1e-5}, 
-            {'params': model.fc.parameters(), 'lr': 1e-4}  
-        ]
-        optimizer = torch.optim.SGD(params_to_update, momentum=0.9, weight_decay=1e-4)
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=(10))
 
     print(f"\nEPOCH {epoch+1}/{num_epochs}")
     print("-" * 30)

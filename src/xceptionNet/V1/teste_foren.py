@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms
 from sklearn.metrics import classification_report
+from torch.amp.autocast_mode import autocast
 
 # ---------- log ----------
 log_path = "logs/xceptionNet/V1/log_teste_foren.txt"
@@ -55,8 +56,10 @@ print("DF classes   :", df_dataset.class_to_idx)
 
 # ---------- dataloaders ----------
 batch_size = 32
-test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False)
-df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False)
+num_workers = 4 
+pin_memory = True 
+test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
+df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 
 
 # ---------- modelo ----------
@@ -93,9 +96,13 @@ start_time_foren = time.time()
 
 with torch.no_grad():
     for images, labels in test_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
+        images = images.to(device, non_blocking=True)
+        labels = labels.to(device, non_blocking=True) 
+
+        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
+            outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
+
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
         all_labels.extend(labels.cpu().numpy())
@@ -105,7 +112,6 @@ end_time_foren = time.time()
 elapsed_time_foren = end_time_foren - start_time_foren
 minutes_foren = int(elapsed_time_foren // 60)
 seconds_foren = int(elapsed_time_foren % 60)
-print(f"Tempo total de inferência: {minutes_foren}m {seconds_foren}s")
 
 print(f"Acurácia no Teste (Foren): {100 * correct / total:.2f}%")
 
@@ -113,6 +119,7 @@ target_names = [k for k, v in sorted(test_dataset.class_to_idx.items(), key=lamb
 report = classification_report(all_labels, all_predicted, target_names=target_names)
 print(report)
 
+print(f"Tempo total de inferência: {minutes_foren}m {seconds_foren}s")
 
 # ---------- teste DF ----------
 df_correct = 0
@@ -124,9 +131,11 @@ start_time_df = time.time()
 
 with torch.no_grad():
     for images, labels in df_loader:
-        images, labels = images.to(device), labels.to(device)
+        images = images.to(device, non_blocking=True)
+        labels = labels.to(device, non_blocking=True) 
 
-        outputs = model(images)
+        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
+            outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
 
         df_total += labels.size(0)
@@ -138,7 +147,6 @@ end_time_df = time.time()
 elapsed_time_df = end_time_df - start_time_df
 minutes_df = int(elapsed_time_df // 60)
 seconds_df = int(elapsed_time_df % 60)
-print(f"Tempo total de inferência: {minutes_df}m {seconds_df}s")
 
 # Calcula e imprime as métricas finais
 df_accuracy = 100 * df_correct / df_total
@@ -148,3 +156,5 @@ print(f"Acurácia no Teste (DeepfakeFaces): {df_accuracy:.2f}%")
 df_target_names = [k for k, v in sorted(df_dataset.class_to_idx.items(), key=lambda item: item[1])]
 df_report = classification_report(df_all_labels, df_all_predicted, target_names=df_target_names)
 print(df_report)
+
+print(f"Tempo total de inferência: {minutes_df}m {seconds_df}s")
