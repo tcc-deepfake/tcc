@@ -6,6 +6,7 @@ from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms, models
 from sklearn.metrics import classification_report
+from torch.amp.autocast_mode import autocast
 
 # ---------- log ----------
 log_path = "logs\\Vgg16\\V1\\log_teste_df.txt"
@@ -54,20 +55,16 @@ print("Foren classes:", foren_dataset.class_to_idx)
 
 # ---------- dataloaders ----------
 batch_size = 32
-df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False)
-foren_loader = DataLoader(foren_dataset, batch_size=batch_size, shuffle=False)
+num_workers = 4 
+pin_memory = True 
+df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
+foren_loader = DataLoader(foren_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 
 # ---------- modelo ----------
 # Carrega VGG16 com a mesma arquitetura do treino
 model = models.vgg16_bn(weights=None)  # Não carrega pesos pré-treinados
-in_features_classifier = model.classifier[0].in_features
 
-model.classifier = nn.Sequential(
-    nn.Linear(in_features_classifier, 512), 
-    nn.ReLU(inplace=True),
-    nn.Dropout(p=0.5),
-    nn.Linear(512, 2)
-)
+model.classifier[6] = nn.Linear(4096, 2)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if device.type == "cuda":
@@ -89,9 +86,13 @@ start_time_df = time.time()
 
 with torch.no_grad():
     for images, labels in df_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
+        images = images.to(device, non_blocking=True)
+        labels = labels.to(device, non_blocking=True) 
+
+        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
+            outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
+
         df_total += labels.size(0)
         df_correct += (predicted == labels).sum().item()
         df_all_labels.extend(labels.cpu().numpy())
@@ -101,13 +102,13 @@ end_time_df = time.time()
 elapsed_time_df = end_time_df - start_time_df
 minutes_df = int(elapsed_time_df // 60)
 seconds_df = int(elapsed_time_df % 60)
-print(f"Tempo total de inferência: {minutes_df}m {seconds_df}s")
 
 print(f"Acurácia no Teste (DeepfakeFaces): {100 * df_correct / df_total:.2f}%")
 df_target_names = [k for k, v in sorted(df_dataset.class_to_idx.items(), key=lambda item: item[1])]
 df_report = classification_report(df_all_labels, df_all_predicted, target_names=df_target_names)
 print(df_report)
 
+print(f"Tempo total de inferência: {minutes_df}m {seconds_df}s")
 # ---------- teste Foren ----------
 print("\n=== TESTE NA BASE FOREN ===")
 f_correct = f_total = 0
@@ -118,9 +119,13 @@ start_time_foren = time.time()
 
 with torch.no_grad():
     for images, labels in foren_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
+        images = images.to(device, non_blocking=True)
+        labels = labels.to(device, non_blocking=True) 
+
+        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
+            outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
+
         f_total += labels.size(0)
         f_correct += (predicted == labels).sum().item()
         f_all_labels.extend(labels.cpu().numpy())
@@ -130,9 +135,11 @@ end_time_foren = time.time()
 elapsed_time_foren = end_time_foren - start_time_foren
 minutes_foren = int(elapsed_time_foren // 60)
 seconds_foren = int(elapsed_time_foren % 60)
-print(f"Tempo total de inferência: {minutes_foren}m {seconds_foren}s")
 
 print(f"Acurácia no Teste (Foren): {100 * f_correct / f_total:.2f}%")
+
 f_target_names = [k for k, v in sorted(foren_dataset.class_to_idx.items(), key=lambda item: item[1])]
 f_report = classification_report(f_all_labels, f_all_predicted, target_names=f_target_names)
 print(f_report)
+
+print(f"Tempo total de inferência: {minutes_foren}m {seconds_foren}s")

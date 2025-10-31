@@ -2,14 +2,16 @@ import torch
 import time
 import os
 import sys
+import timm
 from torch.utils.data import DataLoader
 from torch import nn
-from torchvision import datasets, transforms, models
+from torchvision import datasets, transforms
 from sklearn.metrics import classification_report
 from torch.amp.autocast_mode import autocast
+from utils.model_compress import check_sparsity
 
 # ---------- log ----------
-log_path = "logs\\Vgg16\\V1\\log_teste_foren.txt"
+log_path = "logs/xceptionNet/V2/log_teste_foren.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
@@ -32,24 +34,24 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 # ---------- bases ----------
-test_path_local = 'data\\foren\\teste'
-df_path = 'data\\df\\teste'
-best_path = 'models\\Vgg16\\V1\\model_foren.pt'
+test_path_local  = 'data/foren/teste'
+df_path  = 'data/df/teste'
+best_path = "models/xceptionNet/V2/model_foren.pt"
 
-# ---------- transforms ----------
-# VGG16 - 224x224
+# ---------- Transform ----------
 transform = transforms.Compose([
-    transforms.Resize((224, 224)),
-    transforms.ToTensor(),
+    transforms.Resize((299, 299)), # Resize 299x299 pro Xception
+    transforms.ToTensor(),         # Imagem para PyTorch Tensor
+    # Normalização com média e desvio da ImageNet
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
 # ---------- datasets ----------
-test_dataset = datasets.ImageFolder(root=test_path_local, transform=transform)
+test_dataset  = datasets.ImageFolder(root=test_path_local, transform=transform)
 df_dataset = datasets.ImageFolder(root=df_path, transform=transform)
 
 print(f"Número de imagens (Foren): {len(test_dataset)}")
-print("Foren classes:", test_dataset.class_to_idx)
+print("Foren classes:", test_dataset.class_to_idx)   
 print(f"Número de imagens (DF): {len(df_dataset)}")
 print("DF classes   :", df_dataset.class_to_idx)
 
@@ -57,27 +59,35 @@ print("DF classes   :", df_dataset.class_to_idx)
 batch_size = 32
 num_workers = 4 
 pin_memory = True 
-test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
+test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 
-# ---------- modelo ----------
-# Carrega VGG16 com a mesma arquitetura do treino
-model = models.vgg16_bn(weights=None)  # Não carrega pesos pré-treinados
 
-model.classifier[6] = nn.Linear(4096, 2)
+# ---------- modelo ----------
+model = timm.create_model('xception', pretrained=True)
+
+if hasattr(model, 'fc'):
+    in_features = model.fc.in_features
+    model.fc = nn.Sequential(
+        nn.Dropout(p=0.5),
+        nn.Linear(in_features, 2)
+    )
+elif hasattr(model, 'head'):
+    in_features = model.head.in_features
+    model.head = nn.Sequential(
+        nn.Dropout(p=0.5),
+        nn.Linear(in_features, 2)
+    )
+else:
+    raise RuntimeError("Layer de classificação não encontrada.")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-if device.type == "cuda":
-    print(f"GPU: {torch.cuda.get_device_name(0)}")
-else:
-    print("GPU não detectada - usando CPU")
-
 model.load_state_dict(torch.load(best_path, map_location=device))
 model = model.to(device)
 model.eval()
 
+check_sparsity(model, verbose=True)
 # ---------- teste Foren ----------
-print("\n=== TESTE NA BASE FOREN ===")
 correct = 0
 total = 0
 all_labels = []
@@ -105,13 +115,14 @@ minutes_foren = int(elapsed_time_foren // 60)
 seconds_foren = int(elapsed_time_foren % 60)
 
 print(f"Acurácia no Teste (Foren): {100 * correct / total:.2f}%")
+
 target_names = [k for k, v in sorted(test_dataset.class_to_idx.items(), key=lambda item: item[1])]
 report = classification_report(all_labels, all_predicted, target_names=target_names)
 print(report)
 
 print(f"Tempo total de inferência: {minutes_foren}m {seconds_foren}s")
+
 # ---------- teste DF ----------
-print("\n=== TESTE NA BASE DEEPFAKE FACES ===")
 df_correct = 0
 df_total = 0
 df_all_labels = []
@@ -138,9 +149,11 @@ elapsed_time_df = end_time_df - start_time_df
 minutes_df = int(elapsed_time_df // 60)
 seconds_df = int(elapsed_time_df % 60)
 
+# Calcula e imprime as métricas finais
 df_accuracy = 100 * df_correct / df_total
 print(f"Acurácia no Teste (DeepfakeFaces): {df_accuracy:.2f}%")
 
+# nome das classes
 df_target_names = [k for k, v in sorted(df_dataset.class_to_idx.items(), key=lambda item: item[1])]
 df_report = classification_report(df_all_labels, df_all_predicted, target_names=df_target_names)
 print(df_report)

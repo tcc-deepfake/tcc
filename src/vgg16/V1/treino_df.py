@@ -97,19 +97,13 @@ def main():
     )
 
     # ---------- modelo ----------
-    model = models.vgg16_bn(weights=models.VGG16_BN_Weights.IMAGENET1K_V1)
-    in_features_classifier = model.classifier[0].in_features
+    model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
 
     # Congela feature extractor
     for param in model.parameters():
         param.requires_grad = False
-    
-    model.classifier = nn.Sequential(
-        nn.Linear(in_features_classifier, 512),
-        nn.ReLU(inplace=True),
-        nn.Dropout(p=0.5),
-        nn.Linear(512, 2)
-    )
+
+    model.classifier[6] = nn.Linear(4096, 2)
 
     # Descongela o CLASSIFICADOR inteiro
     for param in model.classifier.parameters():

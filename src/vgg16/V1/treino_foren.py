@@ -7,6 +7,8 @@ from torch import nn
 from torchvision import datasets, transforms, models
 from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
+from torchvision.transforms import InterpolationMode
+from utils.augmentation import RandomJPEGReencode, RandomCenterCropResize
 
 # ---------- log ----------
 log_path = "logs\\Vgg16\\V1\\log_treino_foren.txt"
@@ -55,10 +57,14 @@ def main():
     ])
 
     train_transform = transforms.Compose([
-        transforms.RandomResizedCrop(224, scale=(0.9,1.0)),
+        transforms.Resize((256, 256), interpolation=InterpolationMode.BILINEAR),
+        transforms.RandomApply([transforms.RandomRotation(degrees=5, interpolation=InterpolationMode.BILINEAR)], p=0.5),
+        RandomCenterCropResize(scale_min=0.85, scale_max=1.0, out_size=(224,224)),
         transforms.RandomHorizontalFlip(p=0.5),
-        transforms.RandomApply([transforms.GaussianBlur(3)], p=0.3),
-        transforms.ToTensor(),
+        transforms.RandomApply([transforms.GaussianBlur(kernel_size=3, sigma=(0.1,1.5))], p=0.5),
+        transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2, hue=0.05),
+        transforms.RandomApply([RandomJPEGReencode(qmin=40, qmax=80, p=1.0)], p=0.5),
+        transforms.ToTensor(), 
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
 
@@ -95,19 +101,13 @@ def main():
     )
 
     # ---------- modelo ----------
-    model = models.vgg16_bn(weights=models.VGG16_BN_Weights.IMAGENET1K_V1)
-    in_features_classifier = model.classifier[0].in_features
+    model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
 
     # Congela feature extractor
     for param in model.parameters():
         param.requires_grad = False
     
-    model.classifier = nn.Sequential(
-        nn.Linear(in_features_classifier, 512),
-        nn.ReLU(inplace=True),
-        nn.Dropout(p=0.5),
-        nn.Linear(512, 2)
-    )
+    model.classifier[6] = nn.Linear(4096, 2)
 
     # Descongela o CLASSIFICADOR inteiro
     for param in model.classifier.parameters():
