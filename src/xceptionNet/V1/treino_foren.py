@@ -9,7 +9,7 @@ import timm
 import time
 from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
-from utils.aug import RandomJPEGReencode, RandomCenterCropResize 
+from utils.augmentation import RandomJPEGReencode, RandomCenterCropResize 
 
 # ---------- log ----------
 log_path = "logs/xceptionNet/V1/log_treino_foren.txt"
@@ -67,8 +67,8 @@ print(f"Número de imagens no dataset de validação: {len(val_dataset)}")
 print(f"\nClasses detectadas no treino: {train_dataset.classes}")
 print(f"Mapeamento de classe para índice: {train_dataset.class_to_idx}")
 
-batch_size = 64 
 # ---------- dataloaders ----------
+batch_size = 64 
 num_workers = 4 
 pin_memory = True 
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)

@@ -8,6 +8,8 @@ from torch import nn
 from torchvision import datasets, transforms
 from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
+from torchvision.transforms import InterpolationMode
+from utils.augmentation import RandomJPEGReencode, RandomCenterCropResize
 
 # ---------- log ----------
 log_path = "logs/mobileNetV3/V2/log_treino_foren.txt"
@@ -46,10 +48,12 @@ transform = transforms.Compose([
 
 # data augumentation no treino
 train_transform = transforms.Compose([
-    transforms.Resize((224, 224)),
+    transforms.Resize((256, 256), interpolation=InterpolationMode.BILINEAR),
+    RandomCenterCropResize(scale_min=0.9, scale_max=1.0, out_size=(224,224)),
     transforms.RandomHorizontalFlip(p=0.5),
-    transforms.ColorJitter(brightness=0.2, contrast=0.2),
-    transforms.RandomRotation(10),
+    transforms.RandomApply([transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 1.0))], p=0.3),
+    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.15, hue=0.03),
+    transforms.RandomApply([RandomJPEGReencode(qmin=60, qmax=90, p=1.0)], p=0.5),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
@@ -64,32 +68,48 @@ print(f"\nClasses detectadas no treino: {train_dataset.classes}")
 print(f"Mapeamento de classe para índice: {train_dataset.class_to_idx}")
 
 # ---------- dataloaders ----------
-batch_size = 32
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
-
+batch_size = 64 
+num_workers = 4 
+pin_memory = True 
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
+val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 
 # ---------- modelo ----------
 model = timm.create_model('mobilenetv3_large_100', pretrained=True)
 
-# Congela os parâmetros
-for param in model.parameters():
-    param.requires_grad = False
+# ---------- subsititui camada classificadora ----------
+if hasattr(model, 'classifier'):
+    in_features = model.classifier.in_features
+    model.classifier = nn.Sequential(
+        nn.Dropout(p=0.2),
+        nn.Linear(in_features, 2)
+    )
+else:
+    raise ValueError("MobileNetV3 não tem atributo classifier esperado.")
 
-num_features = model.classifier.in_features
-model.classifier = nn.Linear(num_features, 2) # 2 classes: FAKE e REAL
-
+# ---------- verifica gpu ----------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if device.type == "cuda":
     print(f"GPU: {torch.cuda.get_device_name(0)}")
 model = model.to(device)
 
+# ---------- congela camada ----------
+for p in model.parameters():
+    p.requires_grad = False
+
+# libera só o classifier na fase 1
+for p in model.classifier.parameters():
+    p.requires_grad = True
+
+
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-3)
+optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=5e-3, momentum=0.9, weight_decay=1e-4)
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5)
+
+scaler = GradScaler(device='cuda' if device.type == 'cuda' else 'cpu')
 
 # ---------- treino + validacao ----------
-num_epochs = 3
-scaler = GradScaler(device='cuda' if device.type == 'cuda' else 'cpu')
+num_epochs = 15
 best_acc = -1.0
 bad = 0
 patience = 3
@@ -99,16 +119,24 @@ os.makedirs(os.path.dirname(best_path), exist_ok=True)
 start_time = time.time()
 
 for epoch in range(1, num_epochs + 1):
-    # ---- train ----
+    # ---- train ----   
+    if epoch == 5:
+        for name, param in model.named_parameters():
+            if any(tag in name for tag in ['classifier', 'conv_head', 'blocks.5', 'blocks.6']):
+                param.requires_grad = True
+        optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=5e-4, momentum=0.9, weight_decay=1e-4)
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=(num_epochs - epoch + 1))
+
     model.train()
     running = 0.0
     for i, (images, labels) in enumerate(train_loader, 1):
         images, labels = images.to(device, non_blocking=True), labels.to(device, non_blocking=True)
+
+        optimizer.zero_grad(set_to_none=True)
         with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
             outputs = model(images)
             loss = criterion(outputs, labels)
 
-        optimizer.zero_grad(set_to_none=True)
         scaler.scale(loss).backward()
         scaler.step(optimizer)
         scaler.update()
@@ -129,6 +157,9 @@ for epoch in range(1, num_epochs + 1):
             total += labels.size(0)
 
     val_acc = correct / total if total else 0.0
+
+    scheduler.step()
+
     print(f"[Val] Epoch {epoch} | Acc={val_acc:.4f}")
 
     # ---- early stopping + best model ----
