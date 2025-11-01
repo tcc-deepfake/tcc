@@ -55,7 +55,7 @@ print(f"Número de imagens (DF): {len(df_dataset)}")
 print("DF classes   :", df_dataset.class_to_idx)
 
 # ---------- dataloaders ----------
-batch_size = 32
+batch_size = 128
 num_workers = 4 
 pin_memory = False
 test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
@@ -85,6 +85,7 @@ model.load_state_dict(torch.load(best_path, map_location=device))
 model = model.to(device)
 model.eval()
 
+model = torch.jit.script(model)
 # ---------- teste DF ----------
 df_correct = 0
 df_total = 0
@@ -93,7 +94,7 @@ df_all_predicted = []
 
 start_time_df = time.time()
 
-with torch.no_grad():
+with torch.inference_mode():
     for images, labels in df_loader:
         outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
@@ -127,7 +128,7 @@ all_predicted = []
 
 start_time_foren = time.time()
 
-with torch.no_grad():
+with torch.inference_mode():
     for images, labels in test_loader:
         outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
