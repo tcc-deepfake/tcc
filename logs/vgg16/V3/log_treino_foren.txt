@@ -1,0 +1,20 @@
+Gravando log em: logs/Vgg16/V3/log_treino_foren.txt
+Dataset de calibração (val) carregado: 4781 imagens.
+Usando backend de quantização da CPU: fbgemm
+C:\Program Files\Python312\Lib\site-packages\torch\ao\quantization\observer.py:229: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  warnings.warn(
+  Batch de calibração 10/50
+  Batch de calibração 20/50
+  Batch de calibração 30/50
+  Batch de calibração 40/50
+  Batch de calibração 50/50
+Modelo convertido para int8
+
+Salvando Modelo Quantizado...
+C:\Program Files\Python312\Lib\site-packages\torch\jit\_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+Modelo salvo em: models/Vgg16/V3/model_foren.pth
+Tempo Total de Quantização: 1m 50s
+
+Limpando Recursos...
+CLEANUP CONCLUÍDO.

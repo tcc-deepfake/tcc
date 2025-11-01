@@ -98,10 +98,10 @@ def main():
 
     # ---------- teste Foren ----------
     print("\n=== TESTE NA BASE FOREN ===")
-    correct = 0
-    total = 0
-    all_labels = []
-    all_predicted = []
+    foren_correct = 0
+    foren_total = 0
+    foren_all_labels = []
+    foren_all_predicted = []
 
     start_time_foren = time.time()
 
@@ -110,21 +110,22 @@ def main():
             outputs = model(images)
             predicted = torch.max(outputs, 1)[1]
 
-            total += labels.size(0)
-            correct += (predicted == labels).sum().item()
-            all_labels.extend(labels.cpu().numpy())
-            all_predicted.extend(predicted.cpu().numpy())
+            foren_total += labels.size(0)
+            foren_correct += (predicted == labels).sum().item()
+            foren_all_labels.extend(labels.cpu().numpy())
+            foren_all_predicted.extend(predicted.cpu().numpy())
 
     end_time_foren = time.time()
     elapsed_time_foren = end_time_foren - start_time_foren
     minutes_foren = int(elapsed_time_foren // 60)
     seconds_foren = int(elapsed_time_foren % 60)
 
-    print(f"Acurácia no Teste (Foren): {100 * correct / total:.2f}%")
+    foren_accuracy = 100 * foren_correct / foren_total
+    print(f"Acurácia no Teste (Foren): {foren_accuracy:.2f}%")
 
-    target_names = [k for k, v in sorted(test_dataset.class_to_idx.items(), key=lambda item: item[1])]
-    report = classification_report(all_labels, all_predicted, target_names=target_names)
-    print(report)
+    foren_target_names = [k for k, v in sorted(test_dataset.class_to_idx.items(), key=lambda item: item[1])]
+    foren_report = classification_report(foren_all_labels, foren_all_predicted, target_names=foren_target_names)
+    print(foren_report)
 
     print(f"Tempo total de inferência (Foren): {minutes_foren}m {seconds_foren}s")
 
