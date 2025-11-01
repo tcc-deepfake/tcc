@@ -1,0 +1,58 @@
+Gravando log em: logs/xceptionNet/V2/log_treino_foren.txt
+Número de imagens no dataset de treino: 38246
+Número de imagens no dataset de validação: 4781
+
+Classes detectadas no treino: ['fake', 'real']
+Mapeamento de classe para índice: {'fake': 0, 'real': 1}
+/home/sato/virtualpy/lib/python3.13/site-packages/timm/models/_factory.py:138: UserWarning: Mapping deprecated model name xception to current legacy_xception.
+  model = create_fn(
+--- Pruning 20%
+GPU: NVIDIA GeForce RTX 2060
+[Train] epoch 1/3 step 100/1196 loss_mean=0.2519
+[Train] epoch 1/3 step 200/1196 loss_mean=0.2413
+[Train] epoch 1/3 step 300/1196 loss_mean=0.2465
+[Train] epoch 1/3 step 400/1196 loss_mean=0.2353
+[Train] epoch 1/3 step 500/1196 loss_mean=0.2312
+[Train] epoch 1/3 step 600/1196 loss_mean=0.2501
+[Train] epoch 1/3 step 700/1196 loss_mean=0.2435
+[Train] epoch 1/3 step 800/1196 loss_mean=0.2380
+[Train] epoch 1/3 step 900/1196 loss_mean=0.2267
+[Train] epoch 1/3 step 1000/1196 loss_mean=0.2188
+[Train] epoch 1/3 step 1100/1196 loss_mean=0.2263
+[Val]   epoch 1/3 step 100/150 loss_mean=0.1994
+Train Loss: 0.2375 | Train Acc: 0.9003
+Val Loss: 0.1579 | Val   Acc: 0.9408
+ Best model saved to models/xceptionNet/V2/model_foren.pt (Val Acc: 0.9408)
+[Train] epoch 2/3 step 100/1196 loss_mean=0.2200
+[Train] epoch 2/3 step 200/1196 loss_mean=0.2227
+[Train] epoch 2/3 step 300/1196 loss_mean=0.2147
+[Train] epoch 2/3 step 400/1196 loss_mean=0.2225
+[Train] epoch 2/3 step 500/1196 loss_mean=0.2248
+[Train] epoch 2/3 step 600/1196 loss_mean=0.2250
+[Train] epoch 2/3 step 700/1196 loss_mean=0.2162
+[Train] epoch 2/3 step 800/1196 loss_mean=0.2159
+[Train] epoch 2/3 step 900/1196 loss_mean=0.2250
+[Train] epoch 2/3 step 1000/1196 loss_mean=0.2079
+[Train] epoch 2/3 step 1100/1196 loss_mean=0.2022
+[Val]   epoch 2/3 step 100/150 loss_mean=0.1971
+Train Loss: 0.2180 | Train Acc: 0.9111
+Val Loss: 0.1507 | Val   Acc: 0.9442
+ Best model saved to models/xceptionNet/V2/model_foren.pt (Val Acc: 0.9442)
+[Train] epoch 3/3 step 100/1196 loss_mean=0.2083
+[Train] epoch 3/3 step 200/1196 loss_mean=0.1976
+[Train] epoch 3/3 step 300/1196 loss_mean=0.2056
+[Train] epoch 3/3 step 400/1196 loss_mean=0.2061
+[Train] epoch 3/3 step 500/1196 loss_mean=0.1907
+[Train] epoch 3/3 step 600/1196 loss_mean=0.2058
+[Train] epoch 3/3 step 700/1196 loss_mean=0.2080
+[Train] epoch 3/3 step 800/1196 loss_mean=0.1963
+[Train] epoch 3/3 step 900/1196 loss_mean=0.2017
+[Train] epoch 3/3 step 1000/1196 loss_mean=0.1936
+[Train] epoch 3/3 step 1100/1196 loss_mean=0.1989
+[Val]   epoch 3/3 step 100/150 loss_mean=0.1522
+Train Loss: 0.2009 | Train Acc: 0.9173
+Val Loss: 0.1270 | Val   Acc: 0.9488
+ Best model saved to models/xceptionNet/V2/model_foren.pt (Val Acc: 0.9488)
+Melhor acc: 0.9488
+
+Tempo total de treino: 23m 38s

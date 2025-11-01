@@ -8,7 +8,9 @@ import timm
 import time
 from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
+from torchvision.transforms import InterpolationMode
 
+from utils.augmentation import RandomJPEGReencode, RandomCenterCropResize 
 from utils.model_compress import aplica_pruning, limpa_pesos
 
 # ---------- log ----------
@@ -41,10 +43,14 @@ path_v1 = "models/xceptionNet/V1/model_foren.pt"
 
 # ---------- data augmentation ----------
 train_transform = transforms.Compose([
-    transforms.RandomResizedCrop(299, scale=(0.9,1.0)),
+    transforms.Resize((320, 320), interpolation=InterpolationMode.BILINEAR),
+    transforms.RandomApply([transforms.RandomRotation(degrees=5, interpolation=InterpolationMode.BILINEAR)], p=0.5),
+    RandomCenterCropResize(scale_min=0.85, scale_max=1.0, out_size=(299,299)),
     transforms.RandomHorizontalFlip(p=0.5),
-    transforms.RandomApply([transforms.GaussianBlur(3)], p=0.3),
-    transforms.ToTensor(),
+    transforms.RandomApply([transforms.GaussianBlur(kernel_size=3, sigma=(0.1,1.5))], p=0.5),
+    transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2, hue=0.05),
+    transforms.RandomApply([RandomJPEGReencode(qmin=40, qmax=80, p=1.0)], p=0.5),
+    transforms.ToTensor(), 
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
@@ -65,7 +71,7 @@ print(f"\nClasses detectadas no treino: {train_dataset.classes}")
 print(f"Mapeamento de classe para índice: {train_dataset.class_to_idx}")
 
 # ---------- dataloaders ----------
-batch_size = 64 
+batch_size = 32
 num_workers = 4 
 pin_memory = True 
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
@@ -112,7 +118,7 @@ save_path = "models/xceptionNet/V2/model_foren.pt"
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
 # ---------- épocas ----------
-num_epochs = 8
+num_epochs = 3
 
 start_time = time.time()
 

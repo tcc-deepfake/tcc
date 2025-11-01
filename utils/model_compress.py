@@ -1,10 +1,31 @@
 import torch
 import torch.nn as nn
 import torch.nn.utils.prune as prune
-from torch.quantization import quantize_dynamic
+import torch.ao.quantization
+import sys
+from torch.ao.quantization import get_default_qconfig
+from torch.ao.quantization.quantize_fx import prepare_fx, convert_fx
 
 # ---------- função auxiliar (pruning) ----------
 def encontra_podas(model, incluir_convs: bool = False):
+    model_name = model.__class__.__name__
+    
+    if model_name == 'VGG' and incluir_convs:
+        camadas = []
+        VGG_BLOCK_5_START_INDEX = 24
+        for name, module in model.named_modules():
+            if isinstance(module, nn.Linear):
+                camadas.append((module, 'weight'))
+            elif isinstance(module, nn.Conv2d):
+                if name.startswith('features.'):
+                    try:
+                        layer_index = int(name.split('.')[-1])
+                        if layer_index >= VGG_BLOCK_5_START_INDEX:
+                            camadas.append((module, 'weight'))
+                    except (ValueError, IndexError):
+                        pass
+        return camadas
+
     camadas = []
     for m in model.modules():
         if isinstance(m, nn.Linear):
@@ -33,15 +54,42 @@ def limpa_pesos(model):
             prune.remove(m, 'weight')
     return model
 
-# ---------- quantização ----------
-def aplica_quantizacao(model_pruned, verbose=True):
-    if verbose:
-        print("--- Aplicando Quantização Dinâmica ---")
-        
-    model_cpu = model_pruned.to("cpu")
+# ---------- quantização -----------
+def aplica_quantizacao_estatica(model_cpu, val_loader_para_calibracao, input_size=(1, 3, 299, 299), verbose=True):
     model_cpu.eval()
-    
-    return quantize_dynamic(model_cpu, {nn.Linear}, dtype=torch.qint8)
+        
+    backend = "fbgemm"
+
+    if sys.platform == 'darwin':
+        backend = "qnnpack"
+        torch.backends.quantized.engine = 'qnnpack'
+    else:
+        torch.backends.quantized.engine = 'fbgemm'
+        
+    if verbose:
+        print(f"Usando backend de quantização da CPU: {torch.backends.quantized.engine}")
+
+    # 1. Configuração
+    qconfig = get_default_qconfig(backend) # Usa o backend correto
+    qconfig_mapping = torch.ao.quantization.QConfigMapping().set_global(qconfig)
+    example_inputs = (torch.randn(input_size),)
+
+    model_prepared = prepare_fx(model_cpu, qconfig_mapping, example_inputs)
+
+    num_batches_calibracao = 50 
+    with torch.no_grad():
+        for i, (images, _) in enumerate(val_loader_para_calibracao):
+            if i >= num_batches_calibracao:
+                break
+            model_prepared(images) # Coleta estatísticas
+            if verbose and (i+1) % 10 == 0:
+                print(f"  Batch de calibração {i+1}/{num_batches_calibracao}")
+
+    model_quantized = convert_fx(model_prepared)
+    if verbose:
+        print("Modelo convertido para int8")
+        
+    return model_quantized
 
 # ---------- checa esparsidade ----------
 def check_sparsity(model, verbose=True):

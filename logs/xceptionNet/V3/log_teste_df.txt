@@ -1,0 +1,27 @@
+Gravando log em: logs/xceptionNet/V3/log_teste_df.txt
+Número de imagens (Foren): 11403
+Foren classes: {'fake': 0, 'real': 1}
+Número de imagens (DF): 9564
+DF classes    : {'fake': 0, 'real': 1}
+Acurácia no Teste (DeepfakeFaces): 81.25%
+              precision    recall  f1-score   support
+
+        fake       0.95      0.82      0.88      7934
+        real       0.47      0.80      0.59      1630
+
+    accuracy                           0.81      9564
+   macro avg       0.71      0.81      0.73      9564
+weighted avg       0.87      0.81      0.83      9564
+
+Tempo total de inferência (DF): 4m 9s
+Acurácia no Teste (Foren): 62.53%
+              precision    recall  f1-score   support
+
+        fake       0.62      0.63      0.63      5697
+        real       0.63      0.62      0.63      5706
+
+    accuracy                           0.63     11403
+   macro avg       0.63      0.63      0.63     11403
+weighted avg       0.63      0.63      0.63     11403
+
+Tempo total de inferência (Foren): 5m 55s

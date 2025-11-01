@@ -57,7 +57,7 @@ print("DF classes   :", df_dataset.class_to_idx)
 # ---------- dataloaders ----------
 batch_size = 32
 num_workers = 4 
-pin_memory = True 
+pin_memory = False
 test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 
@@ -80,7 +80,7 @@ elif hasattr(model, 'head'):
 else:
     raise RuntimeError("Layer de classificação não encontrada.")
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 model.load_state_dict(torch.load(best_path, map_location=device))
 model = model.to(device)
 model.eval()
@@ -95,11 +95,7 @@ start_time_df = time.time()
 
 with torch.no_grad():
     for images, labels in df_loader:
-        images = images.to(device, non_blocking=True)
-        labels = labels.to(device, non_blocking=True) 
-
-        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
-            outputs = model(images) 
+        outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
 
         df_total += labels.size(0)
@@ -133,11 +129,7 @@ start_time_foren = time.time()
 
 with torch.no_grad():
     for images, labels in test_loader:
-        images = images.to(device, non_blocking=True)
-        labels = labels.to(device, non_blocking=True) 
-
-        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
-            outputs = model(images) 
+        outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
 
         total += labels.size(0)

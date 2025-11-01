@@ -1,0 +1,19 @@
+Gravando log em: logs/xceptionNet/V3/log_treino_df.txt
+/home/sato/virtualpy/lib/python3.13/site-packages/timm/models/_factory.py:138: UserWarning: Mapping deprecated model name xception to current legacy_xception.
+  model = create_fn(
+Dataset de calibração (val) carregado: 9563 imagens.
+/home/sato/virtualpy/lib/python3.13/site-packages/torch/ao/quantization/quantize_fx.py:146: FutureWarning: Passing a QConfig dictionary to prepare is deprecated and will not be supported in a future version. Please pass in a QConfigMapping instead.
+  prepared = prepare(
+/home/sato/virtualpy/lib/python3.13/site-packages/torch/ao/quantization/observer.py:246: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  warnings.warn(
+  Batch de calibração 10/50
+  Batch de calibração 20/50
+  Batch de calibração 30/50
+  Batch de calibração 40/50
+  Batch de calibração 50/50
+Modelo convertido para int8
+
+Salvando modelo quantizado
+/home/sato/virtualpy/lib/python3.13/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+Modelo salvo em: models/xceptionNet/V3/model_df.pth
