@@ -3,7 +3,6 @@ Número de imagens (DF): 9564
 DF classes: {'fake': 0, 'real': 1}
 Número de imagens (Foren): 11403
 Foren classes: {'fake': 0, 'real': 1}
-GPU: NVIDIA GeForce RTX 3060
 
 === TESTE NA BASE DEEPFAKE FACES ===
 Acurácia no Teste (DeepfakeFaces): 87.40%
@@ -16,10 +15,10 @@ Acurácia no Teste (DeepfakeFaces): 87.40%
    macro avg       0.78      0.86      0.81      9564
 weighted avg       0.90      0.87      0.88      9564
 
-Tempo total de inferência: 0m 29s
+Tempo total de inferência: 12m 31s
 
 === TESTE NA BASE FOREN ===
-Acurácia no Teste (Foren): 59.27%
+Acurácia no Teste (Foren): 59.28%
               precision    recall  f1-score   support
 
         fake       0.63      0.45      0.52      5697
@@ -29,7 +28,7 @@ Acurácia no Teste (Foren): 59.27%
    macro avg       0.60      0.59      0.58     11403
 weighted avg       0.60      0.59      0.58     11403
 
-Tempo total de inferência: 0m 41s
+Tempo total de inferência: 14m 1s
 
 Limpando recursos...
 CLEANUP CONCLUÍDO.
