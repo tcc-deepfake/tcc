@@ -3,11 +3,11 @@ import time
 import os
 import sys
 
-# Adiciona a raiz do projeto ao Python path
+# adiciona a raiz do projeto ao python path
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 sys.path.insert(0, project_root)
 
-# Agora o import absoluto funcionará
+# faz o import absoluto funcionar
 from utils.augmentation import RandomJPEGReencode, RandomCenterCropResize
 
 from torch.utils.data import DataLoader

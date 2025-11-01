@@ -2,12 +2,19 @@ import torch
 import time
 import os
 import sys
+
+# adiciona a raiz do projeto ao python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+sys.path.insert(0, project_root)
+
+# faz o import absoluto funcionar
+from utils.model_compress import aplica_pruning, limpa_pesos, check_sparsity
+
 from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms, models
 from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
-from utils.model_compress import aplica_pruning, limpa_pesos, check_sparsity
 
 # ---------- log ----------
 log_path = "logs\\Vgg16\\V2\\log_treino_foren.txt" 
@@ -211,3 +218,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

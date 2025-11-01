@@ -1,0 +1,45 @@
+Gravando LOGs em: logs\Vgg16\V2\log_treino_df.txt
+CUDA disponível: True
+Dataset de treino: 76507 imagens
+Dataset de validação: 9563 imagens
+--- Pruning 20%
+GPU: NVIDIA GeForce RTX 3060
+Class weights: [0.34072697 1.6592729 ]
+
+============================================================
+Epoch 1/3 | Step 50/299 | Loss 0.5040
+Epoch 1/3 | Step 100/299 | Loss 0.4937
+Epoch 1/3 | Step 150/299 | Loss 0.4926
+Epoch 1/3 | Step 200/299 | Loss 0.4981
+Epoch 1/3 | Step 250/299 | Loss 0.4955
+TEMPO DO EPOCH 1: 354.82s
+[Val] Epoch 1 | Acc=0.8539
+O NOVO MELHOR MODELO SALVO (acc=0.8539)
+------------------------------------------------------------
+Epoch 2/3 | Step 50/299 | Loss 0.4952
+Epoch 2/3 | Step 100/299 | Loss 0.4977
+Epoch 2/3 | Step 150/299 | Loss 0.5024
+Epoch 2/3 | Step 200/299 | Loss 0.4980
+Epoch 2/3 | Step 250/299 | Loss 0.4901
+TEMPO DO EPOCH 2: 359.85s
+[Val] Epoch 2 | Acc=0.8517
+X SEM MELHORA (1/3)
+------------------------------------------------------------
+Epoch 3/3 | Step 50/299 | Loss 0.4950
+Epoch 3/3 | Step 100/299 | Loss 0.5015
+Epoch 3/3 | Step 150/299 | Loss 0.4955
+Epoch 3/3 | Step 200/299 | Loss 0.4878
+Epoch 3/3 | Step 250/299 | Loss 0.5036
+TEMPO DO EPOCH 3: 351.24s
+[Val] Epoch 3 | Acc=0.8608
+O NOVO MELHOR MODELO SALVO (acc=0.8608)
+------------------------------------------------------------
+
+============================================================
+Melhor acurácia (pós-pruning): 0.8608
+Tempo total de fine-tuning: 19m 6s
+============================================================
+Modelo com pruning permanente salvo em: models\Vgg16\V2\model_df.pt
+
+Limpando recursos...
+CLEANUP CONCLUÍDO.

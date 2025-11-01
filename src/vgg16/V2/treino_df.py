@@ -2,14 +2,21 @@ import torch
 import time
 import os
 import sys
+import numpy as np
+
+# adiciona a raiz do projeto ao python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+sys.path.insert(0, project_root)
+
+# faz o import absoluto funcionar
+from utils.model_compress import aplica_pruning, limpa_pesos, check_sparsity
+
 from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms, models
 from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
 from collections import Counter
-import numpy as np
-from utils.model_compress import aplica_pruning, limpa_pesos, check_sparsity
 
 # ---------- log ----------
 log_path = "logs\\Vgg16\\V2\\log_treino_df.txt" 
@@ -123,7 +130,7 @@ def main():
     optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), 
                            lr=1e-4, momentum=0.9, weight_decay=1e-4)
 
-    num_epochs = 8 
+    num_epochs = 3
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs) 
 
     # ---------- treino + validação ----------
@@ -220,3 +227,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
