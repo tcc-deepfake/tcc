@@ -2,13 +2,20 @@ import torch
 import time
 import os
 import sys
+
+# Adiciona a raiz do projeto ao Python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+sys.path.insert(0, project_root)
+
+# Agora o import absoluto funcionará
+from utils.augmentation import RandomJPEGReencode, RandomCenterCropResize
+
 from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms, models
 from torch.amp.autocast_mode import autocast
 from torch.amp.grad_scaler import GradScaler
 from torchvision.transforms import InterpolationMode
-from utils.augmentation import RandomJPEGReencode, RandomCenterCropResize
 
 # ---------- log ----------
 log_path = "logs\\Vgg16\\V1\\log_treino_foren.txt"
@@ -139,7 +146,7 @@ def main():
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=5) 
 
     # ---------- treino + validação ----------
-    num_epochs =20 
+    num_epochs = 20 
     scaler = GradScaler(device='cuda' if device.type == 'cuda' else 'cpu')
     best_acc = -1.0
     bad = 0
@@ -241,3 +248,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
