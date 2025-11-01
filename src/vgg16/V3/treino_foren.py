@@ -2,14 +2,13 @@ import os
 import sys
 import torch
 import torch.nn as nn
-import timm
 import time
 from torchvision import datasets, transforms, models
 from torch.utils.data import DataLoader
 from utils.model_compress import aplica_quantizacao_estatica
 
 # ---------- log ----------
-log_path = "logs/xceptionNet/V3/log_treino_foren.txt"
+log_path = "logs/Vgg16/V3/log_treino_foren.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
@@ -26,8 +25,8 @@ sys.stderr = _Tee(sys.stderr, _log_file)
 print(f"Gravando log em: {log_path}")
 
 # ---------- paths ----------
-path_v2 = "models/xceptionNet/V2/model_foren.pt"
-path_v3 = "models/xceptionNet/V3/model_foren.pth" # .pth para JIT
+path_v2 = "models/Vgg16/V2/model_foren.pt"
+path_v3 = "models/Vgg16/V3/model_foren.pth" # .pth para JIT
 val_path_local = 'data/foren/validacao' 
 os.makedirs(os.path.dirname(path_v3), exist_ok=True)
 

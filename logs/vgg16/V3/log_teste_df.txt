@@ -1,0 +1,34 @@
+Gravando log em: logs/Vgg16/V3/log_teste_df.txt
+Número de imagens (Foren): 11403
+Foren classes: {'fake': 0, 'real': 1}
+Número de imagens (DF): 9564
+DF classes    : {'fake': 0, 'real': 1}
+
+=== TESTE NA BASE DEEPFAKE FACES ===
+Acurácia no Teste (DeepfakeFaces): 87.80%
+              precision    recall  f1-score   support
+
+        fake       0.96      0.89      0.92      7934
+        real       0.61      0.81      0.69      1630
+
+    accuracy                           0.88      9564
+   macro avg       0.78      0.85      0.81      9564
+weighted avg       0.90      0.88      0.88      9564
+
+Tempo total de inferência (DF): 3m 32s
+
+=== TESTE NA BASE FOREN ===
+Acurácia no Teste (Foren): 58.77%
+              precision    recall  f1-score   support
+
+        fake       0.62      0.47      0.53      5697
+        real       0.57      0.71      0.63      5706
+
+    accuracy                           0.59     11403
+   macro avg       0.59      0.59      0.58     11403
+weighted avg       0.59      0.59      0.58     11403
+
+Tempo total de inferência (Foren): 3m 58s
+
+Limpando recursos...
+CLEANUP CONCLUÍDO.

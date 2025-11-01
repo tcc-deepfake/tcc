@@ -7,7 +7,7 @@ from torchvision import datasets, transforms
 from sklearn.metrics import classification_report
 
 # ---------- log ----------
-log_path = "logs/vgg16/V3/log_teste_foren.txt"
+log_path = "logs/Vgg16/V3/log_teste_foren.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
