@@ -6,9 +6,10 @@ from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms
 from sklearn.metrics import classification_report
+from torch.amp.autocast_mode import autocast
 
 # ---------- log ----------
-log_path = "logs/mobileNetV3/V1/log_teste_foren.txt"
+log_path = "logs/mobileNetV3/V2/log_teste_foren.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 class _Tee:
@@ -31,9 +32,9 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 # ---------- bases ----------
-test_path_local  = 'data_old/foren/teste/person'
+test_path_local  = 'data/foren/teste'
 df_path  = 'data/df/teste'
-best_path = 'models/mobileNetV3/V1/model_foren.pt'
+best_path = 'models/mobileNetV3/V2/model_foren.pt'
 
 # ---------- transforms ----------
 # MobileNetV3 - 224x224
@@ -54,13 +55,22 @@ print("DF classes   :", df_dataset.class_to_idx)
 
 # ---------- dataloaders ----------
 batch_size = 32
-test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False)
-df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False)
+num_workers = 4 
+pin_memory = True 
+test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
+df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=pin_memory, persistent_workers=True)
 
 # ---------- modelo ----------
 model = timm.create_model('mobilenetv3_large_100', pretrained=True)
-num_features = model.classifier.in_features
-model.classifier = nn.Linear(num_features, 2) # 2 classes: FAKE e REAL
+
+if hasattr(model, 'classifier'):
+    in_features = model.classifier.in_features
+    model.classifier = nn.Sequential(
+        nn.Dropout(p=0.2), # O Dropout estava em falta
+        nn.Linear(in_features, 2)
+    )
+else:
+    raise ValueError("MobileNetV3 não tem atributo classifier esperado.")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.load_state_dict(torch.load(best_path, map_location=device))
@@ -75,9 +85,13 @@ all_predicted = []
 
 with torch.no_grad():
     for images, labels in test_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
+        images = images.to(device, non_blocking=True)
+        labels = labels.to(device, non_blocking=True) 
+
+        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
+            outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
+
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
         all_labels.extend(labels.cpu().numpy())
@@ -96,9 +110,11 @@ df_all_predicted = []
 
 with torch.no_grad():
     for images, labels in df_loader:
-        images, labels = images.to(device), labels.to(device)
+        images = images.to(device, non_blocking=True)
+        labels = labels.to(device, non_blocking=True) 
 
-        outputs = model(images)
+        with autocast(device_type=device.type, enabled=(device.type == 'cuda')):
+            outputs = model(images) 
         predicted = torch.max(outputs, 1)[1]
 
         df_total += labels.size(0)

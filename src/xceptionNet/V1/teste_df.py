@@ -9,6 +9,7 @@ from torchvision import datasets, transforms
 from sklearn.metrics import classification_report
 from torch.amp.autocast_mode import autocast
 
+# ---------- log ----------
 class _Tee:
     def __init__(self, *streams): self.streams = streams
     def write(self, data):
@@ -17,8 +18,6 @@ class _Tee:
         for s in self.streams: s.flush()
 
 def main():
-    
-    # ---------- log ----------
     log_path = "logs/xceptionNet/V1/log_teste_df.txt"
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
@@ -87,7 +86,6 @@ def main():
     model = model.to(device).float()
     model.eval()
 
-    # model = torch.jit.script(model)
     # ---------- teste DF ----------
     df_correct = 0
     df_total = 0

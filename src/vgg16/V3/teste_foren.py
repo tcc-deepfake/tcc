@@ -7,9 +7,6 @@ from torchvision import datasets, transforms
 from sklearn.metrics import classification_report
 
 # ---------- log ----------
-log_path = "logs/Vgg16/V3/log_teste_foren.txt"
-os.makedirs(os.path.dirname(log_path), exist_ok=True)
-
 class _Tee:
     def __init__(self, *streams): self.streams = streams
     def write(self, data):
@@ -18,6 +15,9 @@ class _Tee:
         for s in self.streams: s.flush()
 
 def main():
+    log_path = "logs/vgg16/V3/log_teste_foren.txt"
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+
     _log_file = open(log_path, "w", encoding="utf-8", buffering=1)
     sys.stdout = _Tee(sys.stdout, _log_file)
     sys.stderr = _Tee(sys.stderr, _log_file)
@@ -33,7 +33,7 @@ def main():
     # ---------- bases ----------
     test_path_local = 'data/foren/teste'
     df_path = 'data/df/teste'
-    best_path = "models/Vgg16/V3/model_foren.pth"
+    best_path = "models/vgg16/V3/model_foren.pth"
 
     # ---------- Transform ----------
     transform = transforms.Compose([
@@ -52,14 +52,14 @@ def main():
     print("DF classes    :", df_dataset.class_to_idx)
 
     # ---------- dataloaders ----------
-    batch_size = 256
+    batch_size = 128
     num_workers = 4
     pin_memory = False 
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, persistent_workers=True)
     df_loader = DataLoader(df_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, persistent_workers=True)
 
     # ---------- modelo ----------
-    device = torch.device("cpu")
+    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     model = torch.jit.load(best_path, map_location=device)
     model.eval()
 
@@ -74,6 +74,9 @@ def main():
 
     with torch.inference_mode(): 
         for images, labels in test_loader:
+            images = images.to(device, dtype=torch.float32)
+            labels = labels.to(device)
+
             outputs = model(images)
             predicted = torch.max(outputs, 1)[1]
 
@@ -107,6 +110,9 @@ def main():
 
     with torch.inference_mode():
         for images, labels in df_loader:
+            images = images.to(device, dtype=torch.float32)
+            labels = labels.to(device)
+
             outputs = model(images)
             predicted = torch.max(outputs, 1)[1]
 

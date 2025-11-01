@@ -3,21 +3,11 @@ import sys
 import torch
 import torch.nn as nn
 import time
-
-# adiciona a raiz do projeto ao python path
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.insert(0, project_root)
-
-# faz o import absoluto funcionar
 from utils.model_compress import aplica_quantizacao_estatica
-
 from torchvision import datasets, transforms, models
 from torch.utils.data import DataLoader
 
 # ---------- log ----------
-log_path = "logs/Vgg16/V3/log_treino_foren.txt"
-os.makedirs(os.path.dirname(log_path), exist_ok=True)
-
 class _Tee:
     def __init__(self, *streams): self.streams = streams
     def write(self, data):
@@ -26,6 +16,8 @@ class _Tee:
         for s in self.streams: s.flush()
 
 def main():
+    log_path = "logs/vgg16/V3/log_treino_foren.txt"
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
     _log_file = open(log_path, "w", encoding="utf-8", buffering=1)
     sys.stdout = _Tee(sys.stdout, _log_file)
     sys.stderr = _Tee(sys.stderr, _log_file)
@@ -33,8 +25,8 @@ def main():
     print(f"Gravando log em: {log_path}")
 
     # ---------- paths ----------
-    path_v2 = "models/Vgg16/V2/model_foren.pt"
-    path_v3 = "models/Vgg16/V3/model_foren.pth" # .pth para JIT
+    path_v2 = "models/vgg16/V2/model_foren.pt"
+    path_v3 = "models/vgg16/V3/model_foren.pth" # .pth para JIT
     val_path_local = 'data/foren/validacao' 
     os.makedirs(os.path.dirname(path_v3), exist_ok=True)
 
@@ -44,7 +36,8 @@ def main():
     in_features = model.classifier[6].in_features
     model.classifier[6] = nn.Linear(in_features, 2)
 
-    model.load_state_dict(torch.load(path_v2, map_location='cpu'))
+    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    model.load_state_dict(torch.load(path_v2, map_location=device))
     model.eval()
 
     # ---------- dataloader (para calibração) ----------

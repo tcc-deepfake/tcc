@@ -3,21 +3,11 @@ import sys
 import torch
 import torch.nn as nn
 import time
-
-# adiciona a raiz do projeto ao python path
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.insert(0, project_root)
-
-# faz o import absoluto funcionar
 from utils.model_compress import aplica_quantizacao_estatica
-
 from torchvision import datasets, transforms, models
 from torch.utils.data import DataLoader
 
 # ---------- log ----------
-log_path = "logs/Vgg16/V3/log_treino_df.txt"
-os.makedirs(os.path.dirname(log_path), exist_ok=True)
-
 class _Tee:
     def __init__(self, *streams): self.streams = streams
     def write(self, data):
@@ -26,6 +16,9 @@ class _Tee:
         for s in self.streams: s.flush()
 
 def main():
+    log_path = "logs/Vgg16/V3/log_treino_df.txt"
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+
     _log_file = open(log_path, "w", encoding="utf-8", buffering=1)
     sys.stdout = _Tee(sys.stdout, _log_file)
     sys.stderr = _Tee(sys.stderr, _log_file)

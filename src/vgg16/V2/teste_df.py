@@ -2,14 +2,7 @@ import torch
 import time
 import os
 import sys
-
-# adiciona a raiz do projeto ao python path
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.insert(0, project_root)
-
-# faz o import absoluto funcionar
 from utils.model_compress import check_sparsity
-
 from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms, models
@@ -17,9 +10,6 @@ from sklearn.metrics import classification_report
 from torch.amp.autocast_mode import autocast
 
 # ---------- log ----------
-log_path = "logs\\Vgg16\\V2\\log_teste_df.txt"
-os.makedirs(os.path.dirname(log_path), exist_ok=True)
-
 class _Tee:
     def __init__(self, *streams): self.streams = streams
     def write(self, data):
@@ -28,6 +18,8 @@ class _Tee:
         for s in self.streams: s.flush()
 
 def main():
+    log_path = "logs\\vgg16\\V2\\log_teste_df.txt"
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
     _log_file = open(log_path, "w", encoding="utf-8", buffering=1)
     sys.stdout = _Tee(sys.stdout, _log_file)
     sys.stderr = _Tee(sys.stderr, _log_file)
@@ -43,7 +35,7 @@ def main():
     # ---------- bases ----------
     df_path = 'data\\df\\teste'
     foren_path = 'data_old\\foren\\teste\\person'
-    best_path = 'models\\Vgg16\\V2\\model_df.pt'
+    best_path = 'models\\vgg16\\V2\\model_df.pt'
 
     # ---------- transforms ----------
     # VGG16 - 224x224
@@ -74,10 +66,9 @@ def main():
 
     model.classifier[6] = nn.Linear(4096, 2)
 
-    device = torch.device("cpu")
-
+    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     model.load_state_dict(torch.load(best_path, map_location=device))
-    model = model.to(device)
+    model = model.to(device).float()
     model.eval()
 
     check_sparsity(model, verbose=True)
@@ -92,6 +83,9 @@ def main():
 
     with torch.inference_mode():
         for images, labels in df_loader:
+            images = images.to(device, dtype=torch.float32)
+            labels = labels.to(device)
+
             outputs = model(images) 
             predicted = torch.max(outputs, 1)[1]
 
@@ -122,6 +116,9 @@ def main():
 
     with torch.inference_mode():
         for images, labels in foren_loader:
+            images = images.to(device, dtype=torch.float32)
+            labels = labels.to(device)
+
             outputs = model(images) 
             predicted = torch.max(outputs, 1)[1]
 
