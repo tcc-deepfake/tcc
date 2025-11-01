@@ -109,3 +109,6 @@ Logs de treinamento e teste.
 * Métricas por época (loss, accuracy)
 * Classification report (precision, recall, f1-score)
 * Tempo de execução
+
+> **NOTA:** Os resultados do experimentais foram armazenados diretamente no link do Google Drive:
+> https://drive.google.com/drive/folders/1w4Ga3lylrdjbTK52SZ1Tsd7rpFPPFbJd
