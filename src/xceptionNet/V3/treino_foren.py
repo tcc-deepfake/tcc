@@ -41,7 +41,7 @@ def main():
     else:
         raise ValueError("Layer de classificação não encontrado.")
 
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    device = torch.device("cpu")
     model.load_state_dict(torch.load(path_v2, map_location=device))
     model.eval()
 
@@ -77,3 +77,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

@@ -3,13 +3,19 @@ import time
 import os
 import sys
 import timm
+
+# adiciona a raiz do projeto ao python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+sys.path.insert(0, project_root)
+
+# faz o import absoluto funcionar
+from utils.model_compress import check_sparsity
+
 from torch.utils.data import DataLoader
 from torch import nn
 from torchvision import datasets, transforms
 from sklearn.metrics import classification_report
 from torch.amp.autocast_mode import autocast
-from utils.model_compress import check_sparsity
-
 
 class _Tee:
     def __init__(self, *streams): self.streams = streams
@@ -158,3 +164,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

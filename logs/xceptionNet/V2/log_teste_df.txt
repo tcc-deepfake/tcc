@@ -3,7 +3,7 @@ Número de imagens (Foren): 11403
 Foren classes: {'fake': 0, 'real': 1}
 Número de imagens (DF): 9564
 DF classes   : {'fake': 0, 'real': 1}
-/home/sato/virtualpy/lib/python3.13/site-packages/timm/models/_factory.py:138: UserWarning: Mapping deprecated model name xception to current legacy_xception.
+C:\Users\Thiago Borges\AppData\Roaming\Python\Python312\site-packages\timm\models\_factory.py:138: UserWarning: Mapping deprecated model name xception to current legacy_xception.
   model = create_fn(
 Total de Zeros nos Pesos: 4151304
 Total de Elementos nos Pesos: 20783784
@@ -20,4 +20,15 @@ Acurácia no Teste (DeepfakeFaces): 91.18%
    macro avg       0.83      0.88      0.85      9564
 weighted avg       0.92      0.91      0.91      9564
 
-Tempo total de inferência: 24m 20s
+Tempo total de inferência: 19m 45s
+Acurácia no Teste (Foren): 64.14%
+              precision    recall  f1-score   support
+
+        fake       0.64      0.66      0.65      5697
+        real       0.65      0.63      0.64      5706
+
+    accuracy                           0.64     11403
+   macro avg       0.64      0.64      0.64     11403
+weighted avg       0.64      0.64      0.64     11403
+
+Tempo total de inferência: 23m 30s

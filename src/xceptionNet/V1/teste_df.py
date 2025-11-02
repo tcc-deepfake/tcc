@@ -81,9 +81,9 @@ def main():
     else:
         raise RuntimeError("Layer de classificação não encontrada.")
 
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    device = torch.device("cpu")
     model.load_state_dict(torch.load(best_path, map_location=device))
-    model = model.to(device).float()
+    model = model.to(device)
     model.eval()
 
     # ---------- teste DF ----------
@@ -96,9 +96,6 @@ def main():
 
     with torch.inference_mode():
         for images, labels in df_loader:
-
-            images = images.to(device, dtype=torch.float32)
-            labels = labels.to(device)
 
             outputs = model(images) 
             predicted = torch.max(outputs, 1)[1]
@@ -135,9 +132,6 @@ def main():
     with torch.inference_mode():
         for images, labels in test_loader:
 
-            images = images.to(device, dtype=torch.float32)
-            labels = labels.to(device)
-
             outputs = model(images) 
             predicted = torch.max(outputs, 1)[1]
 
@@ -161,3 +155,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

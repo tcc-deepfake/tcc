@@ -51,7 +51,7 @@ def main():
     print("DF classes    :", df_dataset.class_to_idx)
 
     # ---------- dataloaders ----------
-    batch_size = 256
+    batch_size = 128
     num_workers = 4
     pin_memory = False 
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, persistent_workers=True)
